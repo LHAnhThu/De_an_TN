@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Management - Grid View</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Container (Injected by JS) -->
+        <aside id="sidebar-container" class="sidebar"></aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header id="header-container" class="top-header"></header>
+
+            <div class="content-body">
+                <!-- Controls Area -->
+                <div class="controls-area">
+                    <div class="search-bar">
+                        <i class="fa-solid fa-search" style="color: #94a3b8;"></i>
+                        <input type="text" id="searchInput" placeholder="Search...">
+                    </div>
+                    <button class="btn btn-outline"><i class="fa-solid fa-rotate-right"></i> Reload</button>
+                    <div class="spacer"></div>
+                    <a href="add_course.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Course</a>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters-area">
+                    <div class="select-wrapper">
+                        <select id="filterLanguage">
+                            <option value="">All Languages</option>
+                            <option value="ENGLISH">English</option>
+                            <option value="JAPANESE">Japanese</option>
+                            <option value="CHINESE">Chinese</option>
+                        </select>
+                    </div>
+                    <div class="select-wrapper">
+                        <select id="filterStatus">
+                            <option value="">All Statuses</option>
+                            <option value="Active">Active</option>
+                            <option value="Draft">Draft</option>
+                            <option value="Locked">Locked</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-outline-primary" id="btnAdvancedFilter"><i class="fa-solid fa-sliders"></i> Advanced Filter</button>
+                    
+                    <div class="spacer"></div>
+                    <div class="view-toggles">
+                        <a href="courses_grid.html" class="btn-toggle active" id="btn-grid" style="text-decoration:none;"><i class="fa-solid fa-table-cells-large"></i> Grid</a>
+                        <a href="courses_list.html" class="btn-toggle" id="btn-list" style="text-decoration:none;"><i class="fa-solid fa-list-ul"></i> List</a>
+                    </div>
+                </div>
+
+                <!-- Active Filters -->
+                <div class="active-filters" id="activeFiltersBox" style="display: none;">
+                    <span style="color: grey; font-size: 14px;">Filtering by:</span>
+                    <div id="filterPillsContainer" style="display: flex; gap: 8px;"></div>
+                    <a href="javascript:void(0)" class="clear-filters" id="btnClearFilters">Clear All Filters</a>
+                </div>
+
+                <!-- Hardcoded Grid View Content -->
+                <div class="grid-view">
+                    <!-- Course 1 -->
+                    <div class="course-card">
+                        <img src="../assets/img/courses_img/course_1.png" alt="TOEIC L&R: Conquer 900+" class="card-img">
+                        <div class="card-status draft" style="background: rgb(237, 237, 237, 0.7); color: #8C8C8C;">Draft</div>
+                        
+                        <div class="card-body">
+                            <div class="card-tags"><span class="tag blue">ENGLISH</span><span class="tag lightorange">Advanced</span></div>
+                            <h3 class="card-title">TOEIC L&R: Conquer 900+</h3>
+                            
+                            <div class="card-meta">
+                                <p>Age: <strong>18+</strong></p>
+                                <p>Objective: <strong>Certificate Exam Preparation</strong></p>
+                            </div>
+
+                            <div class="card-stats">
+                                <div class="stat-item"><i class="fa-solid fa-table-list"></i> <span style="color: #4950FE; "><strong>8</strong></span> Levels</div>
+                                <div class="divider"></div> 
+                                <div class="stat-item"><i class="fa-solid fa-book-open"></i> <span style="color: #4950FE; "><strong>31</strong></span> Lessons</div>
+                            </div>
+
+                            <div class="card-footer">
+                                <span class="price">485.000 VND</span>
+                                <span class="old-price">599.000</span>
+                                <span class="discount-circle">-19%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 2 -->
+                    <div class="course-card">
+                        <img src="../assets/img/courses_img/course_2.png" alt="IELTS Grammar & Vocabulary" class="card-img">
+                        <div class="card-status active">Active</div>
+                        
+                        <div class="card-body">
+                            <div class="card-tags"><span class="tag blue">ENGLISH</span><span class="tag lightblue">Beginner</span></div>
+                            <h3 class="card-title">IELTS Grammar & Vocabulary</h3>
+                            
+                            <div class="card-meta">
+                                <p>Age: <strong>12-17 years old</strong></p>
+                                <p>Objective: <strong>Certificate Exam Preparation</strong></p>
+                            </div>
+
+                            <div class="card-stats">
+                                <div class="stat-item"><i class="fa-solid fa-table-list"></i> <span style="color: #4950FE; "><strong>12</strong></span> Levels</div>
+                                <div class="divider"></div> 
+                                <div class="stat-item"><i class="fa-solid fa-book-open"></i> <span style="color: #4950FE; "><strong>48</strong></span> Lessons</div>
+                            </div>
+
+                            <div class="card-footer">
+                                <span class="price">485.000 VND</span>
+                                <span class="old-price">599.000</span>
+                                <span class="discount-circle">-19%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 3 -->
+                    <div class="course-card">
+                        <img src="../assets/img/courses_img/course_3.png" alt="IELTS Pronunciation & Speaking Samples" class="card-img">
+                        <div class="card-status active">Active</div>
+                        
+                        <div class="card-body">
+                            <div class="card-tags"><span class="tag blue">ENGLISH</span><span class="tag lightorange">Advanced</span></div>
+                            <h3 class="card-title">IELTS Pronunciation & Speaking Samples</h3>
+                            
+                            <div class="card-meta">
+                                <p>Age: <strong>18+</strong></p>
+                                <p>Objective: <strong>Certificate Exam Preparation</strong></p>
+                            </div>
+
+                            <div class="card-stats">
+                                <div class="stat-item"><i class="fa-solid fa-table-list"></i> <span style="color: #4950FE; "><strong>8</strong></span> Levels</div>
+                                <div class="divider"></div> 
+                                <div class="stat-item"><i class="fa-solid fa-book-open"></i> <span style="color: #4950FE; "><strong>29</strong></span> Lessons</div>
+                            </div>
+
+                            <div class="card-footer">
+                                <span class="price">485.000 VND</span>
+                                <span class="old-price">599.000</span>
+                                <span class="discount-circle">-19%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 4 -->
+                    <div class="course-card">
+                        <img src="../assets/img/courses_img/course_4.png" alt="Practical: Pronunciation & Communication" class="card-img">
+                        <div class="card-status active">Active</div>
+                        
+                        <div class="card-body">
+                            <div class="card-tags"><span class="tag blue">ENGLISH</span><span class="tag green">Intermediate</span></div>
+                            <h3 class="card-title">Practical: Pronunciation & Communication</h3>
+                            
+                            <div class="card-meta">
+                                <p>Age: <strong>5 - 11 years old</strong></p>
+                                <p>Objective: <strong>Communication</strong></p>
+                            </div>
+
+                            <div class="card-stats">
+                                <div class="stat-item"><i class="fa-solid fa-table-list"></i> <span style="color: #4950FE; "><strong>5</strong></span> Levels</div>
+                                <div class="divider"></div> 
+                                <div class="stat-item"><i class="fa-solid fa-book-open"></i> <span style="color: #4950FE; "><strong>18</strong></span> Lessons</div>
+                            </div>
+
+                            <div class="card-footer">
+                                <span class="price">485.000 VND</span>
+                                <span class="old-price">599.000</span>
+                                <span class="discount-circle">-19%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 5 -->
+                    <div class="course-card">
+                        <img src="../assets/img/courses_img/course_5.png" alt="HSK 1+2 - Basic Chinese" class="card-img">
+                        <div class="card-status active">Active</div>
+                        
+                        <div class="card-body">
+                            <div class="card-tags"><span class="tag orange">CHINESE</span><span class="tag lightblue">Beginner</span></div>
+                            <h3 class="card-title">HSK 1+2 - Basic Chinese</h3>
+                            
+                            <div class="card-meta">
+                                <p>Age: <strong>12-17 years old</strong></p>
+                                <p>Objective: <strong>Certificate Exam Preparation</strong></p>
+                            </div>
+
+                            <div class="card-stats">
+                                <div class="stat-item"><i class="fa-solid fa-table-list"></i> <span style="color: #4950FE; "><strong>20</strong></span> Levels</div>
+                                <div class="divider"></div> 
+                                <div class="stat-item"><i class="fa-solid fa-book-open"></i> <span style="color: #4950FE; "><strong>60</strong></span> Lessons</div>
+                            </div>
+
+                            <div class="card-footer">
+                                <span class="price">485.000 VND</span>
+                                <span class="old-price">599.000</span>
+                                <span class="discount-circle">-19%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 6 -->
+                    <div class="course-card">
+                        <img src="../assets/img/courses_img/course_6.png" alt="Conquer HSK 3" class="card-img">
+                        <div class="card-status active">Active</div>
+                        
+                        <div class="card-body">
+                            <div class="card-tags"><span class="tag orange">CHINESE</span><span class="tag lightblue">Beginner</span></div>
+                            <h3 class="card-title">Conquer HSK 3</h3>
+                            
+                            <div class="card-meta">
+                                <p>Age: <strong>12-17 years old</strong></p>
+                                <p>Objective: <strong>Certificate Exam Preparation</strong></p>
+                            </div>
+
+                            <div class="card-stats">
+                                <div class="stat-item"><i class="fa-solid fa-table-list"></i> <span style="color: #4950FE; "><strong>10</strong></span> Levels</div>
+                                <div class="divider"></div> 
+                                <div class="stat-item"><i class="fa-solid fa-book-open"></i> <span style="color: #4950FE; "><strong>40</strong></span> Lessons</div>
+                            </div>
+
+                            <div class="card-footer">
+                                <span class="price">485.000 VND</span>
+                                <span class="old-price">599.000</span>
+                                <span class="discount-circle">-19%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-footer">
+                    <div class="showing-text">
+                        Showing <strong>1-6</strong> of <strong>24</strong> courses
+                    </div>
+                    <div class="pagination">
+                        <button class="page-btn"><i class="fa-solid fa-caret-left"></i></button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <span class="dots">...</span>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn"><i class="fa-solid fa-caret-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Advanced Filter Modal -->
+    <div id="advanced-filter-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Advanced Filter</h2>
+                <p>Customize your search to find the most suitable course for your needs</p>
+                <button class="btn-close" id="btn-close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Course Level -->
+                <div class="filter-group">
+                    <div class="filter-title"><i class="fa-solid fa-layer-group"></i> Course Level</div>
+                    <div class="checkbox-list">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="level" value="Beginner">
+                            <div class="checkmark"></div>
+                            <span class="label-text">Beginner</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="level" value="Intermediate">
+                            <div class="checkmark"></div>
+                            <span class="label-text">Intermediate</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="level" value="Advanced">
+                            <div class="checkmark"></div>
+                            <span class="label-text">Advanced</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Age -->
+                <div class="filter-group">
+                    <div class="filter-title"><i class="fa-solid fa-user-group"></i> Age</div>
+                    <div class="checkbox-list">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="age" value="5 - 11 years old">
+                            <div class="checkmark"></div>
+                            <span class="label-text">5-11 years old</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="age" value="12-17 years old">
+                            <div class="checkmark"></div>
+                            <span class="label-text">12-17 years old</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="age" value="18+">
+                            <div class="checkmark"></div>
+                            <span class="label-text">18+</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Objectives -->
+                <div class="filter-group">
+                    <div class="filter-title"><i class="fa-solid fa-bullseye"></i> Objectives</div>
+                    <div class="modal-select-wrapper">
+                        <select class="modal-select" id="modal-objective">
+                            <option value="">All</option>
+                            <option value="Certificate Exam Preparation">Certificate Exam Preparation</option>
+                            <option value="Communication">Communication</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-cancel" id="btn-cancel-modal">Cancel</button>
+                <button class="btn-apply" id="btn-apply-modal">Apply</button>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="../assets/js/components/sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
+    <script>
+        loadSidebar('admin', 'courses');
+        loadHeader({
+            title: 'Course Management',
+            subtitle: 'Manage and update foreign language training programs',
+            userName: 'Tran Dinh Phuoc',
+            userAvatar: '../assets/img/user_avatar.png',
+            showIcon: true
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.querySelector('.grid-view');
+            if(grid) {
+                const mockCourses = JSON.parse(localStorage.getItem('mockCourses') || '[]');
+                mockCourses.forEach(c => {
+                    let tagColor = c.lang === 'English' ? 'blue' : (c.lang === 'Chinese' ? 'orange' : 'gray');
+                    let html = `
+                    <div class="course-card">
+                        <img src="${c.img}" alt="${c.name}" class="card-img">
+                        <div class="card-status draft" style="background: rgb(237, 237, 237, 0.7); color: #8C8C8C;">${c.status}</div>
+                        
+                        <div class="card-body">
+                            <div class="card-tags"><span class="tag ${tagColor}">${c.lang.toUpperCase()}</span><span class="tag lightblue">Beginner</span></div>
+                            <h3 class="card-title">${c.name}</h3>
+                            
+                            <div class="card-meta">
+                                <p>Age: <strong>18+</strong></p>
+                                <p>Objective: <strong>Certificate Exam Preparation</strong></p>
+                            </div>
+
+                            <div class="card-stats">
+                                <div class="stat-item"><i class="fa-solid fa-table-list"></i> <span style="color: #4950FE; "><strong>0</strong></span> Levels</div>
+                                <div class="divider"></div> 
+                                <div class="stat-item"><i class="fa-solid fa-book-open"></i> <span style="color: #4950FE; "><strong>0</strong></span> Lessons</div>
+                            </div>
+
+                            <div class="card-footer">
+                                <span class="price">0 VND</span>
+                            </div>
+                        </div>
+                    </div>`;
+                    grid.insertAdjacentHTML('afterbegin', html);
+                });
+            }
+        });
+    </script>
+    <script src="../assets/js/courses-filter.js"></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Course</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Specific Styles for Add Course UI */
+        .content-body-split { display: flex; gap: 24px; padding: 24px; align-items: flex-start; height: calc(100vh - 80px); }
+
+        /* Left Pane (Persistent Tree) */
+        .structure-pane { flex: 0 0 260px; background: white; border-radius: 12px; border: 1px solid #e2e8f0; height: calc(100vh - 120px); display: flex; flex-direction: column; overflow: hidden;}
+        .structure-header { padding: 16px 16px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 14px; color: #0f172a; }
+        .structure-body { padding: 16px; overflow-y: auto; flex: 1; }
+        
+        /* Tree Styles */
+        .tree-node { margin-bottom: 4px; }
+        .tree-row { display: flex; align-items: center; padding: 10px 12px; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 700; color: #0f172a; gap: 8px; transition: 0.2s; text-transform: uppercase;}
+        .tree-row:hover { background: #f1f5f9; }
+        .tree-row.selected { background: #ffedd5; color: #0f172a; } /* Orange bg for selection */
+        .tree-row.is-lesson { font-weight: 500; font-size: 12px; color: #475569; text-transform: none;}
+        .tree-btn-add { background: none; border: none; color: #4e60ff; cursor: pointer; margin-left: auto; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.2s; font-size: 12px; border-radius:4px; }
+        .tree-btn-add:hover { background: #e0e7ff; }
+        .tree-row:hover .tree-btn-add { opacity: 1; }
+        .tree-children { padding-left: 20px; border-left: 1px solid #cbd5e1; margin-left: 17px; margin-top: 4px; border-bottom-left-radius: 4px; }
+        
+        /* Right Pane */
+        .details-pane { flex: 1; min-width: 0; background: transparent; display: flex; flex-direction: column; height: calc(100vh - 120px); overflow-y: auto;}
+        
+        /* Top Navigation inside Right Pane for Root */
+        .page-title-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .page-title-bar h2 { font-size: 24px; font-weight: 700; color: #0f172a; margin: 0; }
+        
+        .tabs-container { display: flex; border-bottom: 1px solid #e2e8f0; margin-bottom: 20px; }
+        .tab-btn { background: none; border: none; padding: 10px 24px; font-size: 14px; font-weight: 600; color: #64748b; cursor: pointer; border-radius: 8px 8px 0 0; font-family: inherit; }
+        .tab-btn.active { background: #4e60ff; color: white; }
+        .badge-error { background: #ef4444; color: white; font-size: 11px; padding: 2px 6px; border-radius: 12px; margin-left: 6px; font-weight: 700; }
+        
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        /* Information Form */
+        .form-section { background: white; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 24px; overflow: hidden; }
+        .form-section-header { padding: 16px 24px; border-bottom: 1px solid #e2e8f0; font-weight: 700; font-size: 15px; color: #0f172a; }
+        .form-section-body { padding: 24px; }
+        
+        .form-row { display: flex; gap: 24px; margin-bottom: 20px; }
+        .form-group { flex: 1; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 8px; }
+        .form-group label span.required { color: #ef4444; }
+        .form-control { width: 100%; padding: 10px 14px; border: 1px solid #93c5fd; border-radius: 6px; font-family: inherit; font-size: 14px; color: #1e293b; outline: none; transition: 0.2s; background: #fbfeff; }
+        .form-control:focus { border-color: #4e60ff; box-shadow: 0 0 0 3px rgba(78,96,255,0.1); }
+        .form-control.disabled { background: #dbeafe; color: #64748b; border-color: #bfdbfe; cursor: not-allowed; }
+        
+        textarea.form-control { resize: vertical; min-height: 80px; }
+        
+        .dropzone { border: 1px dashed #4e60ff; border-radius: 8px; padding: 40px; text-align: center; cursor: pointer; background: #f8fafc; transition: 0.2s; }
+        .dropzone:hover { background: #f1f5f9; }
+        .dropzone-icon { font-size: 40px; color: #94a3b8; margin-bottom: 12px; display: block; }
+        .dropzone-text { color: #94a3b8; font-size: 13px; }
+        
+        /* Price Table */
+        .price-table { width: 100%; border-collapse: collapse; }
+        .price-table th { background: #f1f5f9; text-align: left; padding: 12px 24px; font-size: 13px; font-weight: 700; color: #0f172a; }
+        .price-table td { padding: 12px 24px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #1e293b; }
+        .price-table .total-val { font-weight: 700; color: #ef4444; }
+        
+        .section-footer { padding: 16px 24px; display: flex; justify-content: flex-end; gap: 12px; }
+
+        /* Overview Table in Classes Tab */
+        .details-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 24px;}
+        .details-card-header { position: relative; }
+        .details-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid #e2e8f0;}
+        .details-title h3 { font-size: 18px; font-weight: 700; margin: 0; color: #0f172a;}
+        
+        /* Class Type Tabs inline */
+        .class-tabs { display: flex; padding: 0 24px; border-bottom: 1px solid #e2e8f0; }
+        .ctab-btn { background: none; border: none; padding: 12px 16px; font-size: 13px; font-weight: 500; color: #64748b; border-bottom: 2px solid transparent; cursor: pointer; transition: 0.2s; font-family: inherit;}
+        .ctab-btn.active { color: #4e60ff; border-bottom-color: #4e60ff; font-weight: 600;}
+
+        /* Outline button red */
+        .btn-outline-danger { border: 1px solid #fca5a5; color: #ef4444; background: #fef2f2; font-weight: 600;}
+        .btn-outline-danger:hover { background: #fee2e2; }
+
+        /* Overview Table Matrix */
+        .overview-table { width: 100%; border-collapse: collapse; }
+        .overview-table th { background: white; text-align: center; padding: 12px 16px; font-size: 11px; font-weight: 600; color: #94a3b8; border-bottom: 1px solid #e2e8f0; text-transform: uppercase; }
+        .overview-table th:first-child { text-align: left; padding-left: 24px; }
+        .overview-table td { padding: 12px 16px; text-align: center; border-bottom: 1px solid #f1f5f9; }
+        .overview-group-row { background: #e0e7ff; }
+        .overview-group-row td { color: #4e60ff !important; font-size: 12px !important; font-weight: 700 !important; border-bottom: none; cursor:pointer;}
+        .icon-cross { color: #ef4444; font-size: 16px; }
+        .icon-check { color: #10b981; font-size: 16px; }
+
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Container (App Global) -->
+        <aside id="sidebar-container" class="sidebar"></aside>
+
+        <!-- Main Content (App Global) -->
+        <main class="main-content">
+            <header id="header-container" class="top-header"></header>
+
+            <div class="content-body-split">
+                <!-- ================= LEFT PANE: COURSE STRUCTURE ================= -->
+                <div class="structure-pane">
+                    <div class="structure-header">
+                        Course Structure
+                        <button class="btn btn-primary" style="padding: 0; width: 24px; height: 24px; display:flex; align-items:center; justify-content:center; border-radius:4px;" onclick="courseLogic.addNode('root', 'level')"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="structure-body" id="structure-tree-container">
+                        <!-- Tree will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- ================= RIGHT PANE: DYNAMIC VIEW ================= -->
+                <div class="details-pane" id="right-pane-wrapper">
+                    
+                    <!-- VIEW A: ROOT COURSE SELECTED (Information & Classes Tabs) -->
+                    <div id="view-course-root" style="display: block;">
+                        <div class="page-title-bar">
+                            <h2>New Course</h2>
+                            <div class="action-buttons">
+                                <button class="btn btn-outline-primary" id="btn-save-draft-top" style="margin-right: 8px; display: none;"><i class="fa-solid fa-floppy-disk"></i> Save Draft</button>
+                                <button class="btn btn-primary disabled" id="btn-publish-main" disabled style="opacity: 0.6; cursor: not-allowed;"><i class="fa-solid fa-arrow-up-from-bracket"></i> Publish</button>
+                            </div>
+                        </div>
+
+                        <div class="tabs-container">
+                            <button class="tab-btn active" data-tab="tab-info" id="tab-btn-info">Information</button>
+                            <button class="tab-btn" data-tab="tab-classes" id="tab-btn-classes">
+                                Classes <span class="badge-error" id="classes-badge">1</span>
+                            </button>
+                        </div>
+
+                        <!-- TAB: INFORMATION -->
+                        <div id="tab-info" class="tab-pane active">
+                            <div class="form-section">
+                                <div class="form-section-header">Course Information</div>
+                                <div class="form-section-body">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Name <span class="required">*</span></label>
+                                            <input type="text" class="form-control" id="course-name" oninput="courseValidation.clearError(this)">
+                                            <div class="error-msg" id="err-name" style="color:#ef4444; font-size:11px; margin-top:4px; display:none;">Invalid information</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Code <span class="required">*</span></label>
+                                            <input type="text" class="form-control" id="course-code" oninput="courseValidation.clearError(this)">
+                                            <div class="error-msg" id="err-code" style="color:#ef4444; font-size:11px; margin-top:4px; display:none;">Invalid information</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Language <span class="required">*</span></label>
+                                            <select class="form-control" id="course-language" onchange="courseValidation.clearError(this)">
+                                                <option value="">Select Language</option>
+                                                <option value="English">English</option>
+                                                <option value="Chinese">Chinese</option>
+                                            </select>
+                                            <div class="error-msg" id="err-language" style="color:#ef4444; font-size:11px; margin-top:4px; display:none;">Invalid information</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Level</label>
+                                            <select class="form-control">
+                                                <option value="Beginner">Beginner</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Age</label>
+                                            <select class="form-control">
+                                                <option>18+</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Objectives</label>
+                                            <select class="form-control">
+                                                <option>Certificate Exam Preparation</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Base Price (VND)</label>
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Discount (%)</label>
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <input type="text" class="form-control disabled" value="Draft" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Last Updated</label>
+                                            <input type="text" class="form-control disabled" value="" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Description <span class="required">*</span></label>
+                                            <textarea class="form-control" id="course-description" placeholder="Enter Course Summary and Learning Objectives" oninput="courseValidation.clearError(this)"></textarea>
+                                            <div class="error-msg" id="err-description" style="color:#ef4444; font-size:11px; margin-top:4px; display:none;">Invalid information</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row" style="margin-bottom:0;">
+                                        <div class="form-group">
+                                            <label>Image <span class="required">*</span></label>
+                                            <div class="dropzone" id="course-image-zone" onclick="courseValidation.mockUploadImage()">
+                                                <i class="fa-solid fa-cloud-arrow-up dropzone-icon" id="drop-icon"></i>
+                                                <div class="dropzone-text" id="drop-text">Drag & Drop or Click to Select File</div>
+                                            </div>
+                                            <div class="error-msg" id="err-image" style="color:#ef4444; font-size:11px; margin-top:4px; display:none;">Invalid information</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <div class="form-section-header">Set Course Price</div>
+                                <table class="price-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Class Type</th>
+                                            <th>Additional Fee</th>
+                                            <th>Total Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>25 minutes</td><td>0</td><td class="total-val">0</td></tr>
+                                        <tr><td>45 minutes</td><td>0</td><td class="total-val">0</td></tr>
+                                        <tr><td>Junior 25 minutes</td><td>0</td><td class="total-val">0</td></tr>
+                                        <tr><td>Junior 45 minutes</td><td>0</td><td class="total-val">0</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- TAB: CLASSES (OVERVIEW TABLE) -->
+                        <div id="tab-classes" class="tab-pane">
+                            <div class="details-card">
+                                <div class="details-header">
+                                    <div class="details-title"><h3>Classes</h3></div>
+                                    <div style="display:flex; align-items:center; gap:8px;">
+                                        <i class="fa-solid fa-sliders" style="color:#64748b;"></i> Status Filter: 
+                                        <select style="border:1px solid #e2e8f0; border-radius:4px; padding:4px 24px 4px 8px; outline:none; font-family:inherit; color:#475569; font-size:13px; appearance:none;"><option>All</option></select>
+                                    </div>
+                                </div>
+                                <div class="class-tabs" id="overview-tabs-container">
+                                    <!-- Overview Tabs injected via JS -->
+                                </div>
+                                <div id="overview-table-container">
+                                    <!-- Overview Table injected via JS -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px; margin-bottom: 24px;">
+                            <button class="btn btn-outline" style="border-radius: 6px;">Cancel</button>
+                            <button class="btn btn-primary" id="btn-save-bottom" style="border-radius: 6px; padding: 8px 32px;" onclick="courseValidation.saveDraft()">Save</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/components/sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
+    <script src="../assets/js/add-course.js"></script>
+    <script>
+        loadSidebar('admin', 'courses');
+        loadHeader({
+            title: '<span style="color:#94a3b8;font-weight:normal;">Course Management &gt; </span>New Course',
+            subtitle: '',
+            userName: 'Tran Dinh Phuoc',
+            userAvatar: '../assets/img/user_avatar.png',
+            showIcon: true
+        });
+
+        // Tab Switcher logic for View A
+        document.getElementById('tab-btn-info').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('tab-btn-classes').classList.remove('active');
+            document.getElementById('tab-info').classList.add('active');
+            document.getElementById('tab-classes').classList.remove('active');
+            
+            // Toggle Save Draft (top right)
+            document.getElementById('btn-save-draft-top').style.display = 'none';
+        });
+        document.getElementById('tab-btn-classes').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('tab-btn-info').classList.remove('active');
+            document.getElementById('tab-classes').classList.add('active');
+            document.getElementById('tab-info').classList.remove('active');
+            
+            // Toggle Save Draft (top right)
+            document.getElementById('btn-save-draft-top').style.display = 'inline-flex';
+        });
+        
+        // Bind top save draft button
+        document.getElementById('btn-save-draft-top').addEventListener('click', function() {
+            courseValidation.saveDraft();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - XINKEDU</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/teacher.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Container (Injected by JS) -->
+        <aside id="sidebar-container" class="sidebar"></aside>
+
+        <main class="main-content">
+            <header id="header-container" class="top-header"></header>
+
+            <div class="content-body">
+                <div style="border: 2px dashed #94a3b8; padding: 40px; text-align: center; border-radius: 12px; height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <h2>Welcome to Teacher Home</h2>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Scripts -->
+    <script src="../assets/js/components/sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
+    <script>
+        loadSidebar('teacher', 'home');
+        loadHeader({
+            title: 'Home',
+            subtitle: 'Welcome back to class management',
+            userName: 'Ngan Nguyen',
+            userAvatar: '../assets/img/user_avatar.png',
+            showIcon: false
+        });
+    </script>
+</body>
+</html>
