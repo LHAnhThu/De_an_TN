@@ -40,7 +40,7 @@ function loadSidebar(role, activePage) {
                     <span>Teaching Management</span>
                 </a>
             </nav>
-            <a href="../index.html" class="logout-btn">
+            <a href="../login.html" class="logout-btn">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span>LOGOUT</span>
             </a>
@@ -93,7 +93,7 @@ function loadSidebar(role, activePage) {
                     <span>Policies</span>
                 </a>
             </nav>
-            <a href="../index.html" class="logout-btn">
+            <a href="../login.html" class="logout-btn">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span>LOGOUT</span>
             </a>
