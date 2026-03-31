@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Course</title>
+    <title>Course Details</title>
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="../assets/css/add_course.css">
+    <link rel="stylesheet" href="../assets/css/detail_course.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -23,7 +24,7 @@
                 <div class="structure-pane">
                     <div class="structure-header">
                         Course Structure
-                        <button class="btn btn-primary" style="padding: 0; width: 24px; height: 24px; display:flex; align-items:center; justify-content:center; border-radius:4px;" onclick="courseLogic.addNode('root', 'level')"><i class="fa-solid fa-plus"></i></button>
+                        <button class="btn btn-primary" id="btn-add-level-detail" style="padding: 0; width: 24px; height: 24px; display:flex; align-items:center; justify-content:center; border-radius:4px; cursor: not-allowed; opacity: 0.5;" disabled><i class="fa-solid fa-plus"></i></button>
                     </div>
                     <div class="structure-body" id="structure-tree-container">
                         <!-- Tree will be rendered here -->
@@ -36,51 +37,60 @@
                     <!-- VIEW A: ROOT COURSE SELECTED (Information & Classes Tabs) -->
                     <div id="view-course-root" style="display: block;">
                         <div class="page-title-bar">
-                            <h2>New Course</h2>
+                            <h2 id="course-title-display">Course Detail</h2>
                             <div class="action-buttons">
-                                <button class="btn btn-outline-primary" id="btn-save-draft-top" style="display: none;"><i class="fa-solid fa-floppy-disk"></i> Save Draft</button>
-                                <button class="btn btn-primary disabled" id="btn-publish-main" disabled style="opacity: 0.6; cursor: not-allowed;"><i class="fa-solid fa-arrow-up-from-bracket"></i> Publish</button>
+                                <button class="btn btn-primary disabled" id="btn-action-main" disabled style="opacity: 0.6; cursor: not-allowed;"><i class="fa-solid fa-arrow-up-from-bracket"></i> Publish</button>
                             </div>
                         </div>
 
                         <div class="tabs-container">
                             <button class="tab-btn active" data-tab="tab-info" id="tab-btn-info">Information</button>
                             <button class="tab-btn" data-tab="tab-classes" id="tab-btn-classes">
-                                Classes <span class="badge-error" id="classes-badge">1</span>
+                                Classes <span class="badge-error" id="classes-badge">0</span>
                             </button>
                         </div>
 
                         <!-- TAB: INFORMATION -->
                         <div id="tab-info" class="tab-pane active">
                             <div class="form-section">
-                                <div class="form-section-header">Course Information</div>
+                                <div class="form-section-header" style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>Course Information</div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn" id="btn-edit-info" onclick="courseDetailLogic.toggleEditInfo(true)" style="background-color: #eff6ff; color: #3b82f6; border: none; padding: 6px 16px; font-size: 13px; border-radius: 4px; display: flex; align-items: center; gap: 6px; font-weight: 500; cursor: pointer;">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </button>
+                                        <button class="btn_cancel" id="btn-cancel-info" style="display: none;" onclick="courseDetailLogic.toggleEditInfo(false)">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                        <button class="btn_save" id="btn-save-info" style="display: none; " onclick="courseDetailLogic.saveInfo()">
+                                            <i class="fa-solid fa-floppy-disk"></i>
+                                        </button>
+                                    </div>
+                                </div>
                                 <div class="form-section-body">
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Name <span class="required">*</span></label>
-                                            <input type="text" class="form-control" id="course-name" oninput="courseValidation.clearError(this)">
-                                            <div class="error-msg" id="err-name" style="color:#ef4444; font-size:11px; margin-top:4px; display:none;">Invalid information</div>
+                                            <input type="text" class="form-control" id="course-name" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label>Code <span class="required">*</span></label>
-                                            <input type="text" class="form-control" id="course-code" oninput="courseValidation.clearError(this)">
-                                            <div class="error-msg" id="err-code" style="color:#ef4444; font-size:11px; margin-top:4px; display:none;">Invalid information</div>
+                                            <input type="text" class="form-control" id="course-code" readonly>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Language <span class="required">*</span></label>
-                                            <select class="form-control" id="course-language" onchange="courseValidation.clearError(this)">
+                                            <select class="form-control" id="course-language" disabled>
                                                 <option value="All">All Languages</option>
                                                 <option value="English">English</option>
                                                 <option value="Japanese">Japanese</option>
                                                 <option value="Chinese">Chinese</option>
                                             </select>
-                                            <div class="error-msg" id="err-language" style="color:#ef4444; font-size:11px; margin-top:4px; display:none;">Invalid information</div>
                                         </div>
                                         <div class="form-group">
                                             <label>Level</label>
-                                            <select class="form-control">
+                                            <select class="form-control" id="course-level" disabled>
                                                 <option value="Beginner">Beginner</option>
                                                 <option value="Intermediate">Intermediate</option>
                                                 <option value="Advanced">Advanced</option>
@@ -90,7 +100,7 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Age</label>
-                                            <select class="form-control">
+                                            <select class="form-control" id="course-age" disabled>
                                                 <option>5-11 years old</option>
                                                 <option>12-17 years old</option>
                                                 <option>18+</option>
@@ -98,7 +108,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Objectives</label>
-                                            <select class="form-control">
+                                            <select class="form-control" id="course-objectives" disabled>
                                                 <option>All</option>
                                                 <option>Communication</option>
                                                 <option>Certificate Exam Preparation</option>
@@ -111,45 +121,55 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Base Price (VND)</label>
-                                            <input type="text" class="form-control" id="base-price" value="0" oninput="handleFormattedInput(event)">
+                                            <input type="text" class="form-control" id="base-price" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label>Discount (%)</label>
-                                            <input type="number" class="form-control" id="discount" value="0" oninput="calculateTotalAmounts()">
+                                            <input type="number" class="form-control" id="discount" readonly>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Status</label>
-                                            <input type="text" class="form-control disabled" value="Draft" readonly>
+                                            <input type="text" class="form-control disabled" id="course-status" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label>Last Updated</label>
-                                            <input type="text" class="form-control disabled" value="" readonly>
+                                            <input type="text" class="form-control disabled" id="course-updated" readonly>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Description <span class="required">*</span></label>
-                                            <textarea class="form-control" id="course-description" placeholder="Enter Course Summary and Learning Objectives" oninput="courseValidation.clearError(this)"></textarea>
-                                            <div class="error-msg" id="err-description" style="color:#ef4444; font-size:11px; margin-top:4px; display:none;">Invalid information</div>
+                                            <textarea class="form-control" id="course-description" readonly></textarea>
                                         </div>
                                     </div>
                                     <div class="form-row" style="margin-bottom:0;">
                                         <div class="form-group">
                                             <label>Image <span class="required">*</span></label>
-                                            <div class="dropzone" id="course-image-zone" onclick="courseValidation.mockUploadImage(event)">
-                                                <i class="fa-solid fa-cloud-arrow-up dropzone-icon" id="drop-icon"></i>
-                                                <div class="dropzone-text" id="drop-text">Drag & Drop or Click to Select File</div>
+                                            <div class="dropzone" id="course-image-zone" style="cursor: default;">
+                                                <img id="course-image-display" src="" alt="Course Image" style="max-width: 100%; max-height: 200px; border-radius: 8px;">
                                             </div>
-                                            <div class="error-msg" id="err-image" style="color:#ef4444; font-size:11px; margin-top:4px; display:none;">Invalid information</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-section">
-                                <div class="form-section-header">Set Course Price</div>
+                                <div class="form-section-header" style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>Set Course Price</div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn" id="btn-edit-price" onclick="courseDetailLogic.toggleEditPrice(true)" style="background-color: #eff6ff; color: #3b82f6; border: none; padding: 6px 16px; font-size: 13px; border-radius: 4px; display: flex; align-items: center; gap: 6px; font-weight: 500; cursor: pointer;">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </button>
+                                        <button class="btn_cancel" id="btn-cancel-price" style="display: none;" onclick="courseDetailLogic.toggleEditPrice(false)">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                        <button class="btn_save" id="btn-save-price" style="display: none;" onclick="courseDetailLogic.savePrice()">
+                                            <i class="fa-solid fa-floppy-disk"></i>
+                                        </button>
+                                    </div>
+                                </div>
                                 <table class="price-table">
                                     <thead>
                                         <tr>
@@ -161,32 +181,27 @@
                                     <tbody>
                                         <tr>
                                             <td>25 minutes</td>
-                                            <td><input type="text" class="form-control" id="fee-25min" value="0" oninput="handleFormattedInput(event)" style="width: 100px;"></td>
+                                            <td><input type="text" class="form-control" id="fee-25min" readonly style="width: 100px;"></td>
                                             <td class="total-val" id="total-25min">0</td>
                                         </tr>
                                         <tr>
                                             <td>45 minutes</td>
-                                            <td><input type="text" class="form-control" id="fee-45min" value="0" oninput="handleFormattedInput(event)" style="width: 100px;"></td>
+                                            <td><input type="text" class="form-control" id="fee-45min" readonly style="width: 100px;"></td>
                                             <td class="total-val" id="total-45min">0</td>
                                         </tr>
                                         <tr>
                                             <td>Junior 25 minutes</td>
-                                            <td><input type="text" class="form-control" id="fee-junior-25min" value="0" oninput="handleFormattedInput(event)" style="width: 100px;"></td>
+                                            <td><input type="text" class="form-control" id="fee-junior-25min" readonly style="width: 100px;"></td>
                                             <td class="total-val" id="total-junior-25min">0</td>
                                         </tr>
                                         <tr>
                                             <td>Junior 45 minutes</td>
-                                            <td><input type="text" class="form-control" id="fee-junior-45min" value="0" oninput="handleFormattedInput(event)" style="width: 100px;"></td>
+                                            <td><input type="text" class="form-control" id="fee-junior-45min" readonly style="width: 100px;"></td>
                                             <td class="total-val" id="total-junior-45min">0</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                        
-                        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px; margin-bottom: 24px;">
-                            <button class="btn btn-outline" style="border-radius: 6px;">Cancel</button>
-                            <button class="btn btn-primary" id="btn-save-bottom" style="border-radius: 6px; padding: 8px 32px;" onclick="courseValidation.saveDraft()">Save</button>
-                        </div>
                         </div>
 
                         <!-- TAB: CLASSES (OVERVIEW TABLE) -->
@@ -227,10 +242,11 @@
     <script src="../assets/js/components/sidebar.js"></script>
     <script src="../assets/js/components/header.js"></script>
     <script src="../assets/js/add-course.js"></script>
+    <script src="../assets/js/course-detail.js"></script>
     <script>
         loadSidebar('admin', 'courses');
         loadHeader({
-            title: '<span style="font-size:14px; color:#8C8C8C; font-weight:400;"><a href="courses_list.html" style="color:#8C8C8C; text-decoration:none; font-weight:400;">Course Management</a> &gt;</span> <span style="color:#8C8C8C; font-size:14px; font-weight:700;">New Course</span>',
+            title: '<span style="font-size:14px; color:#8C8C8C; font-weight:400;"><a href="courses_list.html" style="color:#8C8C8C; text-decoration:none; font-weight:400;">Course Management</a> &gt;</span> <span style="color:#8C8C8C; font-size:14px; font-weight:700;" id="header-course-name">Course Detail</span>',
             subtitle: '',
             userName: 'Tran Dinh Phuoc',
             userAvatar: '../assets/img/user_avatar.png',
@@ -243,23 +259,12 @@
             document.getElementById('tab-btn-classes').classList.remove('active');
             document.getElementById('tab-info').classList.add('active');
             document.getElementById('tab-classes').classList.remove('active');
-            
-            // Toggle Save Draft (top right)
-            document.getElementById('btn-save-draft-top').style.display = 'none';
         });
         document.getElementById('tab-btn-classes').addEventListener('click', function() {
             this.classList.add('active');
             document.getElementById('tab-btn-info').classList.remove('active');
             document.getElementById('tab-classes').classList.add('active');
             document.getElementById('tab-info').classList.remove('active');
-            
-            // Toggle Save Draft (top right)
-            document.getElementById('btn-save-draft-top').style.display = 'inline-flex';
-        });
-        
-        // Bind top save draft button
-        document.getElementById('btn-save-draft-top').addEventListener('click', function() {
-            courseValidation.saveDraft();
         });
 
         // Function to format number with thousand separators
@@ -267,46 +272,37 @@
             return value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
 
-        // Function to handle input for formatted numbers
-        function handleFormattedInput(event) {
-            const input = event.target;
-            const value = input.value.replace(/\./g, '');
-            input.value = formatNumber(value);
-            calculateTotalAmounts();
-        }
-
         // Function to parse formatted number
         function parseFormattedNumber(value) {
             return parseFloat(value.replace(/\./g, '')) || 0;
         }
 
-        // Update calculateTotalAmounts to use parsed values
-        function calculateTotalAmounts() {
-            const basePrice = parseFormattedNumber(document.getElementById('base-price').value);
-            const discount = parseFloat(document.getElementById('discount').value) || 0;
-            const discountedPrice = basePrice * (1 - discount / 100);
-
-            const fees = [
-                { id: 'fee-25min', totalId: 'total-25min' },
-                { id: 'fee-45min', totalId: 'total-45min' },
-                { id: 'fee-junior-25min', totalId: 'total-junior-25min' },
-                { id: 'fee-junior-45min', totalId: 'total-junior-45min' }
-            ];
-
-            fees.forEach(fee => {
-                const additionalFee = parseFormattedNumber(document.getElementById(fee.id).value);
-                const total = discountedPrice + additionalFee;
-                document.getElementById(fee.totalId).textContent = formatNumber(total.toString());
-            });
-        }
-
-        // Initial calculation and formatting
-        document.getElementById('base-price').value = formatNumber('0');
-        document.getElementById('fee-25min').value = formatNumber('0');
-        document.getElementById('fee-45min').value = formatNumber('0');
-        document.getElementById('fee-junior-25min').value = formatNumber('0');
-        document.getElementById('fee-junior-45min').value = formatNumber('0');
-        calculateTotalAmounts();
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+            courseDetailLogic.init();
+        });
     </script>
+
+    <!-- Custom Alert Modal -->
+    <div id="custom-alert-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.1); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; border-radius:8px; padding:32px 48px; min-width:300px; max-width: 400px; text-align:center; position:relative; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+            <i class="fa-solid fa-xmark" style="position:absolute; top:16px; right:16px; color:#ef4444; font-size:16px; cursor:pointer;" onclick="document.getElementById('custom-alert-modal').style.display='none'"></i>
+            <h3 style="margin-top:0; margin-bottom:16px; font-size:18px; color:#0f172a; font-weight:600;">Alert</h3>
+            <p id="custom-alert-text" style="color:#64748b; font-size:14px; font-style:italic; margin:0 auto; max-width: 250px;">Please complete uploading the lesson materials before publishing</p>
+        </div>
+    </div>
+
+    <!-- Custom Confirm Modal -->
+    <div id="custom-confirm-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.1); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; border-radius:8px; padding:24px 32px; min-width:300px; max-width: 400px; text-align:center; position:relative; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+            <i class="fa-solid fa-xmark" style="position:absolute; top:16px; right:16px; color:#ef4444; font-size:16px; cursor:pointer;" onclick="courseDetailLogic.handleConfirmResult(false)"></i>
+            <h3 style="margin-top:0; margin-bottom:24px; font-size:18px; color:#0f172a; font-weight:600; text-align: left;">Confirm</h3>
+            <p id="custom-confirm-text" style="color:#64748b; font-size:14px; margin-bottom:24px; font-style:italic;">Are you sure you want to <strong style="color:#64748b; font-style:italic; font-weight:700;">discard changes</strong> to this course?</p>
+            <div style="display:flex; justify-content:center; gap:12px;">
+                <button style="background:#d1d5db; color:white; border:none; padding:8px 24px; border-radius:6px; font-weight:600; cursor:pointer; font-size:14px;" onclick="courseDetailLogic.handleConfirmResult(false)">Cancel</button>
+                <button style="background:#4e60ff; color:white; border:none; padding:8px 24px; border-radius:6px; font-weight:600; cursor:pointer; font-size:14px;" onclick="courseDetailLogic.handleConfirmResult(true)">OK</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

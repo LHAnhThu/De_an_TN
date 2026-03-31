@@ -29,14 +29,17 @@ const lessonDetail = {
             return;
         }
 
-        // Find the specific node
-        this.courseData.forEach(l => {
-            l.chapters.forEach(c => {
-                c.lessons.forEach(les => {
+        // Find the specific node and store indices
+        this.courseData.forEach((l, lIdx) => {
+            l.chapters.forEach((c, cIdx) => {
+                c.lessons.forEach((les, lesIdx) => {
                     if(les.id === this.lessonId) {
                         this.node = les;
                         this.pChapter = c;
                         this.pLevel = l;
+                        this.lIndex = lIdx + 1;
+                        this.cIndex = cIdx + 1;
+                        this.lesIndex = lesIdx + 1;
                     }
                 });
             });
@@ -48,11 +51,21 @@ const lessonDetail = {
             return;
         }
 
+        this.renderTree();
         this.renderView();
     },
 
     goBack: function() {
-        window.location.href = 'add_course.html?tab=classes';
+        let source = localStorage.getItem('lessonDetailSource');
+        if (source) {
+            window.location.href = source;
+        } else {
+            window.location.href = 'add_course.html?tab=classes';
+        }
+    },
+
+    navigateToLesson: function(lessonId) {
+        window.location.href = `lesson_detail.html?lessonId=${lessonId}`;
     },
 
     saveAndBack: function() {
@@ -75,21 +88,71 @@ const lessonDetail = {
         this.goBack();
     },
 
+    renderTree: function() {
+        const container = document.getElementById('structure-tree-container');
+        if(!container || !this.courseData) return;
+        
+        let html = '';
+        this.courseData.forEach(level => {
+            html += `<div class="tree-node">
+                <div class="tree-row">
+                    <i class="fa-solid fa-layer-group" style="color:#475569;"></i> ${level.name}
+                </div>
+                <div class="tree-children">`;
+            level.chapters.forEach(chapter => {
+                html += `<div class="tree-node">
+                    <div class="tree-row">
+                        <i class="fa-regular fa-folder" style="color:#94a3b8;"></i> ${chapter.name}
+                    </div>
+                    <div class="tree-children">`;
+                chapter.lessons.forEach(lesson => {
+                    html += `
+                        <div class="tree-row is-lesson ${this.lessonId === lesson.id ? 'selected' : ''}" onclick="lessonDetail.navigateToLesson('${lesson.id}')">
+                            <i class="fa-regular fa-file-lines" style="color:#cbd5e1;"></i> ${lesson.name}
+                        </div>
+                    `;
+                });
+                html += `</div></div>`;
+            });
+            html += `</div></div>`;
+        });
+        container.innerHTML = html;
+    },
+
     renderView: function() {
         const container = document.getElementById('lesson-detail-container');
         if (!container) return;
 
+        let getShortName = (name) => {
+            let parts = name.split(':')[0].trim().toLowerCase().split(' ');
+            if (parts.length >= 2 && !isNaN(parseInt(parts[1], 10))) {
+                return parts[0].charAt(0).toUpperCase() + parts[0].slice(1) + ' ' + parseInt(parts[1], 10);
+            }
+            return name.split(':')[0];
+        };
+
+        // Update breadcrumb placeholders in the header
+        let bdLevel = document.getElementById('bd-level');
+        if (bdLevel) bdLevel.innerText = getShortName(this.pLevel?.name || '');
+        
+        let bdChapter = document.getElementById('bd-chapter');
+        if (bdChapter) bdChapter.innerText = getShortName(this.pChapter?.name || '');
+        
+        let bdLesson = document.getElementById('bd-lesson');
+        if (bdLesson) bdLesson.innerText = getShortName(this.node?.name || '');
+
         let isJunior = this.activeTab.includes('Junior');
 
-        let html = `
-            <div class="lesson-breadcrumb">
-                <span class="link" onclick="lessonDetail.goBack()">TOEIC L&R: Conquer 900+</span> &gt; ${this.pLevel?.name} &gt; ${this.pChapter?.name} &gt; <span style="font-weight:700; color:#0f172a;">${this.node.name}</span>
-            </div>
+        // Dynamically compute Lesson ID Base
+        let courseCode = localStorage.getItem('currentCourseCode') || 'ENG-TOEIC-LR900';
+        let baseCode = courseCode.replace(/^ENG-/, '');
+        this.lessonIdStr = `${baseCode}-L${this.lIndex}-C${this.cIndex}-${String(this.lesIndex).padStart(2, '0')}`;
 
+        let html = `
             <div class="lesson-header-row">
                 <div>
                     <h2>${this.node.name}</h2>
-                    <div class="lesson-id">ID: TOEIC-LR900-L1-C1-${this.node.id.substring(0,4)}</div>
+                    <div class="lesson-id">ID: ${this.lessonIdStr}</div>
                 </div>
                 <button class="btn btn-outline-danger" onclick="lessonDetail.deleteNode()"><i class="fa-regular fa-trash-can"></i> Delete</button>
             </div>
@@ -121,13 +184,28 @@ const lessonDetail = {
             html += this.renderUploadModule('Answer Key', 'PDF, Word (Max 100MB)', 'key', 'fa-key', 'orange');
         } else {
             // Junior View
+            if (!this.dirtySessions) this.dirtySessions = {};
+            
             let sessionObj = this.node.materials[this.activeTab];
             sessionObj.sessions.forEach((sess, idx) => {
+                let sessionActions = `
+                    <i class="fa-solid fa-trash-can" style="color:#ef4444; cursor:pointer; font-size:16px;" onclick="lessonDetail.deleteSession('${sess.id}')"></i>
+                `;
+                if (this.dirtySessions[sess.id]) {
+                    sessionActions = `
+                        <div style="display:flex; align-items:center; gap:16px;">
+                            <i class="fa-solid fa-xmark" style="color:#ef4444; cursor:pointer; font-size:16px;" onclick="lessonDetail.cancelSessionChanges('${sess.id}')"></i>
+                            <i class="fa-solid fa-floppy-disk" style="color:#4e60ff; cursor:pointer; font-size:16px;" onclick="lessonDetail.saveSessionChanges('${sess.id}')"></i>
+                            <i class="fa-solid fa-trash-can" style="color:#ef4444; cursor:pointer; font-size:16px;" onclick="lessonDetail.deleteSession('${sess.id}')"></i>
+                        </div>
+                    `;
+                }
+
                 html += `
                 <div class="session-block">
                     <div class="session-header">
                         <div style="display:flex; align-items:center; gap:8px;"><i class="fa-regular fa-file-lines" style="color:#94a3b8;"></i> ${sess.name}</div>
-                        <i class="fa-solid fa-trash-can" style="color:#ef4444; cursor:pointer;" onclick="lessonDetail.deleteSession('${sess.id}')"></i>
+                        ${sessionActions}
                     </div>
                     <div class="session-grid">
                         ${this.renderSessionCell(sess.id, 'Lecture Slides', 'PDF, PPTX (Max 100MB)', 'slides', 'fa-desktop', 'blue', sess.slides)}
@@ -149,6 +227,16 @@ const lessonDetail = {
         let isUploaded = this.node.materials[this.activeTab][docType];
         let iconColor = colorClass === 'blue' ? '#4e60ff' : (colorClass === 'green' ? '#10b981' : '#f59e0b');
 
+        let uiActions = '';
+        if (this.dirtyStandard && this.dirtyStandard[docType]) {
+            uiActions = `
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <i class="fa-solid fa-xmark" style="color:#ef4444; cursor:pointer; font-size:16px;" onclick="lessonDetail.cancelStandardChanges('${docType}')"></i>
+                    <i class="fa-solid fa-floppy-disk" style="color:#4e60ff; cursor:pointer; font-size:16px;" onclick="lessonDetail.saveStandardChanges('${docType}')"></i>
+                </div>
+            `;
+        }
+
         if (!isUploaded) {
             return `
             <div class="upload-module">
@@ -157,6 +245,7 @@ const lessonDetail = {
                         <i class="fa-solid ${iconClass}" style="color:${iconColor}; font-size:16px;"></i>
                         <div><div class="upload-title">${title}</div><div class="upload-desc">${desc}</div></div>
                     </div>
+                    ${uiActions}
                 </div>
                 <div class="upload-body">
                     <div class="upload-dropzone" onclick="lessonDetail.toggleUploadStandard('${docType}', true)">
@@ -168,11 +257,12 @@ const lessonDetail = {
         } else {
             return `
             <div class="upload-module">
-                <div class="upload-header" style="background:white;">
+                <div class="upload-header">
                     <div class="upload-header-left">
                         <i class="fa-solid ${iconClass}" style="color:${iconColor}; font-size:16px;"></i>
                         <div><div class="upload-title">${title}</div><div class="upload-desc">${desc}</div></div>
                     </div>
+                    ${uiActions}
                 </div>
                 <div class="upload-body">
                     <div class="uploaded-file-row">
@@ -216,7 +306,7 @@ const lessonDetail = {
         } else {
             return `
             <div class="session-cell">
-                <div class="upload-header" style="background:white;">
+                <div class="upload-header"">
                     <div class="upload-header-left">
                         <i class="fa-solid ${iconClass}" style="color:${iconColor}; font-size:16px;"></i>
                         <div><div class="upload-title">${title}</div><div class="upload-desc">${desc}</div></div>
@@ -243,13 +333,69 @@ const lessonDetail = {
     },
 
     toggleUploadStandard: function(docType, state) {
+        if (!this.dirtyStandard) this.dirtyStandard = {};
+        if (!this.standardBackups) this.standardBackups = {};
+        
+        this.dirtyStandard[docType] = true;
+        if (this.standardBackups[docType] === undefined) {
+             this.standardBackups[docType] = this.node.materials[this.activeTab][docType];
+        }
+
         this.node.materials[this.activeTab][docType] = state;
         this.renderView();
     },
 
+    saveStandardChanges: function(docType) {
+        if (this.dirtyStandard) delete this.dirtyStandard[docType];
+        if (this.standardBackups) delete this.standardBackups[docType];
+        this.renderView();
+    },
+
+    cancelStandardChanges: function(docType) {
+        if (this.standardBackups && this.standardBackups[docType] !== undefined) {
+            this.node.materials[this.activeTab][docType] = this.standardBackups[docType];
+        }
+        if (this.dirtyStandard) delete this.dirtyStandard[docType];
+        if (this.standardBackups) delete this.standardBackups[docType];
+        this.renderView();
+    },
+
     toggleUploadSession: function(sessionId, docType, state) {
+        if (!this.dirtySessions) this.dirtySessions = {};
+        if (!this.sessionBackups) this.sessionBackups = {};
+        
+        this.dirtySessions[sessionId] = true;
+
         let s = this.node.materials[this.activeTab].sessions.find(x => x.id === sessionId);
+        if (!this.sessionBackups[sessionId] && s) {
+            this.sessionBackups[sessionId] = JSON.parse(JSON.stringify(s));
+        }
+
         if(s) s[docType] = state;
+        this.renderView();
+    },
+
+    saveSessionChanges: function(sessionId) {
+        if (this.dirtySessions) delete this.dirtySessions[sessionId];
+        if (this.sessionBackups) delete this.sessionBackups[sessionId];
+        this.renderView();
+    },
+
+    cancelSessionChanges: function(sessionId) {
+        let sessionObj = this.node.materials[this.activeTab];
+        let sIndex = sessionObj.sessions.findIndex(x => x.id === sessionId);
+        
+        if (sIndex > -1) {
+            if (this.sessionBackups && this.sessionBackups[sessionId]) {
+                Object.assign(sessionObj.sessions[sIndex], this.sessionBackups[sessionId]);
+            } else {
+                // If there's no backup, it means it was a newly added session, so we remove it.
+                sessionObj.sessions.splice(sIndex, 1);
+            }
+        }
+        
+        if (this.dirtySessions) delete this.dirtySessions[sessionId];
+        if (this.sessionBackups) delete this.sessionBackups[sessionId];
         this.renderView();
     },
 
@@ -258,9 +404,15 @@ const lessonDetail = {
         let name = prompt(`Enter Session name:`, `Session ${sessionObj.sessions.length + 1}`);
         if(!name) return;
 
+        let newId = this.uuid();
         sessionObj.sessions.push({
-            id: this.uuid(), name: name, slides: false, plan: false, key: false
+            id: newId, name: name, slides: false, plan: false, key: false
         });
+        
+        if (!this.dirtySessions) this.dirtySessions = {};
+        this.dirtySessions[newId] = true;
+        // Do not create an entry in sessionBackups so cancel removes it
+
         this.renderView();
     },
 

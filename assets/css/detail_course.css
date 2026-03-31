@@ -1,0 +1,21 @@
+.btn_save {
+    background-color: transparent;
+    color: #4950FE;
+    border: none;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.btn_cancel {
+    background-color: transparent;
+    color: #FF0000;
+    border: none;
+    font-size: 16px;
+    padding: 5px;
+}
+
+ .btn-outline-danger {
+     color: #FF0000;
+     background-color: #FFD1D1;
+     font-weight: 600;
+ }

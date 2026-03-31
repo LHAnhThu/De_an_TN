@@ -81,9 +81,9 @@
                             </thead>
                             <tbody>
                                 <!-- Course 1 -->
-                                <tr>
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=1'">
                                     <td class="td-image">
-                                        <div class="discount-badge">-19%</div>
+                                        <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_1.png" alt="TOEIC L&R: Conquer 900+">
                                     </td>
                                     <td>
@@ -104,9 +104,9 @@
                                 </tr>
 
                                 <!-- Course 2 -->
-                                <tr>
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=2'">
                                     <td class="td-image">
-                                        <div class="discount-badge">-19%</div>
+                                        <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_2.png" alt="IELTS Grammar & Vocabulary">
                                     </td>
                                     <td>
@@ -127,9 +127,9 @@
                                 </tr>
 
                                 <!-- Course 3 -->
-                                <tr>
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=3'">
                                     <td class="td-image">
-                                        <div class="discount-badge">-19%</div>
+                                        <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_3.png" alt="IELTS Pronunciation & Speaking Samples">
                                     </td>
                                     <td>
@@ -150,9 +150,9 @@
                                 </tr>
 
                                 <!-- Course 4 -->
-                                <tr>
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=4'">
                                     <td class="td-image">
-                                        <div class="discount-badge">-19%</div>
+                                        <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_4.png" alt="Practical: Pronunciation & Communication">
                                     </td>
                                     <td>
@@ -173,9 +173,9 @@
                                 </tr>
 
                                 <!-- Course 5 -->
-                                <tr>
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=5'">
                                     <td class="td-image">
-                                        <div class="discount-badge">-19%</div>
+                                        <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_5.png" alt="HSK 1+2 - Basic Chinese">
                                     </td>
                                     <td>
@@ -196,9 +196,9 @@
                                 </tr>
 
                                 <!-- Course 6 -->
-                                <tr>
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=6'">
                                     <td class="td-image">
-                                        <div class="discount-badge">-19%</div>
+                                        <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_6.png" alt="Conquer HSK 3">
                                     </td>
                                     <td>
@@ -332,12 +332,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             const tbody = document.querySelector('.custom-table tbody');
             if(tbody) {
-                const mockCourses = JSON.parse(localStorage.getItem('mockCourses') || '[]');
-                mockCourses.forEach(c => {
+                const mockCourses = JSON.parse(sessionStorage.getItem('mockCourses') || '[]');
+                mockCourses.forEach((c, index) => {
                     let tagColor = c.lang === 'English' ? 'blue' : (c.lang === 'Chinese' ? 'orange' : 'gray');
                     let html = `
                     <!-- Injected New Course -->
-                    <tr>
+                    <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=${index}'">
                         <td class="td-image">
                             <img src="${c.img}" alt="${c.name}">
                         </td>

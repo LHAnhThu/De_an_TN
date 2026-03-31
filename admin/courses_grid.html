@@ -72,7 +72,7 @@
                         
                         <div class="card-body">
                             <div class="card-tags"><span class="tag blue">ENGLISH</span><span class="tag lightorange">Advanced</span></div>
-                            <h3 class="card-title">TOEIC L&R: Conquer 900+</h3>
+                            <h3 class="card-title" style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=1'">TOEIC L&R: Conquer 900+</h3>
                             
                             <div class="card-meta">
                                 <p>Age: <strong>18+</strong></p>
@@ -88,7 +88,7 @@
                             <div class="card-footer">
                                 <span class="price">485.000 VND</span>
                                 <span class="old-price">599.000</span>
-                                <span class="discount-circle">-19%</span>
+                                <span class="discount-circle">-12%</span>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                         
                         <div class="card-body">
                             <div class="card-tags"><span class="tag blue">ENGLISH</span><span class="tag lightblue">Beginner</span></div>
-                            <h3 class="card-title">IELTS Grammar & Vocabulary</h3>
+                            <h3 class="card-title" style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=2'">IELTS Grammar & Vocabulary</h3>
                             
                             <div class="card-meta">
                                 <p>Age: <strong>12-17 years old</strong></p>
@@ -116,7 +116,7 @@
                             <div class="card-footer">
                                 <span class="price">485.000 VND</span>
                                 <span class="old-price">599.000</span>
-                                <span class="discount-circle">-19%</span>
+                                <span class="discount-circle">-12%</span>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                         
                         <div class="card-body">
                             <div class="card-tags"><span class="tag blue">ENGLISH</span><span class="tag lightorange">Advanced</span></div>
-                            <h3 class="card-title">IELTS Pronunciation & Speaking Samples</h3>
+                            <h3 class="card-title" style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=3'">IELTS Pronunciation & Speaking Samples</h3>
                             
                             <div class="card-meta">
                                 <p>Age: <strong>18+</strong></p>
@@ -144,7 +144,7 @@
                             <div class="card-footer">
                                 <span class="price">485.000 VND</span>
                                 <span class="old-price">599.000</span>
-                                <span class="discount-circle">-19%</span>
+                                <span class="discount-circle">-12%</span>
                             </div>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                         
                         <div class="card-body">
                             <div class="card-tags"><span class="tag blue">ENGLISH</span><span class="tag green">Intermediate</span></div>
-                            <h3 class="card-title">Practical: Pronunciation & Communication</h3>
+                            <h3 class="card-title" style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=4'">Practical: Pronunciation & Communication</h3>
                             
                             <div class="card-meta">
                                 <p>Age: <strong>5 - 11 years old</strong></p>
@@ -172,7 +172,7 @@
                             <div class="card-footer">
                                 <span class="price">485.000 VND</span>
                                 <span class="old-price">599.000</span>
-                                <span class="discount-circle">-19%</span>
+                                <span class="discount-circle">-12%</span>
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                         
                         <div class="card-body">
                             <div class="card-tags"><span class="tag orange">CHINESE</span><span class="tag lightblue">Beginner</span></div>
-                            <h3 class="card-title">HSK 1+2 - Basic Chinese</h3>
+                            <h3 class="card-title" style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=5'">HSK 1+2 - Basic Chinese</h3>
                             
                             <div class="card-meta">
                                 <p>Age: <strong>12-17 years old</strong></p>
@@ -200,7 +200,7 @@
                             <div class="card-footer">
                                 <span class="price">485.000 VND</span>
                                 <span class="old-price">599.000</span>
-                                <span class="discount-circle">-19%</span>
+                                <span class="discount-circle">-12%</span>
                             </div>
                         </div>
                     </div>
@@ -212,7 +212,7 @@
                         
                         <div class="card-body">
                             <div class="card-tags"><span class="tag orange">CHINESE</span><span class="tag lightblue">Beginner</span></div>
-                            <h3 class="card-title">Conquer HSK 3</h3>
+                            <h3 class="card-title" style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=6'">Conquer HSK 3</h3>
                             
                             <div class="card-meta">
                                 <p>Age: <strong>12-17 years old</strong></p>
@@ -228,7 +228,7 @@
                             <div class="card-footer">
                                 <span class="price">485.000 VND</span>
                                 <span class="old-price">599.000</span>
-                                <span class="discount-circle">-19%</span>
+                                <span class="discount-circle">-12%</span>
                             </div>
                         </div>
                     </div>
@@ -343,7 +343,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.querySelector('.grid-view');
             if(grid) {
-                const mockCourses = JSON.parse(localStorage.getItem('mockCourses') || '[]');
+                const mockCourses = JSON.parse(sessionStorage.getItem('mockCourses') || '[]');
                 mockCourses.forEach(c => {
                     let tagColor = c.lang === 'English' ? 'blue' : (c.lang === 'Chinese' ? 'orange' : 'gray');
                     let html = `

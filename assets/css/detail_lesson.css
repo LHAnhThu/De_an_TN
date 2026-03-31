@@ -1,0 +1,272 @@
+.lesson-breadcrumb {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.lesson-breadcrumb span.link {
+    color: inherit;
+    font-weight: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.lesson-breadcrumb span.link:hover {
+    color: #64748b;
+}
+
+.lesson-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.lesson-header-row h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    color: #0f172a;
+}
+
+.lesson-id {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 24px;
+}
+
+/* Outline button red */
+.btn-outline-danger {
+    color: #ef4444;
+    background-color: #FFD1D1;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Class Type Tabs inline */
+.class-tabs {
+    display: flex;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+}
+
+.ctab-btn {
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748b;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: inherit;
+}
+
+.ctab-btn.active {
+    color: #4e60ff;
+    border-bottom-color: #4e60ff;
+    font-weight: 600;
+}
+
+/* Upload Modules for Lesson (Standard) */
+.upload-module {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    margin-bottom: 16px;
+    overflow: hidden;
+    max-width: 900px;
+}
+
+.upload-header {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ededed;
+}
+
+.upload-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.upload-icon {
+    font-size: 18px;
+    color: #4e60ff;
+}
+
+.upload-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+
+.upload-desc {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.upload-body {
+    padding: 20px;
+    background: #ededed;
+}
+
+.upload-dropzone {
+    border: 1px dashed #4e60ff;
+    border-radius: 6px;
+    padding: 28px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #94a3b8;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Uploaded View */
+.uploaded-file-row {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    background: #fbfeff;
+}
+
+.uploaded-file-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.uploaded-file-icon {
+    color: #ef4444;
+    font-size: 24px;
+}
+
+.uploaded-file-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.uploaded-file-meta {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.uploaded-actions button {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+}
+
+.uploaded-actions button.download {
+    color: #4e60ff;
+    margin-left: 12px;
+}
+
+/* SESSION VIEW (Junior) */
+.session-block {
+    margin-bottom: 32px;
+    max-width: 1000px;
+}
+
+.session-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    background: #ededed;
+    font-weight: 600;
+    font-size: 14px;
+    color: #0f172a;
+    margin-bottom: 16px;
+    border-radius: 6px;
+}
+
+.session-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.session-cell {
+    background: #ededed;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.session-cell-body {
+    padding: 16px;
+}
+
+.session-btn-upload {
+    border: 1px dashed #4e60ff;
+    color: #4e60ff;
+    width: 100%;
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.session-btn-upload:hover {
+    background: #f4f6ff;
+}
+
+.btn-add-session {
+    width: 100%;
+    max-width: 1000px;
+    border: 1px solid #4e60ff;
+    color: #4e60ff;
+    background: white;
+    padding: 14px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.btn-add-session:hover {
+    background: #f4f6ff;
+}
+
+.footer-buttons {
+    position: fixed;
+    bottom: 0;
+    left: 240px;
+    right: 0;
+    background: white;
+    padding: 16px 48px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    z-index: 10;
+}
