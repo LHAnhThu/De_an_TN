@@ -383,18 +383,11 @@ const courseLogic = {
         const btnPublish = document.getElementById('btn-publish-main');
         const badge = document.getElementById('classes-badge');
 
-        if (allValid) {
-            if(btnPublish) {
-                btnPublish.disabled = false;
-                btnPublish.style.opacity = '1';
-                btnPublish.style.cursor = 'pointer';
-            }
-        } else {
-            if(btnPublish) {
-                btnPublish.disabled = true;
-                btnPublish.style.opacity = '0.6';
-                btnPublish.style.cursor = 'not-allowed';
-            }
+        // Note: Button is always enabled, validation happens on click
+        if(btnPublish) {
+            btnPublish.disabled = false;
+            btnPublish.style.opacity = '1';
+            btnPublish.style.cursor = 'pointer';
         }
         
         if (badge) {

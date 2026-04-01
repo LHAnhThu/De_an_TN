@@ -39,7 +39,7 @@
                             <h2>New Course</h2>
                             <div class="action-buttons">
                                 <button class="btn btn-outline-primary" id="btn-save-draft-top" style="display: none;"><i class="fa-solid fa-floppy-disk"></i> Save Draft</button>
-                                <button class="btn btn-primary disabled" id="btn-publish-main" disabled style="opacity: 0.6; cursor: not-allowed;"><i class="fa-solid fa-arrow-up-from-bracket"></i> Publish</button>
+                                <button class="btn btn-primary" id="btn-publish-main"><i class="fa-solid fa-arrow-up-from-bracket"></i> Publish</button>
                             </div>
                         </div>
 
@@ -184,8 +184,8 @@
                             </div>
                         
                         <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px; margin-bottom: 24px;">
-                            <button class="btn btn-outline" style="border-radius: 6px;">Cancel</button>
-                            <button class="btn btn-primary" id="btn-save-bottom" style="border-radius: 6px; padding: 8px 32px;" onclick="courseValidation.saveDraft()">Save</button>
+                            <button class="btn btn-outline" id="btn-cancel-bottom" style="border-radius: 6px;">Cancel</button>
+                            <button class="btn btn-primary" id="btn-save-bottom" style="border-radius: 6px; padding: 8px 32px;">Save</button>
                         </div>
                         </div>
 
@@ -223,6 +223,28 @@
         </main>
     </div>
 
+    <!-- Custom Alert Modal -->
+    <div id="custom-alert-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.1); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; border-radius:8px; padding:32px 48px; min-width:300px; max-width: 400px; text-align:center; position:relative; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+            <i class="fa-solid fa-xmark" style="position:absolute; top:16px; right:16px; color:#ef4444; font-size:16px; cursor:pointer;" onclick="document.getElementById('custom-alert-modal').style.display='none'"></i>
+            <h3 style="margin-top:0; margin-bottom:16px; font-size:18px; color:#0f172a; font-weight:600;">Alert</h3>
+            <p id="custom-alert-text" style="color:#64748b; font-size:14px; font-style:italic; margin:0 auto; max-width: 250px;">Please complete uploading the lesson materials before publishing</p>
+        </div>
+    </div>
+
+    <!-- Custom Confirm Modal -->
+    <div id="custom-confirm-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.1); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; border-radius:8px; padding:24px 32px; min-width:300px; max-width: 400px; text-align:center; position:relative; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+            <i class="fa-solid fa-xmark" style="position:absolute; top:16px; right:16px; color:#ef4444; font-size:16px; cursor:pointer;" onclick="handleConfirmResult(false)"></i>
+            <h3 style="margin-top:0; margin-bottom:24px; font-size:18px; color:#0f172a; font-weight:600; text-align: left;">Confirm</h3>
+            <p id="custom-confirm-text" style="color:#64748b; font-size:14px; margin-bottom:24px; font-style:italic;">Are you sure you want to <strong style="color:#64748b; font-style:italic; font-weight:700;">discard changes</strong> to this course?</p>
+            <div style="display:flex; justify-content:end; gap:12px;">
+                <button style="background:#d1d5db; color:white; border:none; padding:8px 24px; border-radius:6px; font-weight:600; cursor:pointer; font-size:14px;" onclick="handleConfirmResult(false)">Cancel</button>
+                <button style="background:#4e60ff; color:white; border:none; padding:8px 24px; border-radius:6px; font-weight:600; cursor:pointer; font-size:14px;" onclick="handleConfirmResult(true)">OK</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="../assets/js/components/sidebar.js"></script>
     <script src="../assets/js/components/header.js"></script>
@@ -257,10 +279,89 @@
             document.getElementById('btn-save-draft-top').style.display = 'inline-flex';
         });
         
+        let currentAction = 'save';
+        
         // Bind top save draft button
         document.getElementById('btn-save-draft-top').addEventListener('click', function() {
-            courseValidation.saveDraft();
+            currentAction = 'save';
+            document.getElementById('custom-confirm-text').innerHTML = 'Are you sure you want to <strong>save & publish</strong> this course?';
+            document.getElementById('custom-confirm-modal').style.display = 'flex';
         });
+
+        // Bind bottom save button
+        document.getElementById('btn-save-bottom').addEventListener('click', function() {
+            currentAction = 'save';
+            document.getElementById('custom-confirm-text').innerHTML = 'Are you sure you want to <strong>save & publish</strong> this course?';
+            document.getElementById('custom-confirm-modal').style.display = 'flex';
+        });
+
+        // Bind publish button
+        document.getElementById('btn-publish-main').addEventListener('click', function() {
+            // Check if all lessons are complete
+            let allValid = true;
+            let totalLessonCount = 0;
+            courseLogic.data.forEach(l => {
+                l.chapters.forEach(c => {
+                    c.lessons.forEach(les => {
+                        totalLessonCount++;
+                        let isLessonComplete = true;
+                        ['25 minutes', '45 minutes', 'Junior 25 minutes', 'Junior 45 minutes'].forEach(ct => {
+                            let isJunior = ct.includes('Junior');
+                            let m = les.materials[ct];
+                            
+                            if (isJunior) {
+                                if (!m.sessions || m.sessions.length === 0) {
+                                    isLessonComplete = false;
+                                } else {
+                                    m.sessions.forEach(s => {
+                                        if(!s.slides || !s.plan || !s.key) {
+                                            isLessonComplete = false;
+                                        }
+                                    });
+                                }
+                            } else {
+                                if(!m.slides || !m.plan || !m.key) {
+                                    isLessonComplete = false;
+                                }
+                            }
+                        });
+                        if (!isLessonComplete) {
+                            allValid = false;
+                        }
+                    });
+                });
+            });
+
+            if (totalLessonCount === 0) allValid = false;
+
+            if (!allValid) {
+                document.getElementById('custom-alert-modal').style.display = 'flex';
+            } else {
+                // Proceed with publishing
+                alert('Publishing course...');
+            }
+        });
+
+        // Bind cancel button
+        document.getElementById('btn-cancel-bottom').addEventListener('click', function() {
+            currentAction = 'discard';
+            document.getElementById('custom-confirm-text').innerHTML = 'Are you sure you want to <strong>discard changes</strong> to this course?';
+            document.getElementById('custom-confirm-modal').style.display = 'flex';
+        });
+
+        // Function to handle confirm result
+        function handleConfirmResult(confirmed) {
+            document.getElementById('custom-confirm-modal').style.display = 'none';
+            if (confirmed) {
+                if (currentAction === 'save') {
+                    // Save draft
+                    courseValidation.saveDraft();
+                } else if (currentAction === 'discard') {
+                    // Discard changes, perhaps redirect back
+                    window.location.href = 'courses_list.html';
+                }
+            }
+        }
 
         // Function to format number with thousand separators
         function formatNumber(value) {

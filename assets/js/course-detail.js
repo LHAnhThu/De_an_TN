@@ -785,8 +785,10 @@ const courseDetailLogic = {
             if (el) {
                 if (isEditing) {
                     el.removeAttribute('readonly');
+                    el.classList.remove('disabled');
                 } else {
                     el.setAttribute('readonly', true);
+                    el.classList.add('disabled');
                 }
             }
         });
@@ -796,8 +798,10 @@ const courseDetailLogic = {
             if (el) {
                 if (isEditing) {
                     el.removeAttribute('disabled');
+                    el.classList.remove('disabled');
                 } else {
                     el.setAttribute('disabled', true);
+                    el.classList.add('disabled');
                 }
             }
         });
@@ -805,6 +809,16 @@ const courseDetailLogic = {
         const imgZone = document.getElementById('course-image-zone');
         if (imgZone) {
             imgZone.style.cursor = isEditing ? 'pointer' : 'default';
+            if (isEditing) {
+                imgZone.onclick = () => this.mockUploadImage();
+            } else {
+                imgZone.onclick = null;
+            }
+        }
+
+        const removeIcon = document.getElementById('remove-image-icon');
+        if (removeIcon) {
+            removeIcon.style.display = isEditing ? 'block' : 'none';
         }
 
         const editBtn = document.getElementById('btn-edit-info');
@@ -852,8 +866,10 @@ const courseDetailLogic = {
             if (el) {
                 if (isEditing) {
                     el.removeAttribute('readonly');
+                    el.classList.remove('disabled');
                 } else {
                     el.setAttribute('readonly', true);
+                    el.classList.add('disabled');
                 }
             }
         });
@@ -885,12 +901,35 @@ const courseDetailLogic = {
         this.toggleEditPrice(false);
     },
 
+    removeImage: function() {
+        if (!this.courseData) return;
+        
+        // Clear the image
+        this.courseData.image = '';
+        document.getElementById('course-image-display').src = '';
+        
+        alert('Image removed successfully!');
+    },
+
+    mockUploadImage: function() {
+        // Mock image upload - in real app, this would open file picker
+        const newImageUrl = '../assets/img/courses_img/course_2.png'; // Example new image
+        this.courseData.image = newImageUrl;
+        document.getElementById('course-image-display').src = newImageUrl;
+        
+        alert('Image uploaded successfully!');
+    },
+
     init: function() {
         // Load course data
         this.loadCourseData();
         
         // Load course information
         this.loadCourseInfo();
+
+        // Set initial edit state (view mode)
+        this.toggleEditInfo(false);
+        this.toggleEditPrice(false);
 
         // Setup class tab
         window.activeClassTab = '25 minutes';
