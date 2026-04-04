@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Details</title>
     <link rel="stylesheet" href="../assets/css/global.css">
-    <link rel="stylesheet" href="../assets/css/admin.css">
-    <link rel="stylesheet" href="../assets/css/add_course.css">
-    <link rel="stylesheet" href="../assets/css/detail_course.css">
+    <link rel="stylesheet" href="../assets/css/css_admin/course_management.css">
+    <link rel="stylesheet" href="../assets/css/css_admin/add_course.css">
+    <link rel="stylesheet" href="../assets/css/css_admin/detail_course.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -81,41 +81,49 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Language <span class="required">*</span></label>
-                                            <select class="form-control disabled" id="course-language" disabled>
-                                                <option value="All">All Languages</option>
-                                                <option value="English">English</option>
-                                                <option value="Japanese">Japanese</option>
-                                                <option value="Chinese">Chinese</option>
-                                            </select>
+                                            <div class="select-wrapper" style="width: 100%;">
+                                                <select class="form-control disabled" id="course-language" disabled>
+                                                    <option value="All">All Languages</option>
+                                                    <option value="English">English</option>
+                                                    <option value="Japanese">Japanese</option>
+                                                    <option value="Chinese">Chinese</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Level</label>
-                                            <select class="form-control disabled" id="course-level" disabled>
-                                                <option value="Beginner">Beginner</option>
-                                                <option value="Intermediate">Intermediate</option>
-                                                <option value="Advanced">Advanced</option>
-                                            </select>
+                                            <div class="select-wrapper" style="width: 100%;">
+                                                <select class="form-control disabled" id="course-level" disabled>
+                                                    <option value="Beginner">Beginner</option>
+                                                    <option value="Intermediate">Intermediate</option>
+                                                    <option value="Advanced">Advanced</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Age</label>
-                                            <select class="form-control disabled" id="course-age" disabled>
-                                                <option>5-11 years old</option>
-                                                <option>12-17 years old</option>
-                                                <option>18+</option>
-                                            </select>
+                                            <div class="select-wrapper" style="width: 100%;">
+                                                <select class="form-control disabled" id="course-age" disabled>
+                                                    <option>5-11 years old</option>
+                                                    <option>12-17 years old</option>
+                                                    <option>18+</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Objectives</label>
-                                            <select class="form-control disabled" id="course-objectives" disabled>
-                                                <option>All</option>
-                                                <option>Communication</option>
-                                                <option>Certificate Exam Preparation</option>
-                                                <option>Travel</option>           
-                                                <option>Immigration</option> 
-                                                <option>Work</option>                
-                                            </select>
+                                            <div class="select-wrapper" style="width: 100%;">
+                                                <select class="form-control disabled" id="course-objectives" disabled>
+                                                    <option>All</option>
+                                                    <option>Communication</option>
+                                                    <option>Certificate Exam Preparation</option>
+                                                    <option>Travel</option>           
+                                                    <option>Immigration</option> 
+                                                    <option>Work</option>                
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-row">

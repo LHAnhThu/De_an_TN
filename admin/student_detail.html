@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Details</title>
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="../assets/css/css_admin/course_management.css" />
+    <link rel="stylesheet" href="../assets/css/css_admin/student_management.css" />
+    <link rel="stylesheet" href="../assets/css/css_admin/student_detail.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+    <div class="app-container">
+        <aside id="sidebar-container" class="sidebar"></aside>
+
+        <main class="main-content student-detail-page">
+            <header id="header-container" class="top-header"></header>
+
+            <div class="content-body">
+                <div class="student-detail-card">
+                    <div class="student-detail-left">
+                        <div class="student-summary">
+                            <div class="student-avatar-lg" id="student-avatar-display">NA</div>
+                            <div class="student-summary-name" id="student-summary-name">Nguyễn Văn A</div>
+                            <div class="student-summary-id" id="student-summary-id">ID: STU39490</div>
+                            <div class="student-summary-status status-badge status-inactive" id="student-status-badge">
+                                Not Activated</div>
+                        </div>
+
+                        <div class="student-tabs">
+                            <button class="student-tab active" id="tab-btn-personal" type="button"
+                                onclick="studentDetailLogic.switchTab('personal')">
+                                <i class="fa-regular fa-user"></i>
+                                <span>Personal Information</span>
+                            </button>
+                            <button class="student-tab" id="tab-btn-courses" type="button"
+                                onclick="studentDetailLogic.switchTab('courses')">
+                                <i class="fa-regular fa-clipboard"></i>
+                                <span>Enrolled Courses</span>
+                            </button>
+                        </div>
+
+                        <button class="action-btn-left btn-resend" id="student-action-btn" type="button">
+                            <i class="fa-regular fa-paper-plane" id="student-action-icon"></i>
+                            <span id="student-action-text">Resend Activation</span>
+                        </button>
+                    </div>
+
+                    <div class="student-detail-right">
+                        <!-- TAB: Personal Information -->
+                        <div id="tab-content-personal">
+                            <section class="detail-section">
+                                <div class="detail-section-header">
+                                    <h3>Personal Information</h3>
+                                    <div class="action-buttons" style="display: flex; gap: 8px;">
+                                        <button class="btn" id="btn-edit-info"
+                                            onclick="studentDetailLogic.toggleEditInfo(true)"
+                                            style="background-color: #eff6ff; color: #3b82f6; border: none; padding: 6px 16px; font-size: 13px; border-radius: 4px; display: flex; align-items: center; gap: 6px; font-weight: 500; cursor: pointer;">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </button>
+                                        <button class="btn_cancel" id="btn-cancel-info" style="display: none;"
+                                            onclick="studentDetailLogic.toggleEditInfo(false)">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                        <button class="btn_save" id="btn-save-info" style="display: none;"
+                                            onclick="studentDetailLogic.saveInfo()">
+                                            <i class="fa-solid fa-floppy-disk"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="detail-grid">
+                                    <div class="form-group">
+                                        <label>Name <span class="required">*</span></label>
+                                        <input class="form-control detail-input readonly-mode" id="student-name"
+                                            value="Nguyễn Văn A" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date Created</label>
+                                        <input class="form-control detail-input readonly-mode" value="10/03/2026"
+                                            readonly />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Date of Birth <span class="required">*</span></label>
+                                        <input type="text" class="form-control detail-input readonly-mode"
+                                            id="student-dob" value="12/02/2004" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Gender <span class="required">*</span></label>
+                                        <div class="select-wrapper" style="width: 100%;">
+                                            <select class="form-control detail-input readonly-mode" id="student-gender"
+                                                disabled>
+                                                <option selected>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Phone <span class="required">*</span></label>
+                                        <input class="form-control detail-input readonly-mode" id="student-phone"
+                                            value="0123456789" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email <span class="required">*</span></label>
+                                        <input class="form-control detail-input readonly-mode" id="student-email"
+                                            value="nguyenvana@gmail.com" readonly />
+                                    </div>
+
+                                    <div class="form-group full">
+                                        <label>Address</label>
+                                        <input class="form-control detail-input readonly-mode" id="student-address"
+                                            value="50 Như Nguyệt, Đà Nẵng" readonly />
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="detail-section">
+                                <div class="detail-section-header">
+                                    <h3>User Account</h3>
+                                    <button class="btn btn-reset" type="button">
+                                        <i class="fa-solid fa-lock"></i> Reset Password
+                                    </button>
+                                </div>
+
+                                <div class="detail-grid">
+                                    <div class="form-group">
+                                        <label>Username:</label>
+                                        <input class="form-control detail-input readonly-mode" id="student-username"
+                                            value="nguyenvana@gmail.com" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password:</label>
+                                        <input class="form-control detail-input readonly-mode" value="********"
+                                            readonly />
+                                    </div>
+                                </div>
+                            </section>
+                        </div> <!-- End tab-content-personal -->
+
+                        <!-- TAB: Enrolled Courses -->
+                        <div id="tab-content-courses" style="display: none;">
+                            <section class="detail-section" style="padding: 0;">
+                                <div class="detail-section-header" style="justify-content: space-between;">
+                                    <h3>Enrolled Courses</h3>
+                                    <button class="btn btn-primary" type="button"
+                                        style="border-radius: 4px; padding: 8px 16px; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 500;"
+                                        onclick="studentDetailLogic.openEnrollModal()">
+                                        <i class="fa-solid fa-plus"></i> Enroll in Course
+                                    </button>
+                                </div>
+                                <div style="margin-bottom: 15px;">
+                                    <div class="select-wrapper" style="width: 230px;">
+                                        <select id="course-filter-select" class="form-control"
+                                            style="width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; appearance: none; background: white;"
+                                            aria-label="Filter courses"
+                                            onchange="studentDetailLogic.renderEnrolledCourses()">
+                                            <option value="all">All Courses</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="table-container" style="border-radius: 0; box-shadow: none;">
+                                    <table class="data-table" id="courses-table" style="width: 100%;">
+                                        <thead style="background: #eff6ff;">
+                                            <tr>
+                                                <th style=" color: #020617; font-weight: 700; width: 30%;">Course Name
+                                                </th>
+                                                <th style="color: #020617; font-weight: 700;">Class Type</th>
+                                                <th style="color: #020617; font-weight: 700; width: 16%;">Class Schedule
+                                                </th>
+                                                <th
+                                                    style="color: #020617; font-weight: 700; width: 14%; padding-left: 32px;">
+                                                    Status</th>
+                                                <th style="color: #020617; font-weight: 700;">Registration Date</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="student-courses-tbody">
+                                            <!-- Dynamic courses populated by JS -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div> <!-- End tab-content-courses -->
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Course Detail Modal -->
+    <div id="course-detail-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <div>
+                    <h2 id="modal-course-title">TOEIC L&R: Conquer 900+</h2>
+                    <p id="modal-course-code" style="color: #94a3b8; margin: 4px 0 0; font-size: 13px;">ENG-TOEIC-LR900
+                    </p>
+                </div>
+                <button class="btn-close" type="button" onclick="studentDetailLogic.closeCourseModal()"
+                    style="color: #ef4444;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="modal-body" style="padding: 24px; background: #f8fafc; overflow-y: auto;">
+                <div class="detail-card">
+                    <h3 style="font-size: 16px; margin: 0 0 16px 0; color: #0f172a; font-weight: 700;">General
+                        Information</h3>
+                    <div class="general-grid">
+                        <div class="info-row">
+                            <span class="info-label">Class Type:</span>
+                            <span class="info-value" id="modal-class-type">25 minutes</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Registration Date:</span>
+                            <span class="info-value" id="modal-reg-date">02/03/2026</span>
+                        </div>
+
+                        <div class="info-row">
+                            <span class="info-label">Class Schedule:</span>
+                            <span class="info-value" id="modal-schedule">Mon, Wed, Fri (19:00-19:25)</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Status:</span>
+                            <span class="info-value"><span class="status-badge" id="modal-status">In
+                                    Progress</span></span>
+                        </div>
+
+                        <div class="info-row">
+                            <span class="info-label">Course Level:</span>
+                            <span class="info-value" id="modal-level">Advanced</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Objectives:</span>
+                            <span class="info-value" id="modal-objectives">Certificate Exam Preparation</span>
+                        </div>
+
+                        <div class="info-row">
+                            <span class="info-label">Age:</span>
+                            <span class="info-value" id="modal-age">18+</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Price:</span>
+                            <span class="info-value" id="modal-price"
+                                style="color: #ef4444; font-weight: 700;">485.000</span>
+                        </div>
+
+                        <div class="info-row">
+                            <span class="info-label">Levels:</span>
+                            <span class="info-value" id="modal-levels-count">8</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Lessons:</span>
+                            <span class="info-value" id="modal-lessons-count">31</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card" style="margin-top: 20px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <h3 style="font-size: 16px; margin: 0; color: #0f172a; font-weight: 700;">Classes</h3>
+                        <div class="progress-wrap">
+                            <div style="text-align: right; font-size: 13px; font-weight: 600; margin-bottom: 4px;">
+                                Progress: <span style="color: #16a34a;">12</span>/ 31 Classes</div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" style="width: 38%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="data-table classes-table">
+                        <thead style="background: #eff6ff;">
+                            <tr>
+                                <th>Class Code</th>
+                                <th>Lesson</th>
+                                <th>Date</th>
+                                <th>Teacher</th>
+                                <th>Status</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-classes-tbody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+
+                    <div class="pagination-footer">
+                        <div class="showing-text">
+                            <span id="page-info">Showing <strong>1-5</strong> of <strong>31</strong> classes</span>
+                        </div>
+                        <div class="pagination">
+                            <button class="page-btn" aria-label="Previous page">
+                                <i class="fa-solid fa-caret-left"></i>
+                            </button>
+                            <div class="page-number-buttons">
+                                <button class="page-btn active">1</button>
+                                <button class="page-btn">2</button>
+                                <button class="page-btn">3</button>
+                                <span class="dots">...</span>
+                                <button class="page-btn">7</button>
+                            </div>
+                            <button class="page-btn" aria-label="Next page">
+                                <i class="fa-solid fa-caret-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enroll Course Modal -->
+    <div id="enroll-course-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content modal-lg" style="height: auto; max-height: 90%;">
+            <div class="modal-header">
+                <div>
+                    <h2 style="margin: 0; font-size: 20px; color: #0f172a;">Enroll in Course</h2>
+                    <p style="color: #64748b; margin: 4px 0 0; font-size: 13px;">Student: <span
+                            style="font-weight: 700;" id="enroll-modal-student-name"></span></p>
+                </div>
+                <button class="btn-close" type="button" onclick="studentDetailLogic.closeEnrollModal()"
+                    style="color: #ef4444;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="modal-body" style="padding: 18px 18px 0px 18px; overflow-y: auto;">
+                <div class="enroll-form-group">
+                    <label>Course Name <span class="required">*</span></label>
+                    <div class="course-search-wrapper">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="enroll-course-search" class="course-search-input" placeholder="Search..."
+                            oninput="studentDetailLogic.onCourseSearchInput(event)">
+                    </div>
+
+                    <div id="enroll-course-selected" style="display: none;">
+                        <!-- Course Card injected by JS -->
+                    </div>
+                </div>
+
+                <div class="enroll-body-layout">
+                    <div class="enroll-left">
+                        <div class="enroll-form-group">
+                            <label>Class Type <span class="required">*</span></label>
+                            <div class="class-type-options" style="flex-wrap: wrap;">
+                                <label class="class-type-option">
+                                    <input type="radio" name="enrollClassType" value="25 minutes" style="display:none;"
+                                        onchange="studentDetailLogic.updateClassType()" checked>
+                                    <div class="custom-radio"></div>
+                                    <span>25 minutes</span>
+                                </label>
+                                <label class="class-type-option">
+                                    <input type="radio" name="enrollClassType" value="45 minutes" style="display:none;"
+                                        onchange="studentDetailLogic.updateClassType()">
+                                    <div class="custom-radio"></div>
+                                    <span>45 minutes</span>
+                                </label>
+                                <label class="class-type-option">
+                                    <input type="radio" name="enrollClassType" value="Junior 25 minutes"
+                                        style="display:none;" onchange="studentDetailLogic.updateClassType()">
+                                    <div class="custom-radio"></div>
+                                    <span>Junior 25 minutes</span>
+                                </label>
+                                <label class="class-type-option">
+                                    <input type="radio" name="enrollClassType" value="Junior 45 minutes"
+                                        style="display:none;" onchange="studentDetailLogic.updateClassType()">
+                                    <div class="custom-radio"></div>
+                                    <span>Junior 45 minutes</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="date-time-grid">
+                            <div class="enroll-form-group">
+                                <label>Registration Date <span class="required">*</span></label>
+                                <input type="date" id="enroll-reg-date" class="form-control"
+                                    style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 12px; font-family: inherit;">
+                            </div>
+                            <div class="enroll-form-group">
+                                <label>Time <span class="required">*</span></label>
+                                <input type="time" id="enroll-time" class="form-control"
+                                    style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 12px; font-family: inherit;"
+                                    value="19:00">
+                            </div>
+                        </div>
+
+                        <div class="enroll-form-group">
+                            <label>Schedule <span class="required">*</span></label>
+                            <div class="schedule-days">
+                                <button type="button" class="day-btn"
+                                    onclick="studentDetailLogic.toggleEnrollDay(this)">Mon</button>
+                                <button type="button" class="day-btn"
+                                    onclick="studentDetailLogic.toggleEnrollDay(this)">Tue</button>
+                                <button type="button" class="day-btn"
+                                    onclick="studentDetailLogic.toggleEnrollDay(this)">Wed</button>
+                                <button type="button" class="day-btn"
+                                    onclick="studentDetailLogic.toggleEnrollDay(this)">Thu</button>
+                                <button type="button" class="day-btn"
+                                    onclick="studentDetailLogic.toggleEnrollDay(this)">Fri</button>
+                                <button type="button" class="day-btn"
+                                    onclick="studentDetailLogic.toggleEnrollDay(this)">Sat</button>
+                                <button type="button" class="day-btn"
+                                    onclick="studentDetailLogic.toggleEnrollDay(this)">Sun</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="enroll-right">
+                        <div class="payment-panel">
+                            <div class="payment-title">Payment Information</div>
+
+                            <div class="payment-row">
+                                <span>Additional Fee:</span>
+                                <span>0</span>
+                            </div>
+
+                            <div class="payment-row total">
+                                <span>Total Amount:</span>
+                                <span class="amount zero" id="enroll-total-amount">0</span>
+                            </div>
+
+                            <button class="btn-confirm" onclick="studentDetailLogic.confirmEnroll()">Confirm
+                                Registration</button>
+                            <button class="btn-cancel-modal"
+                                onclick="studentDetailLogic.closeEnrollModal()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enroll Confirm Modal -->
+    <div id="enroll-confirm-modal" class="modal-overlay" style="display: none; z-index: 10000; align-items: center; justify-content: center; background: rgba(0,0,0,0.4);">
+        <div class="modal-content" style="width: 400px; padding: 0; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #f1f5f9;">
+                <h3 style="margin: 0; font-size: 18px; color: #0f172a; font-weight: 600;">Confirm</h3>
+                <button type="button" onclick="studentDetailLogic.closeEnrollConfirmModal()" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 16px;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div style="padding: 24px 20px 32px; text-align: center;">
+                <p style="margin: 0 0 24px 0; font-size: 16px; color: #64748b; font-style: italic;">
+                    Are you sure you want to <strong style="font-weight: 700;">enroll in this course</strong>?
+                </p>
+                <div style="display: flex; justify-content: flex-end; gap: 12px;">
+                    <button type="button" onclick="studentDetailLogic.closeEnrollConfirmModal()" style="padding: 8px 16px; background: #cbd5e1; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Cancel</button>
+                    <button type="button" onclick="studentDetailLogic.submitEnroll()" style="padding: 8px 24px; background: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/components/sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
+    <script src="../assets/js/student-detail.js"></script>
+    <script>
+        loadSidebar('admin', 'students');
+        loadHeader({
+            title: '<span style="font-size:14px; color:#8C8C8C; font-weight:400;"><a href="students_list.html" style="color:#8C8C8C; text-decoration:none; font-weight:400;">Student Management</a> &gt;</span> <span style="color:#8C8C8C; font-size:14px; font-weight:700;" id="header-student-name">Nguyễn Văn A</span>',
+            subtitle: '',
+            userName: 'Tran Dinh Phuoc',
+            userAvatar: '../assets/img/user_avatar.png',
+            showIcon: true
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof studentDetailLogic !== 'undefined' && studentDetailLogic.init) {
+                studentDetailLogic.init();
+            }
+        });
+    </script>
+</body>
+
+</html>

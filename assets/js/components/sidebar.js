@@ -27,15 +27,15 @@ function loadSidebar(role, activePage) {
                     <i class="fa-solid fa-book"></i>
                     <span>Course Management</span>
                 </a>
-                <a href="students.html" class="menu-item ${activePage === 'students' ? 'active' : ''}">
+                <a href="students_list.html" class="menu-item ${activePage === 'students' ? 'active' : ''}">
                     <i class="fa-solid fa-user-graduate"></i>
                     <span>Student Management</span>
                 </a>
-                <a href="#" class="menu-item ${activePage === 'class_allocation' ? 'active' : ''}">
+                <a href="class_allocation.html" class="menu-item ${activePage === 'class_allocation' ? 'active' : ''}">
                     <i class="fa-solid fa-users-rectangle"></i>
                     <span>Class Allocation</span>
                 </a>
-                <a href="#" class="menu-item ${activePage === 'teaching_management' ? 'active' : ''}">
+                <a href="teaching_management.html" class="menu-item ${activePage === 'teaching_management' ? 'active' : ''}">
                     <i class="fa-solid fa-person-chalkboard"></i>
                     <span>Teaching Management</span>
                 </a>

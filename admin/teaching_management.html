@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Management - XINKEDU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/css_admin/teaching_management.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Container (App Global) -->
+        <aside id="sidebar-container" class="sidebar"></aside>
+
+        <!-- Main Content (App Global) -->
+        <main class="main-content">
+            <header id="header-container" class="top-header"></header>
+
+            <div class="content-body">
+                
+                <!-- Toolbar Area -->
+                <div class="tm-toolbar">
+                    <div class="tm-toolbar-left" style="display: flex; align-items: flex-start; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div class="segmented-control">
+                                <button id="btn-today" class="segment-btn active" onclick="teachingManagementLogic.setMode('today')">Today</button>
+                                <button id="btn-options" class="segment-btn" onclick="teachingManagementLogic.setMode('options')">Options</button>
+                            </div>
+                            <div id="options-date-picker" style="display: none; align-items: center; gap: 12px;">
+                                <i class="fa-regular fa-calendar" style="color: #64748b; font-size: 18px; cursor: pointer;"></i>
+                                <div style="position: relative;">
+                                    <input type="date" id="date-from" value="2026-03-02" class="custom-date-input">
+                                    <i class="fa-regular fa-calendar" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #0f172a; font-size: 16px; pointer-events: none;"></i>
+                                </div>
+                                <i class="fa-solid fa-arrow-right" style="color: #64748b; font-size: 18px;"></i>
+                                <div style="position: relative;">
+                                    <input type="date" id="date-to" value="2026-03-02" class="custom-date-input">
+                                    <i class="fa-regular fa-calendar" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #0f172a; font-size: 16px; pointer-events: none;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tm-date-info">
+                            <i class="fa-regular fa-clock" style="color: #0f172a;"></i>
+                            <span>Viewing: <span id="viewing-date-text">02/03/2026</span></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="select-wrapper">
+                            <select id="status-filter" style="width: 150px;" onchange="teachingManagementLogic.setStatus(this.value)">
+                                <option value="All Statuses">All Statuses</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Late">Late</option>
+                                <option value="Upcoming">Upcoming</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Canceled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Table Area -->
+                <div class="list-view">
+                    <div class="table-wrapper">
+                        <table class="custom-table" style="min-width: 1000px;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%;">Classes</th>
+                                    <th style="width: 13%;">Schedule</th>
+                                    <th style="width: 12%;">Student</th>
+                                    <th style="width: 12%;">Teacher</th>
+                                    <th style="width: 12%;">Status</th>
+                                    <th style="width: 7%;">In</th>
+                                    <th style="width: 7%;">Out</th>
+                                    <th style="width: 10%;">Total Hours</th>
+                                    <th style="width: 7%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tm-tbody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination-footer">
+                        <div class="showing-text">
+                            <span id="page-info">Showing <strong>1-6</strong> of <strong>31</strong> classes</span>
+                        </div>
+                        <div class="pagination">
+                            <button class="page-btn"><i class="fa-solid fa-caret-left"></i></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <span class="dots">...</span>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn"><i class="fa-solid fa-caret-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Contact Popover (Student/Teacher) -->
+    <div id="tm-popover" class="tm-popover">
+        <div class="tm-popover-header" id="pop-title">Student Information</div>
+        <div class="tm-popover-body">
+            <div id="pop-ava" class="tm-popover-avatar"></div>
+            <div class="tm-popover-info">
+                <div>
+                    <div id="pop-name" class="tm-popover-name">Nguyễn Văn A</div>
+                    <div id="pop-code" class="tm-popover-sub">STU139489</div>
+                </div>
+                <div>
+                    <div id="pop-gender-box" class="tm-popover-icon-text boy"></div>
+                    <div class="tm-popover-icon-text phone">
+                        <i class="fa-solid fa-phone"></i>
+                        <span id="pop-phone">0345678912</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="../assets/js/components/sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
+    <script src="../assets/js/teaching_management.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSidebar('admin', 'teaching_management');
+            loadHeader({
+                title: 'Teaching Management',
+                subtitle: 'Monitor and Support Classes',
+                userName: 'Tran Dinh Phuoc',
+                userAvatar: '../assets/img/user_avatar.png',
+                showIcon: true,
+            });
+            teachingManagementLogic.init();
+        });
+    </script>
+</body>
+</html>

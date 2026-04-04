@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Details - XINKEDU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/css_admin/teaching_management.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Container -->
+        <aside id="sidebar-container" class="sidebar"></aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header id="header-container" class="top-header"></header>
+
+            <div class="content-body">
+                
+                <!-- Detail Top Title Card -->
+                <div class="detail-top-card">
+                    <div>
+                        <div class="detail-top-title">
+                            <span id="det-title">Lesson: TOEIC-LR900-L1-C1-01</span>
+                            <span id="det-badge" class="tm-badge completed">Completed</span>
+                        </div>
+                        <div id="det-id" class="detail-top-sub">ID: TOEIC-LR900-32</div>
+                    </div>
+                    <button class="btn btn-primary" id="det-join-btn" style="display: none; font-size: 14px; padding: 10px 16px;">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Join Class
+                    </button>
+                </div>
+
+                <div class="tcd-grid">
+                    <!-- Left Column -->
+                    <div>
+                        <!-- Class Information -->
+                        <div class="tcd-card">
+                            <div class="tcd-card-title">
+                                <i class="fa-solid fa-circle-info"></i> Class Information
+                            </div>
+                            
+                            <div class="info-col-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Course Name</div>
+                                    <div class="info-val" id="c-courseName"></div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Level</div>
+                                    <div class="info-val" id="c-level"></div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Chapter</div>
+                                    <div class="info-val" id="c-chapter"></div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Lesson</div>
+                                    <div class="info-val" id="c-lesson"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-dates">
+                                <div><i class="fa-regular fa-calendar" style="color: #64748b;"></i> <span id="c-date"></span></div>
+                                <div><i class="fa-regular fa-clock" style="color: #64748b;"></i> <span id="c-time"></span></div>
+                            </div>
+                        </div>
+
+                        <!-- Member -->
+                        <div class="tcd-card">
+                            <div class="tcd-card-title">
+                                <i class="fa-solid fa-user-group" style="color: #4e60ff;"></i> Member
+                            </div>
+                            <div class="member-grid">
+                                <!-- Teacher Box -->
+                                <div class="member-col">
+                                    <div class="member-title">Teacher</div>
+                                    <div class="member-box">
+                                        <img src="../assets/img/user_avatar.png" alt="Teacher" style="width:48px;height:48px;border-radius:50%;">
+                                        <div class="member-box-info" style="align-items: start;">
+                                            <div>
+                                                <div id="m-teacher-name" style="font-weight:700; color:#0f172a; font-size:16px;"></div>
+                                                <div id="m-teacher-sub" style="font-size:14px; color:#94a3b8; margin-top:2px;"></div>
+                                            </div>
+                                            <div style="text-align: right;">
+                                                <div id="m-teacher-gender" class="tm-popover-icon-text girl" style="background: rgba(255, 0, 200, 0.1); padding:2px 10px; border-radius:12px;"></div>
+                                            </div>
+                                            <div id="m-teacher-in" class="tm-person-status" style="margin-top: 8px;"></div>
+                                            <a href="#" class="member-box-view" style="margin-top: 8px; justify-content: flex-end;">View Detail <i class="fa-solid fa-angle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Student Box -->
+                                <div class="member-col">
+                                    <div class="member-title">Student</div>
+                                    <div class="member-box">
+                                        <div style="width:48px;height:48px;border-radius:50%;background:#10b981;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;">LA</div>
+                                        <div class="member-box-info" style="align-items: start;">
+                                            <div>
+                                                <div id="m-student-name" style="font-weight:700; color:#0f172a; font-size:16px;"></div>
+                                                <div id="m-student-sub" style="font-size:14px; color:#94a3b8; margin-top:2px;"></div>
+                                            </div>
+                                            <div style="text-align: right;">
+                                                <div id="m-student-gender" class="tm-popover-icon-text boy" style="background: rgba(73, 80, 254, 0.1); padding:2px 10px; border-radius:12px;"></div>
+                                            </div>
+                                            <div id="m-student-in" class="tm-person-status" style="margin-top: 8px;"></div>
+                                            <a href="#" class="member-box-view" style="margin-top: 8px; justify-content: flex-end;">View Detail <i class="fa-solid fa-angle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Record -->
+                        <div class="tcd-card">
+                            <div class="tcd-card-title">
+                                <i class="fa-solid fa-video" style="color: #4e60ff;"></i> Record
+                            </div>
+                            <div class="video-wrapper" id="video-wrapper" style="position: relative;">
+                                <!-- placeholder injected by JS -->
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Right Column -->
+                    <div>
+                        <!-- Teaching Materials -->
+                        <div class="tcd-card">
+                            <div class="tcd-card-title">
+                                <i class="fa-regular fa-folder-open" style="color: #4e60ff;"></i> Teaching Materials
+                            </div>
+                            <div id="materials-list">
+                                <!-- injected by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Comment -->
+                        <div class="tcd-card" style="margin-bottom: 24px;">
+                            <div class="tcd-card-title">
+                                <i class="fa-regular fa-comments" style="color: #4e60ff;"></i> Comment
+                            </div>
+                            <div class="comment-area" id="comment-box">
+                                <!-- injected by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Reason (Only for Canceled Class) -->
+                        <div class="tcd-card" id="reason-card" style="display: none;">
+                            <div class="tcd-card-title">
+                                <i class="fa-regular fa-circle-xmark" style="color: #4e60ff;"></i> Reason
+                            </div>
+                            <div class="comment-area" id="reason-box">
+                                <textarea readonly style="background:white; color:#94a3b8; font-family: inherit;">Cancelled by Center - Student No-show</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/components/sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
+    <script src="../assets/js/teaching_detail.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSidebar('admin', 'teaching_management');
+            loadHeader({
+                title: 'Class Details',
+                subtitle: 'View detailed information about this class',
+                userName: 'Tran Dinh Phuoc',
+                userAvatar: '../assets/img/user_avatar.png',
+                showIcon: true,
+            });
+            teachingDetailLogic.init();
+        });
+    </script>
+</body>
+</html>

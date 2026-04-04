@@ -119,8 +119,8 @@ body.sidebar-collapsed .logout-btn { justify-content: center; padding: 16px; }
 .list-view { width: 100%; }
 .table-wrapper { background: var(--bg-white); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; }
 .custom-table { width: 100%; border-collapse: collapse; }
-.custom-table th, .custom-table td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border-color); }
-.custom-table th { background: #f8fafc; font-size: 13px; }
+.custom-table th, .custom-table td { padding: 16px; border-bottom: 1px solid var(--border-color); }
+.custom-table th { background: #eff7ff; font-size: 13px; text-align: left;}
 .td-image { position: relative; width: 120px; }
 .discount-badge { position: absolute; background: rgba(0,0,0,0.6); color: white; font-size: 10px; margin: 4px; padding: 2px 4px; border-radius: 4px; }
 .td-image img { width: 100px; height: 56px; border-radius: 6px; object-fit: fill; }
@@ -129,8 +129,8 @@ body.sidebar-collapsed .logout-btn { justify-content: center; padding: 16px; }
 .status-pill { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
 .status-pill.active { background: var(--success-light); color: var(--success); }
 .status-pill.draft { background: #f1f5f9; color: #94a3b8; }
-.td-levels { font-weight: 600; }
-.td-lessons { font-weight: 600; }
+.td-levels { font-weight: 600; text-align: center; }
+.td-lessons { font-weight: 600; text-align: center; }
 
 .pagination-footer { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border-color); margin-top: 20px; }
 .pagination { display: flex; gap: 8px; }
@@ -150,7 +150,7 @@ body.sidebar-collapsed .logout-btn { justify-content: center; padding: 16px; }
 
 /* Modal Body */
 .modal-body { padding: 8px 24px; max-height: 60vh; overflow-y: auto; }
-.filter-group { border-bottom: 1px solid #f1f5f9; padding: 16px 0; }
+.filter-group { display: flex; flex-direction: column; border-bottom: 1px solid #f1f5f9; padding: 16px 0; }
 .filter-group:last-child { border-bottom: none; }
 .filter-title { font-size: 15px; font-weight: 500; color: #4e60ff; display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
 

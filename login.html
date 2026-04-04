@@ -22,7 +22,13 @@
             text-align: center;
             width: 350px;
         }
-        .login-box h1 { margin-bottom: 24px; color: #4e60ff; }
+        .logo-img {
+            width: 84px;
+            height: auto;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        .login-box h1 { margin-bottom: 10px; color: #4e60ff; }
         .login-btn {
             display: block;
             width: 100%;
@@ -39,9 +45,10 @@
 </head>
 <body>
     <div class="login-box">
+        <img src="assets/img/XinkEdu_logo.png" alt="XinkEdu logo" class="logo-img">
         <h1>XINKEDU</h1>
-        <p style="margin-bottom: 24px; color: #64748b;">Xin chào! Vui lòng chọn tài khoản để đăng nhập:</p>
-        
+        <p style="color: #64748b;">Xin chào!</p>
+        <p style="margin-bottom: 24px; color: #64748b;">Vui lòng chọn tài khoản đăng nhập</p>
         <a href="admin/courses_grid.html" class="login-btn btn-admin">Đăng nhập bằng Admin</a>
         <a href="teacher/home.html" class="login-btn btn-teacher">Đăng nhập quản lý Lớp (Teacher)</a>
     </div>

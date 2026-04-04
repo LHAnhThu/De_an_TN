@@ -32,6 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function openModal() { modal?.classList.add('active'); }
     function closeModal() { modal?.classList.remove('active'); }
 
+    // Safety: ensure modal is closed on page load (prevents visible state from prior state or leaks)
+    if (modal) {
+        modal.classList.remove('active');
+    }
+
     if(btnOpenModal) btnOpenModal.addEventListener('click', openModal);
     if(btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
     if(btnCancelModal) btnCancelModal.addEventListener('click', closeModal);
