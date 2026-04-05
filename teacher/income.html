@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income - Teacher - XINKEDU</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/css_teacher/home.css">
+    <link rel="stylesheet" href="../assets/css/css_teacher/income.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Container -->
+        <aside id="sidebar-container" class="sidebar"></aside>
+
+        <main class="main-content">
+            <header id="header-container" class="top-header"></header>
+
+            <div class="content-body">
+                <div class="income-banner">
+                    <div class="income-banner-top">
+                        <h2 class="income-title">Your income</h2>
+                        <div class="income-date">
+                            <span id="current-month-display">March, 2026</span>
+                            <button class="income-nav-btn"><i class="fa-solid fa-angles-left"></i></button>
+                            <button class="income-nav-btn"><i class="fa-solid fa-angles-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="income-cards">
+                        <div class="income-card">
+                            <span class="base-income-label">Estimated Base income</span>
+                            <span class="base-income-sub">(Without Bonuses)</span>
+                            <div class="base-income-amount">2,000,000 VNĐ</div>
+                        </div>
+                        <div class="income-card chart-card">
+                            <!-- SVG mimicking the chart line -->
+                            <img src="../assets/img/chart.png" class="chart">
+                            <div class="chart-x-axis">
+                                <span>27</span><span>28</span><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="income-tabs-container">
+                    <button class="income-tab active" id="tab-overview">Overview</button>
+                    <button class="income-tab" id="tab-history">Booking history</button>
+                </div>
+
+                <!-- Overview Tab Content -->
+                <div id="overview-content">
+                    <div class="overview-grid">
+                        
+                        <!-- Left Column: Progress Sections -->
+                        <div class="overview-card" style="box-shadow: none;">
+                            
+                            <!-- Golden Hour Bonus (GHB) -->
+                            <div class="progress-title">Golden Hour Bonus (GHB)</div>
+                            <div class="progress-section">
+                                <img src="../assets/img/clock.png" class="progress-icon">
+                                <div class="progress-content">   
+                                    <div class="progress-row-item">
+                                        <div class="progress-label-container">
+                                            <span>GHB Standard</span>
+                                            <span>9/31</span>
+                                        </div>
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar-fill fill-green" style="width: 29%">
+                                                <div class="progress-bar-knob"></div>
+                                            </div>
+                                            <div class="progress-markers">
+                                                <i class="fa-solid fa-trophy progress-marker"></i>
+                                                <i class="fa-solid fa-trophy progress-marker"></i>
+                                                <i class="fa-solid fa-trophy progress-marker"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="progress-row-item">
+                                        <div class="progress-label-container">
+                                            <span>GHB Plus</span>
+                                            <span>9/31</span>
+                                        </div>
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar-fill fill-orange" style="width: 29%">
+                                                <div class="progress-bar-knob"></div>
+                                            </div>
+                                            <div class="progress-markers">
+                                                <i class="fa-solid fa-trophy progress-marker"></i>
+                                                <i class="fa-solid fa-trophy progress-marker"></i>
+                                                <i class="fa-solid fa-trophy progress-marker"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Qualified classes -->
+                            <div class="progress-title" style="margin-bottom: 0px;">Qualified classes</div>
+                            <div class="progress-section">
+                                <img src="../assets/img/qualified.png" class="progress-icon">
+                                <div class="progress-content">
+                                    <div class="progress-row-item">
+                                        <div class="progress-label-container" style="justify-content: flex-end; margin-bottom: 3px;">
+                                            <span>59/150</span>
+                                        </div>
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar-fill fill-green" style="width: 39%">
+                                                <div class="progress-bar-knob"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-subtext">
+                                            Upon the 150th qualified class, you will receive 100% of the Performance Bonus for the qualified classes
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Cancellation -->
+                            <div class="progress-title" style="margin-bottom: 0px;">Cancellation</div>
+                            <div class="progress-section">
+                                <img src="../assets/img/cancellation.png" class="progress-icon">
+                                <div class="progress-content">
+
+                                    <div class="progress-row-item">
+                                        <div class="progress-label-container" style="margin-bottom: 3px;">
+                                            <span>4/10 (40%)</span>
+                                        </div>
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar-fill fill-red" style="width: 40%">
+                                                <div class="progress-bar-knob"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-subtext">
+                                            An additional fine of -20,000 VNĐ will be applied on each cancelled class if you exceed 10 cancellations per month
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <!-- Right Column: Summary Table -->
+                        <div class="right-column-container">
+                            <div class="overview-card">
+                                <div class="summary-line">
+                                    <span>Completed Classes</span>
+                                    <span class="val-green">+2,000,000 VNĐ</span>
+                                </div>
+                                <div class="summary-line">
+                                    <span class="label">Cancelled <span class="by-text">by XinkEdu</span></span>
+                                    <span class="val-green">+42,000 VNĐ</span>
+                                </div>
+                                <div class="summary-line">
+                                    <span class="label">Cancelled <span class="by-text">by Teacher</span></span>
+                                    <span class="val-red">0 VNĐ</span>
+                                </div>
+                                <div class="summary-line">
+                                    <span>Inadequate Teaching Time (Below Standard)</span>
+                                    <span class="val-red">-5,000 VNĐ</span>
+                                </div>
+                                
+                                <div class="summary-divider"></div>
+                                
+                                <!-- Breakdown list -->
+                                <div class="breakdown-item">
+                                    <img src="../assets/img/clock.png" class="breakdown-icon">
+                                    <div class="breakdown-info">
+                                        <div class="breakdown-title">Golden Hour Bonus</div>
+                                        <div class="breakdown-sub">Taught in 9 days</div>
+                                    </div>
+                                    <div class="breakdown-val val-green">+0 VNĐ</div>
+                                </div>
+                                
+                                <div class="breakdown-item">
+                                    <img src="../assets/img/qualified.png" class="breakdown-icon">
+                                    <div class="breakdown-info">
+                                        <div class="breakdown-title">Performance Bonus</div>
+                                        <div class="breakdown-sub">59 booking qualified bonus</div>
+                                    </div>
+                                    <div class="breakdown-val val-green">+100,000 VNĐ</div>
+                                </div>
+                                
+                                <div class="breakdown-item">
+                                    <img src="../assets/img/qualified.png" class="breakdown-icon">
+                                    <div class="breakdown-info">
+                                        <div class="breakdown-title">Hot Bonus</div>
+                                        <div class="breakdown-sub">0 hot bonus</div>
+                                    </div>
+                                    <div class="breakdown-val val-green">+0 VNĐ</div>
+                                </div>
+                                
+                                <div class="breakdown-item">
+                                    <img src="../assets/img/cancellation.png" class="breakdown-icon">
+                                    <div class="breakdown-info">
+                                        <div class="breakdown-title">Over-Cancellation Penalty</div>
+                                        <div class="breakdown-sub">0 class(es) cancelled</div>
+                                    </div>
+                                    <div class="breakdown-val val-red">0 VNĐ</div>
+                                </div>
+                                
+                                <div class="breakdown-item">
+                                    <img src="../assets/img/cancellation.png" class="breakdown-icon">
+                                    <div class="breakdown-info">
+                                        <div class="breakdown-title">No pay-Base rate Penalty</div>
+                                        <div class="breakdown-sub">0 class(es)</div>
+                                    </div>
+                                    <div class="breakdown-val val-red">0 VNĐ</div>
+                                </div>
+                            </div>
+                            
+                            <div class="gross-line">
+                                <span>Income GROSS</span>
+                                <span class="val-green">+2,137,000 VNĐ</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Booking History Tab Content -->
+                <div id="history-content" class="history-container" style="display: none;">
+                    <div class="history-toolbar">
+                        <div class="history-search">
+                            <i class="fa-solid fa-magnifying-glass" style="color: #0f172a;"></i>
+                            <input type="text" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="history-table-header">
+                        <span>ID</span>
+                        <span>TIME</span>
+                        <span>LEVEL</span>
+                        <span>ALL SATUS<i class="fa-solid fa-circle-chevron-down"></i></span>
+                        <span>ALL RATING<i class="fa-solid fa-circle-chevron-down"></i></span>
+                        <span>INCOME</span>
+                        <span></span>
+                    </div>
+
+                    <!-- Date Group: Fri, 13th Mar -->
+                    <div class="history-date-group">
+                        <div class="history-date-title">Fri, 13th Mar</div>
+                        
+                        <!-- Row 1: Completed, With bonus -->
+                        <div class="history-row">
+                            <div class="history-row-main">
+                                <span>30341763</span>
+                                <span class="time-cell"><i class="fa-regular fa-clock"></i> 18:30 - 18:55</span>
+                                <span>KE25</span>
+                                <span><span class="col-status-completed">Completed</span></span>
+                                <span><span class="rating-pill">With bonus</span></span>
+                                <span>21,000</span>
+                                <a class="action-link view-detail-toggle">« View detail</a>
+                                <a class="action-appeal open-appeal-btn">Appeal</a>
+                            </div>
+                            <div class="history-row-details">
+                                <div class="details-header">
+                                    <span></span>
+                                    <span>Result</span>
+                                    <span>Note</span>
+                                </div>
+                                <div class="details-item">
+                                    <span>Ensure the total teaching time is at least 45 minutes</span>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span></span>
+                                </div>
+                                <div class="details-item">
+                                    <span>Keep the camera on for at least 70% of the class time</span>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span></span>
+                                </div>
+                                <div class="details-item">
+                                    <span>Keep the entire face on camera for at least 70% of the class time</span>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span></span>
+                                </div>
+                                <div class="details-item">
+                                    <span>Comply with the teachers' code of conduct</span>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span></span>
+                                </div>
+                                <div class="details-item">
+                                    <span>Ensure teacher's talking time exceeds 20% of class time</span>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span></span>
+                                </div>
+                                <div class="details-item">
+                                    <span>Finish 100% lesson slides</span>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span></span>
+                                </div>
+                                <div class="details-item">
+                                    <span>Write student evaluation within 24 hours</span>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Cancelled -->
+                        <div class="history-row">
+                            <div class="history-row-main">
+                                <span>30341764</span>
+                                <span class="time-cell"><i class="fa-regular fa-clock"></i> 18:30 - 18:55</span>
+                                <span>KE25</span>
+                                <span><span class="col-status-cancelled">Cancelled</span></span>
+                                <span></span>
+                                <span>0</span>
+                                <span></span>
+                                <a class="action-appeal open-appeal-btn">Appeal</a>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: Rejected -->
+                        <div class="history-row">
+                            <div class="history-row-main">
+                                <span>30341765</span>
+                                <span class="time-cell"><i class="fa-regular fa-clock"></i> 19:00 - 19:45</span>
+                                <span>KE VIP 45</span>
+                                <span><span class="col-status-rejected">Rejected</span></span>
+                                <span></span>
+                                <span>0</span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Completed, Being checked -->
+                        <div class="history-row">
+                            <div class="history-row-main">
+                                <span>30341766</span>
+                                <span class="time-cell"><i class="fa-regular fa-clock"></i> 19:00 - 19:45</span>
+                                <span>KE VIP 45</span>
+                                <span><span class="col-status-completed">Completed</span></span>
+                                <span><span class="rating-pill">Being checked</span></span>
+                                <span>N/A</span>
+                                <a class="action-link view-detail-toggle">« View detail</a>
+                                <a class="action-appeal open-appeal-btn">Appeal</a>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: Completed, Without Bonus -->
+                        <div class="history-row">
+                            <div class="history-row-main">
+                                <span>30341767</span>
+                                <span class="time-cell"><i class="fa-regular fa-clock"></i> 20:00 - 20:45</span>
+                                <span>KE45</span>
+                                <span><span class="col-status-completed">Completed</span></span>
+                                <span><span class="rating-pill">Without Bonus</span></span>
+                                <span>21,000</span>
+                                <a class="action-link view-detail-toggle">« View detail</a>
+                                <a class="action-appeal open-appeal-btn">Appeal</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Date Group: Fri, 13th Mar (as per mockup scrolling) -->
+                    <div class="history-date-group">
+                        <div class="history-date-title">Fri, 13th Mar</div>
+                        <div class="history-row">
+                            <div class="history-row-main">
+                                <span>30345563</span>
+                                <span class="time-cell"><i class="fa-regular fa-clock"></i> 18:30 - 18:55</span>
+                                <span>KE25</span>
+                                <span><span class="col-status-completed">Completed</span></span>
+                                <span><span class="rating-pill">Below Standard</span></span>
+                                <span>0</span>
+                                <a class="action-link view-detail-toggle">« View detail</a>
+                                <a class="action-appeal open-appeal-btn">Appeal</a>
+                            </div>
+                        </div>
+                        <div class="history-row">
+                            <div class="history-row-main">
+                                <span>30344563</span>
+                                <span class="time-cell"><i class="fa-regular fa-clock"></i> 19:00 - 19:45</span>
+                                <span>KE45</span>
+                                <span><span class="col-status-completed">Completed</span></span>
+                                <span><span class="rating-pill">No pay</span></span>
+                                <span>0</span>
+                                <a class="action-link view-detail-toggle">« View detail</a>
+                                <a class="action-appeal open-appeal-btn">Appeal</a>
+                            </div>
+                        </div>
+                        <div class="history-row">
+                            <div class="history-row-main">
+                                <span>30349063</span>
+                                <span class="time-cell"><i class="fa-regular fa-clock"></i> 20:00 - 20:45</span>
+                                <span>KE45</span>
+                                <span><span class="col-status-completed">Completed</span></span>
+                                <span><span class="rating-pill">Without Bonus</span></span>
+                                <span>42,000</span>
+                                <a class="action-link view-detail-toggle">« View detail</a>
+                                <a class="action-appeal open-appeal-btn">Appeal</a>
+                            </div>
+                        </div>
+                        <div class="history-row">
+                            <div class="history-row-main">
+                                <span>30881763</span>
+                                <span class="time-cell"><i class="fa-regular fa-clock"></i> 21:00 - 20:45</span>
+                                <span>KE45</span>
+                                <span><span class="col-status-cancelled">Cancelled</span></span>
+                                <span></span>
+                                <span>42,000</span>
+                                <span></span>
+                                <a class="action-appeal open-appeal-btn">Appeal</a>
+                            </div>
+                        </div>
+                        <div class="history-row">
+                            <div class="history-row-main">
+                                <span>30341343</span>
+                                <span class="time-cell"><i class="fa-regular fa-clock"></i> 20:00 - 20:45</span>
+                                <span>KE45</span>
+                                <span><span class="col-status-completed">Completed</span></span>
+                                <span><span class="rating-pill">Without Bonus</span></span>
+                                <span>42,000</span>
+                                <a class="action-link view-detail-toggle">« View detail</a>
+                                <a class="action-appeal open-appeal-btn">Appeal</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paging -->
+                    <div class="pagination">
+                        <a href="#" class="page-btn active">1</a>
+                        <a href="#" class="page-btn">2</a>
+                        <a href="#" class="page-btn">3</a>
+                        <span class="page-dots">...</span>
+                        <a href="#" class="page-btn">8</a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Appeal Modal Overlay -->
+    <div id="appeal-modal" class="modal-overlay" style="display: none;">
+        <div class="appeal-modal">
+            <div class="modal-header">
+                <span>Appeal</span>
+                <i class="fa-solid fa-xmark close-modal-btn"></i>
+            </div>
+            <div class="modal-body" style="padding: 0; border:none;">
+                <div class="appeal-info-grid">
+                    <div class="appeal-info-item">
+                        <div class="label">Booking ID</div>
+                        <div class="value">25893773</div>
+                    </div>
+                    <div class="appeal-info-item">
+                        <div class="label">Lesson</div>
+                        <div class="value">KE45-Lesson 7-Habits</div>
+                    </div>
+                    <div class="appeal-info-item">
+                        <div class="label">Student name</div>
+                        <div class="value">Nguyễn Ngọc Gia Huy</div>
+                    </div>
+                    <div class="appeal-info-item">
+                        <div class="label">Teacher name</div>
+                        <div class="value">Nguyễn Thị Hoàng Ngân</div>
+                    </div>
+                    <div class="appeal-info-item">
+                        <div class="label">Level</div>
+                        <div class="value">KE45</div>
+                    </div>
+                    <div class="appeal-info-item">
+                        <div class="label">Booking status</div>
+                        <div class="value">Completed</div>
+                    </div>
+                </div>
+
+                <div class="appeal-form-section">
+                    <div class="appeal-form-group">
+                        <label>Note</label>
+                        <textarea></textarea>
+                    </div>
+
+                    <div class="appeal-form-group">
+                        <div class="upload-area-container">
+                            <div class="upload-area-dashed">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                Upload photo here
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button class="btn-send close-modal-btn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/components/sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
+    <script src="../assets/js/js_teacher/income.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSidebar('teacher', 'income');
+            loadHeader({
+                title: '',
+                subtitle: '',
+                userName: 'Ngan Nguyen',
+                userAvatar: '../assets/img/user_avatar.png',
+                showIcon: false
+            });
+        });
+    </script>
+</body>
+</html>

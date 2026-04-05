@@ -438,7 +438,7 @@ const studentDetailLogic = {
             
             let statusClass = 'status-notstarted';
             if (cls.status === 'In Progress') statusClass = 'status-inprogress';
-            else if (cls.status === 'Completed') statusClass = 'status-completed';
+            else if (cls.status === 'Completed') statusClass = 'status-class-completed';
 
             let lessonTitle = cls.lesson || cls.cast;
 

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Classroom - XINKEDU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/css_teacher/virtual_classroom.css">
+</head>
+<body>
+    
+    <!-- Sidebar -->
+    <aside class="vc-sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">MESSAGES</div>
+            <div class="chat-btn">
+                <i class="fa-regular fa-message"></i>
+                <span>Chat</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section" style="border: none;">
+            <div class="sidebar-title users-header">
+                <span>USERS (2)</span>
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            
+            <div class="users-list">
+                <div class="user-row">
+                    <div class="user-avatar av-teacher">Ng</div>
+                    <div class="user-name">Nguyễn Thị Hoàng Ngân</div>
+                </div>
+                <div class="user-row">
+                    <div class="user-avatar av-student">Ng</div>
+                    <div class="user-name">Nguyễn Ngọc Gia Huy</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Room -->
+    <main class="vc-main">
+        <!-- Top Header -->
+        <header class="vc-header">
+            <div class="header-left">
+                <div class="icon-circle">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <div class="audio-levels">
+                    <div class="audio-pill">
+                        <div class="audio-icon icon-green"><i class="fa-solid fa-microphone"></i></div>
+                        <span>Nguyễn Thị Hoàng Ngân</span>
+                    </div>
+                    <div class="audio-pill active">
+                        <div class="audio-icon" style="background:#52525b;"><i class="fa-solid fa-microphone"></i></div>
+                        <span>Nguyễn Ngọc Gia Huy</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <span>KEO0098786 - Nguyễn Ngọc Gia Huy - KE45-LC89-N2</span>
+                <div class="timer-pill">
+                    <i class="fa-solid fa-record-vinyl"></i>
+                    <span>00:25</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <button class="btn-more"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+        </header>
+
+        <!-- Stage Area -->
+        <section class="vc-stage">
+            <!-- Left Video Column -->
+            <div class="video-col">
+                <div class="video-card">
+                    <img src="../assets/img/teacher_avt.png" class="video-img" alt="Teacher Feed" onerror="this.src='https://via.placeholder.com/260x195/1e1e1e/d4d4d8?text=Teacher'">
+                    <i class="fa-solid fa-expand video-action-expand"></i>
+                    <div class="video-footer">
+                        <span>Nguyễn Thị Hoàng Ngân &gt;</span>
+                        <div class="footer-mic f-green"><i class="fa-solid fa-microphone"></i></div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <img src="../assets/img/user_avatar.png" class="video-img" alt="Student Feed" onerror="this.src='https://via.placeholder.com/260x195/1e1e1e/d4d4d8?text=Student'">
+                    <i class="fa-solid fa-expand video-action-expand"></i>
+                    <div class="video-footer">
+                        <span>Nguyễn Ngọc Gia Huy &gt;</span>
+                        <div class="footer-mic f-red"><i class="fa-solid fa-microphone-slash"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Whiteboard Column -->
+            <div class="whiteboard-col">
+                <!-- Overlay Tools -->
+                <div class="wb-toolbar">
+                    <div class="wb-tool"><i class="fa-solid fa-ellipsis"></i></div>
+                    <div class="wb-tool active"><i class="fa-solid fa-mouse-pointer"></i></div>
+                    <div class="wb-tool"><i class="fa-solid fa-eraser"></i></div>
+                    <div class="wb-tool"><i class="fa-solid fa-pen"></i></div>
+                    <div class="wb-tool"><i class="fa-regular fa-square"></i></div>
+                    <div class="wb-tool"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
+                    <div class="wb-tool"><i class="fa-solid fa-font"></i></div>
+                    <div class="wb-tool"><i class="fa-regular fa-image"></i></div>
+                    <div class="wb-tool"><i class="fa-solid fa-trash-can"></i></div>
+                </div>
+                
+                <div class="wb-styles-pill">
+                    <span>Styles</span>
+                    <div class="style-red-dot"></div>
+                </div>
+
+                <!-- Main Whiteboard Image Wrapper -->
+                <div class="wb-content">
+                    <img src="../assets/img/wb_slide.png" alt="Board Content" onerror="this.src='https://via.placeholder.com/800x600/f1f5f9/0f172a?text=Whiteboard+Slide'">
+                </div>
+
+                <!-- Bottom Whiteboard Drawer -->
+                <div class="wb-footer">
+                    <div style="width:100px;"></div>
+                    <div class="wb-pager">
+                        <i class="fa-solid fa-angle-left" style="cursor:pointer;"></i>
+                        <span style="font-weight:700;">Slide 1</span>
+                        <i class="fa-solid fa-angle-right" style="cursor:pointer;"></i>
+                    </div>
+                    <div class="wb-zoom">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <i class="fa-solid fa-minus"></i>
+                        <span>100%</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Global Action Bar -->
+        <div class="bottom-controls">
+            <button class="control-btn solid-green"><i class="fa-solid fa-plus"></i></button>
+            <button class="control-btn solid-green"><i class="fa-solid fa-microphone"></i></button>
+            <button class="control-btn"><i class="fa-solid fa-video-slash"></i></button>
+            <button class="control-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+            <button class="control-btn solid-green"><i class="fa-solid fa-display"></i></button>
+            <button class="control-btn"><i class="fa-solid fa-hand"></i></button>
+            <button class="control-btn solid-orange" onclick="window.location.href='home.html'"><i class="fa-solid fa-phone-slash"></i></button>
+        </div>
+    </main>
+
+</body>
+</html>

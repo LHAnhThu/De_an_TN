@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../assets/css/css_teacher/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
     <div class="app-container">
         <!-- Sidebar Container (Injected by JS) -->
@@ -23,16 +25,14 @@
                             <div class="panel-heading">
                                 <div>
                                     <h2>Upcoming classes</h2>
-                                    <p class="panel-subtitle">Stay on top of your next lessons</p>
                                 </div>
-                                <a href="#" class="view-all-btn">View all</a>
                             </div>
                             <div class="upcoming-list">
                                 <article class="booking-detail-card">
                                     <div class="booking-meta">
                                         <div class="meta-row">
                                             <span class="meta-label">Student</span>
-                                            <span class="meta-value">KEO112345/KID</span>
+                                            <span class="meta-value">STU112345/KID</span>
                                         </div>
                                         <div class="meta-row">
                                             <span class="meta-label">Lesson</span>
@@ -54,7 +54,8 @@
 
                                         <div class="booking-actions">
                                             <button class="bell-outline"><i class="fa-solid fa-bell"></i></button>
-                                            <span class="status-pill">Teaching</span>
+                                            <span class="status-pill" onclick="window.location.href='class_lobby.html'"
+                                                style="cursor: pointer;">Teaching</span>
                                         </div>
                                     </div>
 
@@ -63,11 +64,12 @@
                                     <div class="separator"></div>
 
                                     <div class="booking-footer">
+                                        <span class="pill pill-filled">VIP 45MINS</span>
                                         <div class="pill-group">
-                                            <span class="pill pill-filled">VIP 45MINS</span>
-                                            <span class="pill pill-outline">Approved <span class="pill-dot"></span></span>
+                                            <span class="pill pill-outline">Approved <span
+                                                    class="pill-dot"></span></span>
+                                            <a href="#" class="detail-link">View detail</a>
                                         </div>
-                                        <a href="#" class="detail-link">View detail</a>
                                     </div>
                                 </article>
 
@@ -75,7 +77,7 @@
                                     <div class="booking-meta">
                                         <div class="meta-row">
                                             <span class="meta-label">Student</span>
-                                            <span class="meta-value">KEO112345/KID</span>
+                                            <span class="meta-value">STU112345/KID</span>
                                         </div>
                                         <div class="meta-row">
                                             <span class="meta-label">Lesson</span>
@@ -97,7 +99,8 @@
 
                                         <div class="booking-actions">
                                             <button class="bell-outline"><i class="fa-solid fa-bell"></i></button>
-                                            <span class="status-pill">Teaching</span>
+                                            <span class="status-pill" onclick="window.location.href='class_lobby.html'"
+                                                style="cursor: pointer;">Teaching</span>
                                         </div>
                                     </div>
 
@@ -106,11 +109,12 @@
                                     <div class="separator"></div>
 
                                     <div class="booking-footer">
+                                        <span class="pill pill-filled">VIP 45MINS</span>
                                         <div class="pill-group">
-                                            <span class="pill pill-filled">VIP 45MINS</span>
-                                            <span class="pill pill-outline">Approved <span class="pill-dot"></span></span>
+                                            <span class="pill pill-outline">Approved <span
+                                                    class="pill-dot"></span></span>
+                                            <a href="#" class="detail-link">View detail</a>
                                         </div>
-                                        <a href="#" class="detail-link">View detail</a>
                                     </div>
                                 </article>
 
@@ -118,7 +122,7 @@
                                     <div class="booking-meta">
                                         <div class="meta-row">
                                             <span class="meta-label">Student</span>
-                                            <span class="meta-value">KEO112345/KID</span>
+                                            <span class="meta-value">STU112345/KID</span>
                                         </div>
                                         <div class="meta-row">
                                             <span class="meta-label">Lesson</span>
@@ -140,7 +144,8 @@
 
                                         <div class="booking-actions">
                                             <button class="bell-outline"><i class="fa-solid fa-bell"></i></button>
-                                            <span class="status-pill">Teaching</span>
+                                            <span class="status-pill" onclick="window.location.href='class_lobby.html'"
+                                                style="cursor: pointer;">Teaching</span>
                                         </div>
                                     </div>
 
@@ -149,11 +154,12 @@
                                     <div class="separator"></div>
 
                                     <div class="booking-footer">
+                                        <span class="pill pill-filled">VIP 45MINS</span>
                                         <div class="pill-group">
-                                            <span class="pill pill-filled">VIP 45MINS</span>
-                                            <span class="pill pill-outline">Approved <span class="pill-dot"></span></span>
+                                            <span class="pill pill-outline">Approved <span
+                                                    class="pill-dot"></span></span>
+                                            <a href="#" class="detail-link">View detail</a>
                                         </div>
-                                        <a href="#" class="detail-link">View detail</a>
                                     </div>
                                 </article>
                             </div>
@@ -161,49 +167,2020 @@
 
                         <div class="metrics-grid">
                             <div class="metric-card metric-large">
-                                <div class="metric-title">Estimated income this month</div>
+                                <div class="metric-title-text" style="margin-bottom: 12px;">Estimated income this month
+                                </div>
                                 <div class="metric-value">2,000,000 VND</div>
                                 <div class="metric-note">↗ 15% for last month</div>
                             </div>
-                            <div class="metric-card">
-                                <div class="metric-title">Classes need evaluations</div>
+                            <div class="metric-card clickable" id="evaluations-card">
+                                <div class="metric-title">
+                                    <i class="fa-solid fa-comments"></i>
+                                    <span class="metric-title-text">Classes need evaluations</span>
+                                </div>
                                 <div class="metric-value">1</div>
                             </div>
-                            <div class="metric-card">
-                                <div class="metric-title">Completed classes</div>
+                            <div class="metric-card" style="width: 200px;">
+                                <div class="metric-title">
+                                    <i class="fa-regular fa-circle-check"></i>
+                                    <span class="metric-title-text">Completed classes</span>
+                                </div>
                                 <div class="metric-value">60</div>
                             </div>
                         </div>
                     </section>
 
-                    <aside class="teacher-aside">
+                    <aside id="new-booking-sidebar" class="teacher-aside">
                         <div class="booking-card">
                             <div class="booking-header">
-                                <div>
-                                    <h3>New Booking</h3>
-                                    <p>Set up your teaching schedule to receive more booking requests.</p>
-                                </div>
-                                <span class="booking-count">0</span>
+                                <h2>New Booking</h2>
+                                <span class="booking-count">1</span>
                             </div>
-                            <button class="btn btn-primary booking-button">Set-up</button>
+
+                            <!-- Booking Notification Card (Hình 1) -->
+                            <div id="new-booking-card"
+                                style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                                <div
+                                    style="display: grid; grid-template-columns: 60px 1fr; gap: 8px; font-size: 13px; color: #64748b; margin-bottom: 16px;">
+                                    <span>Student</span><span
+                                        style="color: #0f172a; font-weight: 600; text-align: right;">STU114445/KID</span>
+                                    <span>Lesson</span><span
+                                        style="color: #0f172a; font-weight: 600; text-align: right;">KE45-Lesson
+                                        7-Habits</span>
+                                    <span>Level</span><span
+                                        style="color: #0f172a; font-weight: 600; text-align: right;">KE45</span>
+                                </div>
+
+                                <div style="font-style: italic; font-size: 12px; color: #64748b; margin-bottom: 16px;">8
+                                    teachers are considering this booking</div>
+
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 13px; font-weight: 600; color: #0f172a;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <span style="font-weight: 500;">Fri, 13th Mar</span>
+                                            <span>19:00 - 19:45</span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn-sidebar-deny"
+                                            style="width: 32px; height: 32px; border: 1px solid #fb923c; background: white; color: #fb923c; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><i
+                                                class="fa-solid fa-xmark"></i></button>
+                                        <button class="btn-sidebar-accept"
+                                            style="padding: 0 16px; height: 32px; background: #22c55e; color: white; border: none; border-radius: 6px; display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; cursor: pointer;"><i
+                                                class="fa-solid fa-check"></i> Accept</button>
+                                    </div>
+                                </div>
+
+                                <div style="border-top: 1px dashed #e2e8f0; margin: 16px -16px; padding: 0 16px;"></div>
+                                <div
+                                    style="border: 1px solid #c7d2fe; color: #2028ff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; width: fit-content; margin-bottom: 16px; padding: 3px 15px;">
+                                    VIP 45MINS</div>
+                                <div
+                                    style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                                    <div
+                                        style="padding: 3px 18px; border: 1px solid #f3e8ff; color: #8C24DC; font-size: 10px; font-weight: 700; border-radius: 999px;">
+                                        Waiting <span
+                                            style="display: inline-block; width: 7px; height: 7px; background: #8C24DC; border-radius: 100%; margin-left: 4px; vertical-align: middle;"></span>
+                                    </div>
+                                    <a href="#" class="detail-link"
+                                        style="color: #fb923c; font-size: 11px; text-decoration: none;">View detail</a>
+                                </div>
+                            </div>
+
+                            <div id="new-booking-empty" style="display: none; text-align: center;">
+                                <p style="margin-bottom: 16px; font-size: 15px;">Set up your teaching schedule to
+                                    receive more booking requests.</p>
+                                <button id="btn-sidebar-setup" class="btn btn-primary booking-button">Set-up</button>
+                            </div>
                         </div>
                     </aside>
                 </div>
             </div>
         </main>
     </div>
+
+
+
+    <!-- Evaluation Modal -->
+    <div id="evaluation-modal" class="modal-overlay">
+        <div class="modal-content" style="width: 760px; max-width: 95%;">
+            <div class="modal-header">
+                <button type="button" class="btn-close" style="color: white; margin: 0; padding: 0;"
+                    aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                <h2 style="font-size: 18px;">Lesson not yet evaluated</h2>
+            </div>
+            <div class="modal-body" style="padding: 24px 32px 100px; border:none; ">
+                <div class="evaluation-top-row" style="display:flex;align-items:center;justify-content:space-between;">
+                    <div style="color:#64748b;font-weight:500; font-size: 16px;">
+                        Fri, 13th Mar
+                    </div>
+                    <div
+                        style="display:flex;align-items:center;gap:8px;color:#0f172a;font-weight:500; font-size: 16px;">
+                        <span style="color:#94a3b8;"><i class="fa-regular fa-clock"></i></span>
+                        <div>18:30 - 18:55</div>
+                    </div>
+                    <div style="color:#0f172a; font-size: 16px;">KE25-BL9-N2</div>
+                    <div class="status-pill"
+                        style="background:transparent; border: 1px solid #e2e8f0; color:#22c55e; padding:4px 12px; font-size: 11px; border-radius: 20px;">
+                        Completed <span
+                            style="display:inline-block;width:6px;height:6px;background:#22c55e;border-radius:50%;margin-left:6px; vertical-align: middle;"></span>
+                    </div>
+                    <button class="btn"
+                        style="background: #fb923c; color: white; padding: 8px 20px; border: none; border-radius: 8px; font-weight: 600;">Evaluation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Detail Panel -->
+    <div id="booking-detail-panel" class="modal-overlay">
+        <div class="modal-content booking-panel"
+            style="position: absolute; right: 0; height: 100vh; border-radius: 0; width: 380px; border: none; box-shadow: -4px 0 24px rgba(0,0,0,0.1);">
+            <div>
+                <div class="modal-header" style="border: none; justify-content: flex-start; gap: 16px; padding: 1;">
+                    <button type="button" class="btn-close"
+                        style="color: white; margin: 0; padding: 0; font-size: 20px; position: static;"
+                        aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                    <h2 style="color: white; margin: 0; font-size: 22px;">Booking detail</h2>
+                </div>
+
+                <div class="booking-panel-row"
+                    style="background-color: rgba(73, 80, 254, 0.95);display:grid;grid-template-columns:1fr 1fr;gap:12px;color:white;">
+                    <div style="border-radius:12px;padding:12px 16px;">
+                        <div style="display:flex; flex-direction:row;align-items:center; gap: 12px;">
+                            <i class="fa-regular fa-clock" style="font-size: 14px;"></i>
+                            <div style="display:flex; flex-direction:column;">
+                                <div>Thu, 12th Mar</div>
+                                <div>19:00 - 19:45</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="border-radius:12px;padding:12px 16px;">
+                        <div style="display:flex; flex-direction:row;align-items:center; gap: 12px;">
+                            <i class="fa-regular fa-clock" style="font-size: 14px;"></i>
+                            <div style="display:flex; flex-direction:column;">
+                                <div>Lesson</div>
+                                <div>Jobs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body" style="padding: 24px; border:none;">
+                <div class="detail-grid"
+                    style="display:grid;gap:16px;color:#94a3b8;font-size: 15px;margin-bottom:24px;">
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;"><span>Student
+                            name</span><span style="font-weight:600;color:#0f172a;text-align:right;">Nguyễn Ngọc Gia
+                            Huy</span></div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;"><span>Student
+                            code</span><span style="font-weight:600;color:#0f172a;text-align:right;">STU009867/ <span
+                                style="color: #fb923c;">KID</span></span></div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;">
+                        <span>Level</span><span style="font-weight:600;color:#0f172a;text-align:right;">Star 1B</span>
+                    </div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;">
+                        <span>Lesson</span><span style="font-weight:600;color:#0f172a;text-align:right;">Star 1B-Lesson
+                            7-Jobs</span>
+                    </div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;"><span>Booking
+                            ID</span><span style="font-weight:600;color:#0f172a;text-align:right;">26270753</span></div>
+                </div>
+                <div class="file-links"
+                    style="background:white;border-radius:6px;border: 1px solid #e2e8f0;padding:16px;margin-bottom:20px; position:relative; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <div class="file-pill"
+                        style="position: absolute; top: -7px; right: 24px; background: white; padding:0 8px;border:1px solid #c7d2fe;border-radius:999px;font-size:10px;font-weight:700;color:#3b82f6;">
+                        VIP 45MINS</div>
+                    <div style="display:grid;gap:16px;">
+                        <div
+                            style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-weight: 500; font-size: 15px; color:#0f172a;">
+                            <div style="display:flex; gap:8px;"><i class="fa-solid fa-link"
+                                    style="margin-top:3px; font-size: 14px;"></i><span>Star 1B-Lesson 7-Jobs</span>
+                            </div>
+                            <a href="#"
+                                style="color:#fb923c;font-weight:500; font-size: 14px; white-space:nowrap; text-decoration: none;">View
+                                »</a>
+                        </div>
+                        <div
+                            style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-weight: 500; font-size: 15px; color:#0f172a;">
+                            <div style="display:flex; gap:8px;"><i class="fa-solid fa-link"
+                                    style="margin-top:3px; font-size: 14px;"></i><span>Star 1B-Lesson 7-Jobs - Lesson
+                                    plan</span></div>
+                            <a href="#"
+                                style="color:#fb923c;font-weight:500; font-size: 14px; white-space:nowrap; text-decoration: none;">View
+                                »</a>
+                        </div>
+                        <div
+                            style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-weight: 500; font-size: 15px; color:#0f172a;">
+                            <div style="display:flex; gap:8px;"><i class="fa-solid fa-link"
+                                    style="margin-top:3px; font-size: 14px;"></i><span>Star 1B-Lesson 7-Jobs - Answer
+                                    Key</span></div>
+                            <a href="#"
+                                style="color:#fb923c;font-weight:500; font-size: 14px; white-space:nowrap; text-decoration: none;">View
+                                »</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-top: 1px dashed #cbd5e1; margin-bottom: 15px;"></div>
+
+                <div class="status-row" id="booking-status-waiting"
+                    style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px;color:#64748b; font-size: 15px; font-weight: 500;">
+                    <span>Booking Status</span>
+                    <span
+                        style="display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border:1px solid #f3e8ff;border-radius:999px;font-size:12px; font-weight: 600; color:#a855f7;">Waiting
+                        <span
+                            style="width:6px;height:6px;background:#a855f7;border-radius:50%;display:inline-block;"></span></span>
+                </div>
+                <div class="status-row" id="booking-status-approved"
+                    style="display:none;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px;color:#64748b; font-size: 15px; font-weight: 500;">
+                    <span>Booking Status</span>
+                    <span
+                        style="display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border:1px solid #c7d2fe;border-radius:999px;font-size:12px; font-weight: 600; color:#3b82f6;">Approved
+                        <span
+                            style="width:6px;height:6px;background:#3b82f6;border-radius:50%;display:inline-block;"></span></span>
+                </div>
+                <div class="status-row" id="booking-status-cancelled"
+                    style="display:none;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:15px;color:#64748b; font-size: 15px; font-weight: 500; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <span>Booking Status</span>
+                        <span
+                            style="display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border:1px solid #fecdd3;border-radius:999px;font-size:12px; font-weight: 600; color:#e11d48;">Cancelled
+                            <span
+                                style="width:6px;height:6px;background:#e11d48;border-radius:50%;display:inline-block;"></span></span>
+                    </div>
+                    <div
+                        style="font-size: 11px; text-align: right; color: #94a3b8; font-weight: 500; line-height: 1.4;">
+                        By Teacher<br>on 21:00, 11/03/2026
+                    </div>
+                </div>
+
+
+                <div style="border-top: 1px dashed #cbd5e1; margin-bottom: 24px;"></div>
+
+                <div style="font-weight:600;font-size:18px;margin-bottom:8px;color:#0f172a;">Student evaluation</div>
+                <div style="color:#94a3b8;font-size:14px;font-weight: 500;display:flex;gap:24px;margin-bottom:32px;">
+                    <span>Academic note</span><span>Other
+                        Teacher</span>
+                </div>
+
+                <div id="booking-actions-waiting" style="display:flex; gap:16px;">
+                    <button class="btn btn-panel-deny"
+                        style="border:1px solid #fb923c; color:#fb923c; background:white; font-weight:600; font-size:16px; border-radius:12px; padding:12px; justify-content: center; width: 50%;">Deny</button>
+                    <button class="btn btn-panel-accept"
+                        style="background:#22c55e; color:white; font-weight:600; font-size:16px; border-radius:12px; padding:12px; border:none; justify-content: center; width: 50%;">Accept</button>
+                </div>
+
+                <div id="booking-actions-accepted" style="display:none; gap:16px;">
+                    <button class="btn" id="btn-panel-cancel-class"
+                        style="flex:1; border:1px solid #ef4444; color:#ef4444; background:white; font-weight:600; font-size:16px; border-radius:12px; padding:12px; justify-content: center; width: 50%;">Cancel</button>
+                    <button class="btn" onclick="window.location.href='class_lobby.html'"
+                        style="flex:1; background:#3b82f6; color:white; font-weight:600; font-size:16px; border-radius:12px; padding:12px; border:none; justify-content: center; width: 50%;">Teaching</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-accepted"
+        style="position:fixed; bottom:32px; left:50%; transform:translateX(-50%); background:#bbf7d0; color:#166534; padding:16px 24px; border-radius:8px; display:none; align-items:center; gap:16px; font-weight:600; font-size:18px; box-shadow:0 12px 24px rgba(0,0,0,0.1); z-index:9999;">
+        <div
+            style="background:#22c55e; color:white; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px;">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        Booking Accepted
+    </div>
+
+    <!-- Toast: Booking Taken -->
+    <div id="toast-taken"
+        style="position:fixed; bottom:100px; left:50%; transform:translateX(-50%); background:#fecdd3; color:#881337; padding:16px 24px; border-radius:8px; display:none; align-items:center; gap:16px; font-weight:600; font-size:18px; box-shadow:0 12px 24px rgba(0,0,0,0.1); z-index:9999;">
+        <div
+            style="background:#e11d48; color:white; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px;">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        Another teacher has taken the booking!
+    </div>
+
+    <!-- Setup Schedule Modal -->
+    <div id="setup-modal" class="modal-overlay">
+        <div class="modal-content modal-xl">
+            <div class="modal-header">
+                <button type="button" class="btn-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                <h2>Set up Schedule</h2>
+            </div>
+            <div class="modal-body">
+                <div class="schedule-grid-wrapper">
+                    <div class="schedule-grid">
+                        <!-- Header -->
+                        <div class="schedule-header-corner"></div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Mon</div>
+                            <div class="schedule-header-day-num">1</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Tue</div>
+                            <div class="schedule-header-day-num">2</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Wed</div>
+                            <div class="schedule-header-day-num">3</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Thu</div>
+                            <div class="schedule-header-day-num">4</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Fri</div>
+                            <div class="schedule-header-day-num">5</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Sat</div>
+                            <div class="schedule-header-day-num">6</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Sun</div>
+                            <div class="schedule-header-day-num">7</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Mon</div>
+                            <div class="schedule-header-day-num">8</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Tue</div>
+                            <div class="schedule-header-day-num">9</div>
+                        </div>
+                        <div class="schedule-header-day is-today">
+                            <div class="schedule-header-day-name">Wed</div>
+                            <div class="schedule-header-day-num">10</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Thu</div>
+                            <div class="schedule-header-day-num">11</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Fri</div>
+                            <div class="schedule-header-day-num">12</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Sat</div>
+                            <div class="schedule-header-day-num">13</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Sun</div>
+                            <div class="schedule-header-day-num">14</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Mon</div>
+                            <div class="schedule-header-day-num">15</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Tue</div>
+                            <div class="schedule-header-day-num">16</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Wed</div>
+                            <div class="schedule-header-day-num">17</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Thu</div>
+                            <div class="schedule-header-day-num">18</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Fri</div>
+                            <div class="schedule-header-day-num">19</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Sat</div>
+                            <div class="schedule-header-day-num">20</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Sun</div>
+                            <div class="schedule-header-day-num">21</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Mon</div>
+                            <div class="schedule-header-day-num">22</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Tue</div>
+                            <div class="schedule-header-day-num">23</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Wed</div>
+                            <div class="schedule-header-day-num">24</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Thu</div>
+                            <div class="schedule-header-day-num">25</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Fri</div>
+                            <div class="schedule-header-day-num">26</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Sat</div>
+                            <div class="schedule-header-day-num">27</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Sun</div>
+                            <div class="schedule-header-day-num">28</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Mon</div>
+                            <div class="schedule-header-day-num">29</div>
+                        </div>
+                        <div class="schedule-header-day">
+                            <div class="schedule-header-day-name">Tue</div>
+                            <div class="schedule-header-day-num">30</div>
+                        </div>
+                        <!-- 00:00 -->
+                        <div class="schedule-header-time">00:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 00:30 -->
+                        <div class="schedule-header-time">00:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 01:00 -->
+                        <div class="schedule-header-time">01:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 01:30 -->
+                        <div class="schedule-header-time">01:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 02:00 -->
+                        <div class="schedule-header-time">02:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 02:30 -->
+                        <div class="schedule-header-time">02:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 03:00 -->
+                        <div class="schedule-header-time">03:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 03:30 -->
+                        <div class="schedule-header-time">03:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 04:00 -->
+                        <div class="schedule-header-time">04:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 04:30 -->
+                        <div class="schedule-header-time">04:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 05:00 -->
+                        <div class="schedule-header-time">05:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 05:30 -->
+                        <div class="schedule-header-time">05:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 06:00 -->
+                        <div class="schedule-header-time">06:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 06:30 -->
+                        <div class="schedule-header-time">06:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 07:00 -->
+                        <div class="schedule-header-time">07:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 07:30 -->
+                        <div class="schedule-header-time">07:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 08:00 -->
+                        <div class="schedule-header-time">08:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 08:30 -->
+                        <div class="schedule-header-time">08:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 09:00 -->
+                        <div class="schedule-header-time">09:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 09:30 -->
+                        <div class="schedule-header-time">09:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 10:00 -->
+                        <div class="schedule-header-time">10:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 10:30 -->
+                        <div class="schedule-header-time">10:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 11:00 -->
+                        <div class="schedule-header-time">11:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 11:30 -->
+                        <div class="schedule-header-time">11:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 12:00 -->
+                        <div class="schedule-header-time">12:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 12:30 -->
+                        <div class="schedule-header-time">12:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 13:00 -->
+                        <div class="schedule-header-time">13:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 13:30 -->
+                        <div class="schedule-header-time">13:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 14:00 -->
+                        <div class="schedule-header-time">14:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 14:30 -->
+                        <div class="schedule-header-time">14:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 15:00 -->
+                        <div class="schedule-header-time">15:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 15:30 -->
+                        <div class="schedule-header-time">15:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 16:00 -->
+                        <div class="schedule-header-time">16:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 16:30 -->
+                        <div class="schedule-header-time">16:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 17:00 -->
+                        <div class="schedule-header-time">17:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 17:30 -->
+                        <div class="schedule-header-time">17:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 18:00 -->
+                        <div class="schedule-header-time">18:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 18:30 -->
+                        <div class="schedule-header-time">18:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"><span class="schedule-dot accepted"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"><span class="schedule-dot waiting"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell">
+                            <div class="schedule-dot-bg top"></div><span class="schedule-dot accepted"></span>
+                        </div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"><span class="schedule-dot waiting"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 19:00 -->
+                        <div class="schedule-header-time">19:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"><span class="schedule-dot accepted"></span></div>
+                        <div class="schedule-cell"><span class="schedule-dot accepted"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell">
+                            <div class="schedule-dot-bg mid"></div><span class="schedule-dot accepted"></span>
+                        </div>
+                        <div class="schedule-cell"><span class="schedule-dot accepted"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 19:30 -->
+                        <div class="schedule-header-time">19:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"><span class="schedule-dot accepted"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell">
+                            <div class="schedule-dot-bg bot"></div><span class="schedule-dot accepted"></span>
+                        </div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 20:00 -->
+                        <div class="schedule-header-time">20:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"><span class="schedule-dot accepted"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell is-selected"><span class="selected-check"><i
+                                    class="fa-solid fa-check"></i></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 20:30 -->
+                        <div class="schedule-header-time">20:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"><span class="schedule-dot accepted"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell is-selected"><span class="selected-check"><i
+                                    class="fa-solid fa-check"></i></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 21:00 -->
+                        <div class="schedule-header-time">21:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"><span class="schedule-dot accepted"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 21:30 -->
+                        <div class="schedule-header-time">21:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"><span class="schedule-dot accepted"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 22:00 -->
+                        <div class="schedule-header-time">22:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"><span class="schedule-dot accepted"></span></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 22:30 -->
+                        <div class="schedule-header-time">22:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 23:00 -->
+                        <div class="schedule-header-time">23:00</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <!-- 23:30 -->
+                        <div class="schedule-header-time">23:30</div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                        <div class="schedule-cell"></div>
+                    </div>
+                </div>
+                <div class="legend-row">
+                    <div class="legend-item"><span class="legend-dot waiting"></span>Waiting</div>
+                    <div class="legend-item"><span class="legend-dot accepted"></span>Accepted</div>
+                    <div class="legend-item"><span class="selected-check"
+                            style="position:relative; transform:none; top:0; left:0;"><i
+                                class="fa-solid fa-check"></i></span>Selected</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Class Modal -->
+    <div id="cancel-class-modal" class="modal-overlay">
+        <div class="modal-content"
+            style="width: 480px; text-align: center; padding: 20px; border-radius: 12px; border: none; align-self: center;">
+            <h2 style="color: #fb923c; font-size: 26px; margin-bottom: 8px; font-weight: 700;">Cancel Class</h2>
+            <p style="color: #0f172a; font-size: 16px; margin-bottom: 15px; line-height: 1.5;">If you cancel this class,
+                you will be fined for this cancellation as mentioned in the Policies section.<br>Do you still want to
+                cancel?</p>
+            <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+                <button id="btn-cancel-confirm"
+                    style="background: #fb923c; color: white; border: none; border-radius: 12px; padding: 8px; font-weight: 600; font-size: 16px; width: 200px; display: inline-flex; justify-content: center; cursor: pointer;">Confirm</button>
+                <button class="btn-cancel-dismiss" onclick="closeOverlay(this.closest('.modal-overlay'))"
+                    style="background: white; color: #fb923c; border: 1px solid #fb923c; border-radius: 12px; padding: 8px; font-weight: 600; font-size: 16px; width: 200px; display: inline-flex; justify-content: center; cursor: pointer;">Dismiss</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="../assets/js/components/sidebar.js"></script>
     <script src="../assets/js/components/header.js"></script>
+    <script src="../assets/js/js_teacher/home.js"></script>
     <script>
         loadSidebar('teacher', 'home');
         loadHeader({
-            title: 'Home',
-            subtitle: 'Welcome back to class management',
+            title: '',
+            subtitle: '',
             userName: 'Ngan Nguyen',
             userAvatar: '../assets/img/user_avatar.png',
             showIcon: false
         });
     </script>
 </body>
+
 </html>

@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #cffafe;
+    color: #0f172a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.lobby-header {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-back {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #4f46e5;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.header-greeting {
+    font-size: 22px;
+    font-weight: 700;
+    color: #000;
+}
+
+.lobby-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 80px;
+}
+
+.class-title-label {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.class-name {
+    font-size: 28px;
+    font-weight: 800;
+    color: #4f46e5;
+    margin-bottom: 24px;
+}
+
+.class-meta {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-size: 16px;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.meta-item i {
+    font-size: 20px;
+    color: #94a3b8;
+}
+
+.upcoming-alert {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fbd38d; /* A soft orange/yellow, wait image has #fb923c */
+    color: #f97316;
+    margin-bottom: 30px;
+}
+
+/* Timer */
+.timer-container {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.timer-section {
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+}
+
+.digits-row {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 4px;
+}
+
+.digit {
+    flex: 1;
+    background-color: #9cb4d8;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    font-weight: 800;
+    color: #4f46e5;
+    border-radius: 4px 4px 0 0;
+}
+
+.timer-label {
+    background: white;
+    text-align: center;
+    padding: 12px 0;
+    font-weight: 800;
+    font-size: 16px;
+    color: #000;
+    border-radius: 0 0 4px 4px;
+}
+
+/* Join Button */
+.btn-join {
+    background-color: #fd9d42;
+    color: white;
+    border: none;
+    padding: 16px 60px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(253, 157, 66, 0.4);
+    transition: background-color 0.2s;
+}
+
+.btn-join:hover {
+    background-color: #f97316;
+}

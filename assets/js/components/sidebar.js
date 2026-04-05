@@ -68,11 +68,11 @@ function loadSidebar(role, activePage) {
                     <i class="fa-solid fa-house"></i>
                     <span>Home</span>
                 </a>
-                <a href="#" class="menu-item ${activePage === 'income' ? 'active' : ''}">
+                <a href="income.html" class="menu-item ${activePage === 'income' ? 'active' : ''}">
                     <i class="fa-solid fa-dollar-sign"></i>
                     <span>Income</span>
                 </a>
-                <a href="#" class="menu-item ${activePage === 'your_classes' ? 'active' : ''}">
+                <a href="your_classes.html" class="menu-item ${activePage === 'your_classes' ? 'active' : ''}">
                     <i class="fa-solid fa-book-open"></i>
                     <span>Your classes</span>
                 </a>

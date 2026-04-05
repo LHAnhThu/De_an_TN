@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Classes - Teacher - XINKEDU</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/css_teacher/home.css">
+    <link rel="stylesheet" href="../assets/css/css_teacher/your_classes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Container -->
+        <aside id="sidebar-container" class="sidebar"></aside>
+
+        <main class="main-content">
+            <header id="header-container" class="top-header"></header>
+
+            <div class="content-body">
+                <div class="classes-schedule-header">
+                    <div class="classes-header-top">
+                        <h2 class="classes-header-title">Your classes</h2>
+                        <div class="classes-header-date">
+                            <span id="current-date-display">Thursday, 12/03/2026</span>
+                            <button class="date-nav-btn"><i class="fa-solid fa-angles-left"></i></button>
+                            <button class="date-nav-btn"><i class="fa-solid fa-angles-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="classes-week-scroller">
+                        <div class="week-day-box" data-day="01">
+                            <div class="week-day-name">S</div>
+                            <div class="week-day-num">01</div>
+                        </div>
+                        <div class="week-day-box" data-day="02">
+                            <div class="week-day-name">M</div>
+                            <div class="week-day-num">02</div>
+                        </div>
+                        <div class="week-day-box" data-day="03">
+                            <div class="week-day-name">T</div>
+                            <div class="week-day-num">03</div>
+                        </div>
+                        <div class="week-day-box" data-day="04">
+                            <div class="week-day-name">W</div>
+                            <div class="week-day-num">04</div>
+                        </div>
+                        <div class="week-day-box" data-day="05">
+                            <div class="week-day-name">T</div>
+                            <div class="week-day-num">05</div>
+                        </div>
+                        <div class="week-day-box" data-day="06">
+                            <div class="week-day-name">F</div>
+                            <div class="week-day-num">06</div>
+                        </div>
+                        <div class="week-day-box" data-day="07">
+                            <div class="week-day-name">S</div>
+                            <div class="week-day-num">07</div>
+                        </div>
+                        <div class="week-day-box" data-day="08">
+                            <div class="week-day-name">S</div>
+                            <div class="week-day-num">08</div>
+                        </div>
+                        <div class="week-day-box" data-day="09">
+                            <div class="week-day-name">M</div>
+                            <div class="week-day-num">09</div>
+                        </div>
+                        <div class="week-day-box" data-day="10">
+                            <div class="class-indicator"></div>
+                            <div class="week-day-name">T</div>
+                            <div class="week-day-num">10</div>
+                        </div>
+                        <div class="week-day-box" data-day="11">
+                            <div class="class-indicator"></div>
+                            <div class="week-day-name">W</div>
+                            <div class="week-day-num">11</div>
+                        </div>
+                        <div class="week-day-box active" data-day="12">
+                            <div class="class-indicator"></div>
+                            <div class="week-day-name">T</div>
+                            <div class="week-day-num">12</div>
+                        </div>
+                        <div class="week-day-box" data-day="13">
+                            <div class="week-day-name">F</div>
+                            <div class="week-day-num">13</div>
+                        </div>
+                        <div class="week-day-box" data-day="14">
+                            <div class="week-day-name">S</div>
+                            <div class="week-day-num">14</div>
+                        </div>
+                        <div class="week-day-box" data-day="15">
+                            <div class="week-day-name">S</div>
+                            <div class="week-day-num">15</div>
+                        </div>
+                        <div class="week-day-box" data-day="16">
+                            <div class="class-indicator"></div>
+                            <div class="week-day-name">M</div>
+                            <div class="week-day-num">16</div>
+                        </div>
+                        <div class="week-day-box" data-day="17">
+                            <div class="class-indicator"></div>
+                            <div class="week-day-name">T</div>
+                            <div class="week-day-num">17</div>
+                        </div>
+                        <div class="week-day-box" data-day="18">
+                            <div class="class-indicator"></div>
+                            <div class="week-day-name">W</div>
+                            <div class="week-day-num">18</div>
+                        </div>
+                        <div class="week-day-box" data-day="19">
+                            <div class="class-indicator"></div>
+                            <div class="week-day-name">T</div>
+                            <div class="week-day-num">19</div>
+                        </div>
+                        <div class="week-day-box" data-day="20">
+                            <div class="class-indicator"></div>
+                            <div class="week-day-name">F</div>
+                            <div class="week-day-num">20</div>
+                        </div>
+                        <div class="week-day-box" data-day="21">
+                            <div class="class-indicator"></div>
+                            <div class="week-day-name">S</div>
+                            <div class="week-day-num">21</div>
+                        </div>
+                        <div class="week-day-box" data-day="22">
+                            <div class="week-day-name">S</div>
+                            <div class="week-day-num">22</div>
+                        </div>
+                        <div class="week-day-box" data-day="23">
+                            <div class="week-day-name">M</div>
+                            <div class="week-day-num">23</div>
+                        </div>
+                        <div class="week-day-box" data-day="24">
+                            <div class="week-day-name">T</div>
+                            <div class="week-day-num">24</div>
+                        </div>
+                        <div class="week-day-box" data-day="25">
+                            <div class="week-day-name">W</div>
+                            <div class="week-day-num">25</div>
+                        </div>
+                        <div class="week-day-box" data-day="26">
+                            <div class="week-day-name">T</div>
+                            <div class="week-day-num">26</div>
+                        </div>
+                        <div class="week-day-box" data-day="27">
+                            <div class="week-day-name">F</div>
+                            <div class="week-day-num">27</div>
+                        </div>
+                        <div class="week-day-box" data-day="28">
+                            <div class="week-day-name">S</div>
+                            <div class="week-day-num">28</div>
+                        </div>
+                        <div class="week-day-box" data-day="29">
+                            <div class="week-day-name">S</div>
+                            <div class="week-day-num">29</div>
+                        </div>
+                        <div class="week-day-box" data-day="30">
+                            <div class="week-day-name">M</div>
+                            <div class="week-day-num">30</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="classes-list-container">
+                    <div class="classes-filters">
+                        <div class="custom-select-container">
+                            <div class="custom-select" id="filter-select-btn">
+                                <span id="filter-selected-text">All</span>
+                                <i class="fa-solid fa-circle-chevron-down" style="color: black;"></i>
+                            </div>
+                            <div class="custom-dropdown-menu" id="filter-dropdown" style="display: none;">
+                                <div class="dropdown-item" data-value="All">All</div>
+                                <div class="dropdown-item" data-value="Approved">Approved</div>
+                                <div class="dropdown-item" data-value="Completed">Completed</div>
+                                <div class="dropdown-item" data-value="Cancelled">Cancelled</div>
+                                <div class="dropdown-item" data-value="Rejected">Rejected</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Classes Grid (Hình 1) -->
+                    <div id="classes-grid-view" class="classes-grid">
+                        <article class="booking-detail-card border-card" data-status="Completed">
+                            <div class="booking-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Student</span>
+                                    <span class="meta-value">STU555545/KID</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Lesson</span>
+                                    <span class="meta-value">Star 1B-Lesson 7-Jobs</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Level</span>
+                                    <span class="meta-value">Star 1B</span>
+                                </div>
+                            </div>
+                            <div class="separator"></div>
+                            <div class="booking-time-row">
+                                <div class="time-info">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <span class="schedule-label">Today</span>
+                                </div>
+                                <div class="booking-actions">
+                                    <button class="bell-orange"><i class="fa-solid fa-bell"></i></button>
+                                    <span class="pill-evaluated">Evaluated</span>
+                                </div>
+                            </div>
+                            <div class="booking-time-range">19:00 - 19:45</div>
+                            <div class="separator"></div>
+                            <div class="booking-footer">
+                                <span class="vip-pill">VIP 45MINS</span>
+                                <div class="pill-group">
+                                    <span class="status-completed">Completed</span>
+                                    <a href="#" class="detail-link">View detail</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="booking-detail-card border-card" data-status="Cancelled">
+                            <div class="booking-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Student</span>
+                                    <span class="meta-value">STU112345/KID</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Lesson</span>
+                                    <span class="meta-value">KE45-BC7-LC10</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Level</span>
+                                    <span class="meta-value">KE45</span>
+                                </div>
+                            </div>
+                            <div class="separator"></div>
+                            <div class="booking-time-row" style="min-height: 30px;">
+                                <div class="time-info">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <span class="schedule-label">Today</span>
+                                </div>
+                            </div>
+                            <div class="booking-time-range">20:00 - 20:45</div>
+                            <div class="separator"></div>
+                            <div class="booking-footer">
+                                <span class="vip-pill">VIP 45MINS</span>
+                                <div class="pill-group">
+                                    <span class="status-cancelled">Cancelled</span>
+                                    <a href="#" class="detail-link">View detail</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="booking-detail-card border-card" data-status="Approved">
+                            <div class="booking-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Student</span>
+                                    <span class="meta-value">STU559876/KID</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Lesson</span>
+                                    <span class="meta-value">KE45-Are you hungry...</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Level</span>
+                                    <span class="meta-value">KE45</span>
+                                </div>
+                            </div>
+                            <div class="separator"></div>
+                            <div class="booking-time-row">
+                                <div class="time-info">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <span class="schedule-label">Today</span>
+                                </div>
+                                <div class="booking-actions">
+                                    <button class="bell-orange"><i class="fa-solid fa-bell"></i></button>
+                                    <span class="pill-teaching" onclick="window.location.href='class_lobby.html'" style="cursor: pointer;">Teaching</span>
+                                </div>
+                            </div>
+                            <div class="booking-time-range">20:00 - 20:45</div>
+                            <div class="separator"></div>
+                            <div class="booking-footer">
+                                <span class="vip-pill">VIP 45MINS</span>
+                                <div class="pill-group">
+                                    <span class="status-approved">Approved</span>
+                                    <a href="#" class="detail-link">View detail</a>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <article class="booking-detail-card border-card" data-status="Rejected">
+                            <div class="booking-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Student</span>
+                                    <span class="meta-value">STU987345/KID</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Lesson</span>
+                                    <span class="meta-value">KE45-1AA-LC10</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Level</span>
+                                    <span class="meta-value">KE45</span>
+                                </div>
+                            </div>
+                            <div class="separator"></div>
+                            <div class="booking-time-row" style="min-height: 30px;">
+                                <div class="time-info">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <span class="schedule-label">Today</span>
+                                </div>
+                            </div>
+                            <div class="booking-time-range">20:00 - 20:45</div>
+                            <div class="separator"></div>
+                            <div class="booking-footer">
+                                <span class="vip-pill">VIP 45MINS</span>
+                                <div class="pill-group">
+                                    <span class="status-rejected">Rejected</span>
+                                    <a href="#" class="detail-link">View detail</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div id="empty-state-view" class="empty-state" style="display: none;">
+                        <h3 class="empty-state-title">You have no class today</h3>
+                        <img src="../assets/img/no_class.png" alt="No classes illustration">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script to toggle between views for demonstration -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gridView = document.getElementById('classes-grid-view');
+            const emptyView = document.getElementById('empty-state-view');
+            const dateDisplay = document.getElementById('current-date-display');
+            const dayBoxes = document.querySelectorAll('.week-day-box');
+
+            function showClassesView(dayName, dayNum) {
+                gridView.style.display = 'grid';
+                emptyView.style.display = 'none';
+                // Adjust year dynamically based on requirements, assuming 2026 for now
+                let fullDayName = 'Thursday';
+                if (dayName === 'T') { fullDayName = (dayNum == '10' || dayNum == '17') ? 'Tuesday' : 'Thursday'; }
+                else if (dayName === 'W') fullDayName = 'Wednesday';
+                else if (dayName === 'F') fullDayName = 'Friday';
+                else if (dayName === 'S') fullDayName = (dayNum == '14' || dayNum == '21') ? 'Saturday' : 'Sunday';
+                else if (dayName === 'M') fullDayName = 'Monday';
+
+                dateDisplay.textContent = `${fullDayName}, ${dayNum}/03/2026`;
+            }
+
+            function showEmptyView(dayName, dayNum) {
+                gridView.style.display = 'none';
+                emptyView.style.display = 'flex';
+                let fullDayName = 'Saturday';
+                if (dayName === 'S' && (dayNum == '14' || dayNum == '21')) fullDayName = 'Saturday';
+                else if (dayName === 'S' && dayNum == '15') fullDayName = 'Sunday';
+                dateDisplay.textContent = `${fullDayName}, ${dayNum}/03/2026`;
+            }
+
+            dayBoxes.forEach(box => {
+                box.addEventListener('click', () => {
+                    // Update active styling
+                    dayBoxes.forEach(b => b.classList.remove('active'));
+                    box.classList.add('active');
+
+                    // Check if it has classes (has class-indicator span)
+                    const hasClasses = box.querySelector('.class-indicator');
+                    const dayNum = box.dataset.day;
+                    const dayName = box.querySelector('.week-day-name').textContent.charAt(0);
+
+                    if (hasClasses) {
+                        showClassesView(dayName, dayNum);
+                    } else {
+                        showEmptyView(dayName, dayNum);
+                    }
+                });
+            });
+
+            // Filter logic
+            const filterBtn = document.getElementById('filter-select-btn');
+            const filterDropdown = document.getElementById('filter-dropdown');
+            const filterText = document.getElementById('filter-selected-text');
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            const classCards = document.querySelectorAll('.booking-detail-card');
+
+            filterBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                filterDropdown.style.display = filterDropdown.style.display === 'none' ? 'block' : 'none';
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!filterBtn.contains(e.target) && !filterDropdown.contains(e.target)) {
+                    filterDropdown.style.display = 'none';
+                }
+            });
+
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const value = item.dataset.value;
+                    filterText.textContent = value;
+                    filterDropdown.style.display = 'none';
+                    
+                    classCards.forEach(card => {
+                        if (value === 'All') {
+                            card.style.display = '';
+                        } else {
+                            if (card.dataset.status === value) {
+                                card.style.display = '';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <script src="../assets/js/components/sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSidebar('teacher', 'your_classes');
+            loadHeader({
+                title: '',
+                subtitle: '',
+                userName: 'Ngan Nguyen',
+                userAvatar: '../assets/img/user_avatar.png',
+                showIcon: false
+            });
+        });
+    </script>
+</body>
+</html>
