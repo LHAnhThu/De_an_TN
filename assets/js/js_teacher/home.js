@@ -8,10 +8,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeButtons = document.querySelectorAll('.btn-close');
 
     const openOverlay = function (el) {
-        if (el) el.classList.add('active');
+        if (el) {
+            el.classList.add('active');
+            el.style.display = 'flex';
+        }
     };
     const closeOverlay = function (el) {
-        if (el) el.classList.remove('active');
+        if (el) {
+            el.classList.remove('active');
+            el.style.display = 'none';
+        }
     };
 
     if (evalCard) {
