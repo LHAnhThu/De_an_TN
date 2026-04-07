@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Classroom - XINKEDU</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/css_teacher/virtual_classroom.css">
 </head>
+
 <body>
-    
+
     <!-- Sidebar -->
     <aside class="vc-sidebar">
         <div class="sidebar-section">
             <div class="sidebar-title">MESSAGES</div>
-            <div class="chat-btn">
+            <div class="chat-btn" onclick="document.getElementById('chatView').style.display='flex'">
                 <i class="fa-regular fa-message"></i>
                 <span>Chat</span>
             </div>
         </div>
 
-        <div class="sidebar-section" style="border: none;">
+        <div class="sidebar-section" style="border: none; position: relative;">
             <div class="sidebar-title users-header">
                 <span>USERS (2)</span>
-                <i class="fa-solid fa-gear"></i>
+                <i class="fa-solid fa-gear" style="cursor: pointer;" onclick="var m=document.getElementById('usersSettingsMenu'); m.style.display=(m.style.display=='none')?'block':'none';"></i>
             </div>
             
+            <div class="users-settings-menu" id="usersSettingsMenu" style="display: none;">
+                <div class="wb-menu-item"><i class="fa-solid fa-microphone-slash"></i> Mute all users</div>
+                <div class="wb-menu-item"><i class="fa-solid fa-chart-line"></i> Turn on the whiteboard</div>
+                <div class="wb-menu-item"><i class="fa-solid fa-user-slash"></i> Clear all status icons</div>
+            </div>
+
             <div class="users-list">
                 <div class="user-row">
                     <div class="user-avatar av-teacher">Ng</div>
@@ -39,45 +46,92 @@
         </div>
     </aside>
 
+    <!-- Chat View (hidden by default) -->
+    <aside class="vc-chat-view" id="chatView" style="display: none;">
+        <div class="chat-header">
+            <i class="fa-solid fa-angle-left" onclick="document.getElementById('chatView').style.display='none'"></i>
+            <span>Chat</span>
+        </div>
+        <div class="chat-content">
+            <div class="chat-system-msg">
+                Welcome to <strong>KEO0098786 - Nguyễn Ngọc Gia Huy - KE45-LC89-N2</strong><br><br>
+                If you need help, please send a message in the Chat section.
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" placeholder="...">
+            <button class="chat-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </aside>
+
+    <!-- Poll View (hidden by default) -->
+    <aside class="vc-poll-view" id="pollView" style="display: none;">
+        <div class="chat-header">
+            <i class="fa-solid fa-angle-left" onclick="document.getElementById('pollView').style.display='none'"></i>
+            <span>Polling</span>
+        </div>
+        <div class="poll-content">
+            <textarea placeholder="Write your question (optional)..."></textarea>
+            <div class="poll-types-title">Response Types</div>
+            <button class="poll-type-btn">True / False</button>
+            <button class="poll-type-btn">A / B / C / D</button>
+            <button class="poll-type-btn">Yes / No / Abstention</button>
+            <button class="poll-type-btn">Typed Response</button>
+        </div>
+    </aside>
+
     <!-- Main Room -->
     <main class="vc-main">
         <!-- Top Header -->
-        <header class="vc-header">
-            <div class="header-left">
-                <div class="icon-circle">
-                    <i class="fa-solid fa-headset"></i>
+        <header class="header-top" style="display: flex; flex-direction: column;">
+            <div class="vc-header">
+                <div class="header-left">
+                    <img src="../assets/img/class_icon.png" class="icon-circle">
                 </div>
-                <div class="audio-levels">
-                    <div class="audio-pill">
-                        <div class="audio-icon icon-green"><i class="fa-solid fa-microphone"></i></div>
-                        <span>Nguyễn Thị Hoàng Ngân</span>
+
+
+                <div class="header-center">
+                    <span>KEO0098786 - Nguyễn Ngọc Gia Huy - KE45-LC89-N2</span>
+                    <div class="timer-pill">
+                        <i class="fa-regular fa-circle-dot"></i>
+                        <span>00:25</span>
                     </div>
-                    <div class="audio-pill active">
-                        <div class="audio-icon" style="background:#52525b;"><i class="fa-solid fa-microphone"></i></div>
-                        <span>Nguyễn Ngọc Gia Huy</span>
+                </div>
+
+                <div class="header-right" style="position: relative;">
+                    <button class="btn-more" onclick="document.getElementById('headerMoreMenu').style.display = document.getElementById('headerMoreMenu').style.display === 'none' ? 'block' : 'none';"><i class="fa-solid fa-ellipsis"></i></button>
+                    
+                    <div class="header-more-menu" id="headerMoreMenu" style="display: none;">
+                        <div class="more-menu-item">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <span>Leave Meeting</span>
+                        </div>
+                        <div class="more-menu-item" onclick="document.getElementById('endMeetingModal').style.display='flex'; document.getElementById('headerMoreMenu').style.display='none';">
+                            <i class="fa-solid fa-display"></i>
+                            <span>End Meeting</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="header-center">
-                <span>KEO0098786 - Nguyễn Ngọc Gia Huy - KE45-LC89-N2</span>
-                <div class="timer-pill">
-                    <i class="fa-solid fa-record-vinyl"></i>
-                    <span>00:25</span>
+            <div class="audio-levels">
+                <div class="audio-pill">
+                    <div class="audio-icon"><i class="fa-solid fa-microphone"></i></div>
+                    <span>Nguyễn Thị Hoàng Ngân</span>
                 </div>
-            </div>
-
-            <div class="header-right">
-                <button class="btn-more"><i class="fa-solid fa-ellipsis"></i></button>
+                <div class="audio-pill no_active">
+                    <div class="audio-icon"></div>
+                    <span>Nguyễn Ngọc Gia Huy</span>
+                </div>
             </div>
         </header>
 
         <!-- Stage Area -->
-        <section class="vc-stage">
+        <section class="vc-stage" id="vcStage">
             <!-- Left Video Column -->
             <div class="video-col">
                 <div class="video-card">
-                    <img src="../assets/img/teacher_avt.png" class="video-img" alt="Teacher Feed" onerror="this.src='https://via.placeholder.com/260x195/1e1e1e/d4d4d8?text=Teacher'">
+                    <img src="../assets/img/teacher_avt.png" class="video-img" alt="Teacher Feed">
                     <i class="fa-solid fa-expand video-action-expand"></i>
                     <div class="video-footer">
                         <span>Nguyễn Thị Hoàng Ngân &gt;</span>
@@ -86,7 +140,7 @@
                 </div>
 
                 <div class="video-card">
-                    <img src="../assets/img/user_avatar.png" class="video-img" alt="Student Feed" onerror="this.src='https://via.placeholder.com/260x195/1e1e1e/d4d4d8?text=Student'">
+                    <img src="../assets/img/student_avt.png" class="video-img" alt="Student Feed">
                     <i class="fa-solid fa-expand video-action-expand"></i>
                     <div class="video-footer">
                         <span>Nguyễn Ngọc Gia Huy &gt;</span>
@@ -97,27 +151,102 @@
 
             <!-- Right Whiteboard Column -->
             <div class="whiteboard-col">
-                <!-- Overlay Tools -->
-                <div class="wb-toolbar">
-                    <div class="wb-tool"><i class="fa-solid fa-ellipsis"></i></div>
-                    <div class="wb-tool active"><i class="fa-solid fa-mouse-pointer"></i></div>
-                    <div class="wb-tool"><i class="fa-solid fa-eraser"></i></div>
-                    <div class="wb-tool"><i class="fa-solid fa-pen"></i></div>
-                    <div class="wb-tool"><i class="fa-regular fa-square"></i></div>
-                    <div class="wb-tool"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
-                    <div class="wb-tool"><i class="fa-solid fa-font"></i></div>
-                    <div class="wb-tool"><i class="fa-regular fa-image"></i></div>
-                    <div class="wb-tool"><i class="fa-solid fa-trash-can"></i></div>
+                <!-- Raised Hand Popup (hidden by default) -->
+                <div class="raised-hand-popup" id="raisedHandPopup" style="display: none;">
+                    <div class="rh-header">
+                        <div class="rh-icon-circle"><i class="fa-solid fa-hand"></i></div>
+                        <div class="rh-text">
+                            <div class="rh-title">Rised Hands</div>
+                            <div class="rh-desc">Nguyễn Ngọc Gia Huy raised hand</div>
+                        </div>
+                        <div class="rh-av">Ng</div>
+                    </div>
+                    <div class="rh-footer" onclick="document.getElementById('raisedHandPopup').style.display='none'">
+                        Lower Hands
+                    </div>
                 </div>
-                
-                <div class="wb-styles-pill">
+                <!-- Video Mock (Covers everything when active) -->
+                <div id="wbVideoMock" style="display: none; background: #cce7c6; width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 50; flex-direction: column;">
+                    <img src="../assets/img/video_external.png" style="width: 100%; height: 100%; object-fit: contain;">
+                    <div style="position: absolute; top:0; right:0; padding: 12px 16px; font-size: 16px; color: #1f2937; cursor: pointer; display: flex; gap: 12px; z-index: 100;">
+                        <i class="fa-solid fa-expand"></i>
+                        <i class="fa-solid fa-xmark" onclick="document.getElementById('wbVideoMock').style.display='none'; document.getElementById('vcStage').classList.remove('layout-top-videos');"></i>
+                    </div>
+                </div>
+
+                <div class="wb-options-pill" style="cursor: pointer;" onclick="var m=document.getElementById('wbOptionsMenu'); m.style.display=(m.style.display=='none')?'block':'none';">
+                    <div class="circle-ellipsis">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+                </div>
+                <div class="wb-options-menu" id="wbOptionsMenu" style="display: none;">
+                    <div class="wb-menu-item"><i class="fa-solid fa-expand"></i> Focus mode</div>
+                    <div class="wb-menu-item"><i class="fa-solid fa-arrows-spin"></i> Switch Dock Position</div>
+                    <div class="wb-menu-item"><i class="fa-solid fa-compress"></i> Fullscreen Presentation</div>
+                </div>
+
+                <!-- Overlay Tools -->
+                <div class="wb-tools-container">
+                    <div class="wb-toolbar">
+                        <div class="wb-tool active"><i class="fa-solid fa-arrow-pointer"></i></div>
+                        <div class="wb-tool"><i class="fa-regular fa-hand"></i></div>
+                        <div class="wb-tool"><i class="fa-solid fa-pen"></i></div>
+                        <div class="wb-tool"><i class="fa-solid fa-eraser"></i></div>
+                        <div class="wb-tool"><i class="fa-regular fa-square"></i></div>
+                        <div class="wb-tool"><i class="fa-solid fa-arrow-up" style="transform: rotate(45deg);"></i></div>
+                        <div class="wb-tool"><span style="font-family: serif; font-weight: bold; font-size: 13px;">T</span></div>
+                        <div class="wb-tool"><i class="fa-regular fa-pen-to-square"></i></div>
+                    </div>
+                    <div class="wb-tool-trash">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </div>
+                </div>
+
+                <div class="wb-styles-pill" style="cursor: pointer;" onclick="var m=document.getElementById('stylesMenu'); m.style.display=(m.style.display=='none')?'block':'none';">
                     <span>Styles</span>
                     <div class="style-red-dot"></div>
                 </div>
+                <div class="styles-popup-menu" id="stylesMenu" style="display: none;">
+                    <div class="style-row" style="align-items: flex-start;">
+                        <div class="style-label" style="margin-top: 4px;">Color</div>
+                        <div class="style-grid color-grid">
+                            <div class="circle-btn ring-black"></div>
+                            <div class="circle-btn ring-gray"></div>
+                            <div class="circle-btn ring-brown"></div>
+                            <div class="circle-btn ring-orange"></div>
+
+                            <div class="circle-btn ring-green"></div>
+                            <div class="circle-btn ring-yellow"></div>
+                            <div class="circle-btn ring-mint"></div>
+                            <div class="circle-btn ring-blue"></div>
+
+                            <div class="circle-btn ring-purple"></div>
+                            <div class="circle-btn active-blue"><div class="inner-circle ring-red"></div></div>
+                            <div class="circle-btn ring-pink"></div>
+                            <div class="circle-btn ring-darkblue"></div>
+                        </div>
+                    </div>
+                    <div class="style-row">
+                        <div class="style-label">Dash</div>
+                        <div class="style-grid dash-grid">
+                            <div class="circle-btn active-blue"><div class="inner-circle ring-white"></div></div>
+                            <div class="circle-btn dash-circle"></div>
+                            <div class="circle-btn dot-circle"></div>
+                        </div>
+                    </div>
+                    <div class="style-row">
+                        <div class="style-label">Size</div>
+                        <div class="style-grid size-grid">
+                            <span class="size-text" style="font-size: 18px;">S</span>
+                            <div class="circle-btn active-blue"><span style="color: white; font-weight: 500; font-size: 18px;">M</span></div>
+                            <span class="size-text" style="font-size: 22px;">L</span>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Main Whiteboard Image Wrapper -->
-                <div class="wb-content">
-                    <img src="../assets/img/wb_slide.png" alt="Board Content" onerror="this.src='https://via.placeholder.com/800x600/f1f5f9/0f172a?text=Whiteboard+Slide'">
+                <div class="wb-content" style="position: relative;">
+                    <img id="wbImage" src="../assets/img/wb_slide.png" alt="Board Content">
                 </div>
 
                 <!-- Bottom Whiteboard Drawer -->
@@ -140,15 +269,172 @@
 
         <!-- Bottom Global Action Bar -->
         <div class="bottom-controls">
-            <button class="control-btn solid-green"><i class="fa-solid fa-plus"></i></button>
-            <button class="control-btn solid-green"><i class="fa-solid fa-microphone"></i></button>
-            <button class="control-btn"><i class="fa-solid fa-video-slash"></i></button>
-            <button class="control-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
-            <button class="control-btn solid-green"><i class="fa-solid fa-display"></i></button>
-            <button class="control-btn"><i class="fa-solid fa-hand"></i></button>
-            <button class="control-btn solid-orange" onclick="window.location.href='home.html'"><i class="fa-solid fa-phone-slash"></i></button>
+            <div class="bc-left" style="position: relative;">
+                <button class="control-btn solid-green" onclick="var m = document.getElementById('plusPopupMenu'); m.style.display = (m.style.display == 'none') ? 'block' : 'none';"><i class="fa-solid fa-plus"></i></button>
+                
+                <div class="plus-popup-menu" id="plusPopupMenu" style="display: none;">
+                    <div class="plus-menu-header">
+                        <span>KE45 LC89-N2</span>
+                        <i class="fa-regular fa-circle-check"></i>
+                    </div>
+                    <div class="plus-menu-item">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Upload/ Manage presentations</span>
+                    </div>
+                    <div class="plus-menu-item" onclick="document.getElementById('pollView').style.display='flex'; document.getElementById('plusPopupMenu').style.display='none'; document.getElementById('chatView').style.display='none';">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                        <span>Start a poll</span>
+                    </div>
+                    <div class="plus-menu-item" onclick="document.getElementById('externalVideoModal').style.display='flex'; document.getElementById('plusPopupMenu').style.display='none';">
+                        <i class="fa-solid fa-clapperboard"></i>
+                        <span>Share an external video</span>
+                    </div>
+                    <div class="plus-menu-item">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <span>Layout Settings Modal</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bc-center">
+                <button class="control-btn solid-green"><i class="fa-solid fa-microphone"></i></button>
+                <button class="control-btn"><i class="fa-solid fa-video-slash"></i></button>
+                <button class="control-btn"><img style="width: 60%; object-fit: fill;" src="../assets/img/display_icon.png" alt=""></button>
+            </div>
+            <div class="bc-right">
+                <button class="control-btn solid-green"><i class="fa-solid fa-display"></i></button>
+                <button class="control-btn" onclick="document.getElementById('raisedHandPopup').style.display='block';"><i class="fa-regular fa-hand"></i></button>
+                <button class="control-btn solid-orange"><i class="fa-solid fa-bell"></i></button>
+            </div>
         </div>
     </main>
 
+    <!-- Share Video Modal -->
+    <div class="vc-modal-overlay" id="externalVideoModal" style="display: none;">
+        <div class="vc-modal-content">
+            <div class="modal-close" onclick="document.getElementById('externalVideoModal').style.display='none'"><i class="fa-solid fa-xmark"></i></div>
+            <h2>Share an external video</h2>
+            <div class="modal-body">
+                <label>External Video URL</label>
+                <input type="text" placeholder="Add Video URL">
+                <p class="modal-hint">Paste a YouTube or Video link to share with student</p>
+                <button class="btn-share-modal" onclick="document.getElementById('externalVideoModal').style.display='none'; document.getElementById('wbVideoMock').style.display='flex'; document.getElementById('vcStage').classList.add('layout-top-videos');">Share a new video</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Meeting Modal -->
+    <div class="vc-modal-overlay" id="endMeetingModal" style="display: none;">
+        <div class="vc-modal-content" style="width: 500px; border-radius: 12px; padding: 40px 30px;">
+            <div class="modal-close" onclick="document.getElementById('endMeetingModal').style.display='none'"><i class="fa-solid fa-xmark"></i></div>
+            <div class="end-modal-container">
+                <h2>KEO0098786 - Nguyễn Ngọc Gia Huy - KE45-<br>LC89-N2</h2>
+                <p>Are you sure you want to end this session?</p>
+                <div class="end-modal-actions">
+                    <button class="btn-end-all" onclick="document.getElementById('endMeetingModal').style.display='none'; document.getElementById('evaluationScreen').style.display='flex';">End session for all users</button>
+                    <button class="btn-cancel-end" onclick="document.getElementById('endMeetingModal').style.display='none'">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post Meeting Evaluation Overlay -->
+    <div class="evaluation-overlay" id="evaluationScreen" style="display: none;">
+        <div class="eval-header">
+            <div class="eval-header-left">
+                <div class="eval-back-btn" onclick="document.getElementById('evaluationScreen').style.display='none'"><i class="fa-solid fa-arrow-left"></i></div>
+                <div class="eval-title">Hi, Nguyễn Thị Hoàng Ngân</div>
+            </div>
+            <button class="eval-skip-btn" onclick="window.location.href='home.html?new_eval=true'">Skip</button>
+        </div>
+        <div class="eval-card">
+            <div class="eval-card-title">Jobs</div>
+            <div class="eval-info-row">
+                <div class="eval-info-pill">
+                    <div class="eval-info-icon" style="background:#4f46e5;"><i class="fa-regular fa-clock"></i></div>
+                    <span>Fri, 13, Mar <strong>20:00 - 20:45</strong></span>
+                </div>
+                <div class="eval-info-pill">
+                    <div class="eval-info-icon" style="background:#4f46e5;"><i class="fa-regular fa-file-lines"></i></div>
+                    <span>Lesson: <strong>KE45-LC89-N2</strong></span>
+                </div>
+            </div>
+            <div class="eval-form-grid">
+                <!-- Column 1 -->
+                <div>
+                    <div class="eval-section-title">Teaching platform</div>
+                    <div class="eval-section-desc">Tell us about your experience</div>
+                    
+                    <div class="eval-rating-row">
+                        <div class="eval-rating-header">
+                            <div class="eval-rating-label"><i class="fa-solid fa-volume-high" style="color:#6b7280;"></i> Audio Quality</div>
+                            <div class="eval-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <div class="eval-require-block">
+                            <div class="eval-require-title">Require</div>
+                            <div class="eval-require-desc">We appreciate your feedback so let us know how you feel</div>
+                        </div>
+                    </div>
+                    <div class="eval-rating-row">
+                        <div class="eval-rating-header">
+                            <div class="eval-rating-label"><i class="fa-solid fa-video" style="color:#6b7280;"></i> Webcam Quality</div>
+                            <div class="eval-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <div class="eval-require-block">
+                            <div class="eval-require-title">Require</div>
+                            <div class="eval-require-desc">We appreciate your feedback so let us know how you feel</div>
+                        </div>
+                    </div>
+                    <div class="eval-rating-row">
+                        <div class="eval-rating-header">
+                            <div class="eval-rating-label"><i class="fa-brands fa-youtube" style="color:#6b7280;"></i> Video Quality</div>
+                            <div class="eval-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <div class="eval-require-block">
+                            <div class="eval-require-title">Require</div>
+                            <div class="eval-require-desc">We appreciate your feedback so let us know how you feel</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column 2 -->
+                <div>
+                    <div class="eval-section-title">Lesson</div>
+                    <div class="eval-section-desc">Tell us about your experience</div>
+                    
+                    <div class="eval-rating-row">
+                        <div class="eval-rating-header">
+                            <div class="eval-rating-label"><i class="fa-solid fa-palette" style="color:#6b7280;"></i> Attractive Design</div>
+                            <div class="eval-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <div class="eval-require-block">
+                            <div class="eval-require-title">Require</div>
+                            <div class="eval-require-desc">We appreciate your feedback so let us know how you feel</div>
+                        </div>
+                    </div>
+                    <div class="eval-rating-row">
+                        <div class="eval-rating-header">
+                            <div class="eval-rating-label"><i class="fa-solid fa-book-open" style="color:#6b7280;"></i> Content</div>
+                            <div class="eval-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <div class="eval-require-block">
+                            <div class="eval-require-title">Require</div>
+                            <div class="eval-require-desc">We appreciate your feedback so let us know how you feel</div>
+                        </div>
+                    </div>
+                    <div class="eval-rating-row">
+                        <div class="eval-rating-header">
+                            <div class="eval-rating-label"><i class="fa-solid fa-clipboard-list" style="color:#6b7280;"></i> Lesson Plan</div>
+                            <div class="eval-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <div class="eval-require-block">
+                            <div class="eval-require-title">Require</div>
+                            <div class="eval-require-desc">We appreciate your feedback so let us know how you feel</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-submit-eval" onclick="window.location.href='home.html?new_eval=true'">Submit</button>
+        </div>
+    </div>
 </body>
+
 </html>

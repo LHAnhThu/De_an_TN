@@ -172,12 +172,12 @@
                                 <div class="metric-value">2,000,000 VND</div>
                                 <div class="metric-note">↗ 15% for last month</div>
                             </div>
-                            <div class="metric-card clickable" id="evaluations-card">
+                            <div class="metric-card clickable" id="evaluations-card" onclick="document.getElementById('evaluation-modal').style.display='flex'">
                                 <div class="metric-title">
                                     <i class="fa-solid fa-comments"></i>
                                     <span class="metric-title-text">Classes need evaluations</span>
                                 </div>
-                                <div class="metric-value">1</div>
+                                <div class="metric-value" id="evaluations-count">1</div>
                             </div>
                             <div class="metric-card" style="width: 200px;">
                                 <div class="metric-title">
@@ -271,23 +271,42 @@
                 <h2 style="font-size: 18px;">Lesson not yet evaluated</h2>
             </div>
             <div class="modal-body" style="padding: 24px 32px 100px; border:none; ">
-                <div class="evaluation-top-row" style="display:flex;align-items:center;justify-content:space-between;">
-                    <div style="color:#64748b;font-weight:500; font-size: 16px;">
+                <div class="evaluation-top-row" style="display:flex;align-items:center;justify-content:space-between; margin-bottom: 16px;">
+                    <div style="color:#64748b;font-weight:500; font-size: 16px; width: 100px;">
                         Fri, 13th Mar
                     </div>
                     <div
-                        style="display:flex;align-items:center;gap:8px;color:#0f172a;font-weight:500; font-size: 16px;">
+                        style="display:flex;align-items:center;gap:8px;color:#0f172a;font-weight:500; font-size: 16px; width: 140px;">
                         <span style="color:#94a3b8;"><i class="fa-regular fa-clock"></i></span>
                         <div>18:30 - 18:55</div>
                     </div>
-                    <div style="color:#0f172a; font-size: 16px;">KE25-BL9-N2</div>
+                    <div style="color:#0f172a; font-size: 16px; width: 120px;">KE25-BL9-N2</div>
                     <div class="status-pill"
                         style="background:transparent; border: 1px solid #e2e8f0; color:#22c55e; padding:4px 12px; font-size: 11px; border-radius: 20px;">
                         Completed <span
                             style="display:inline-block;width:6px;height:6px;background:#22c55e;border-radius:50%;margin-left:6px; vertical-align: middle;"></span>
                     </div>
-                    <button class="btn"
-                        style="background: #fb923c; color: white; padding: 8px 20px; border: none; border-radius: 8px; font-weight: 600;">Evaluation</button>
+                    <button class="btn" onclick="document.getElementById('evaluation-modal').style.display='none'; document.getElementById('evaluation-booking-panel').style.display='flex';"
+                        style="background: #fb923c; color: white; padding: 8px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Evaluation</button>
+                </div>
+
+                <div class="evaluation-top-row" id="new-eval-row" style="display:none;align-items:center;justify-content:space-between;">
+                    <div style="color:#64748b;font-weight:500; font-size: 16px; width: 100px;">
+                        Fri, 13th Mar
+                    </div>
+                    <div
+                        style="display:flex;align-items:center;gap:8px;color:#0f172a;font-weight:500; font-size: 16px; width: 140px;">
+                        <span style="color:#94a3b8;"><i class="fa-regular fa-clock"></i></span>
+                        <div>20:00 - 20:45</div>
+                    </div>
+                    <div style="color:#0f172a; font-size: 16px; width: 120px;">KE45-LC89-N2</div>
+                    <div class="status-pill"
+                        style="background:transparent; border: 1px solid #e2e8f0; color:#22c55e; padding:4px 12px; font-size: 11px; border-radius: 20px;">
+                        Completed <span
+                            style="display:inline-block;width:6px;height:6px;background:#22c55e;border-radius:50%;margin-left:6px; vertical-align: middle;"></span>
+                    </div>
+                    <button class="btn" onclick="document.getElementById('evaluation-modal').style.display='none'; document.getElementById('evaluation-booking-panel').style.display='flex';"
+                        style="background: #fb923c; color: white; padding: 8px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Evaluation</button>
                 </div>
             </div>
         </div>
@@ -437,6 +456,162 @@
                         style="flex:1; border:1px solid #ef4444; color:#ef4444; background:white; font-weight:600; font-size:16px; border-radius:12px; padding:12px; justify-content: center; width: 50%;">Cancel</button>
                     <button class="btn" onclick="window.location.href='class_lobby.html'"
                         style="flex:1; background:#3b82f6; color:white; font-weight:600; font-size:16px; border-radius:12px; padding:12px; border:none; justify-content: center; width: 50%;">Teaching</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Detail Panel for Evaluation (Image 5) -->
+    <div id="evaluation-booking-panel" class="modal-overlay" style="display: none;">
+        <div class="modal-content booking-panel"
+            style="position: absolute; right: 0; height: 100vh; border-radius: 0; width: 380px; border: none; box-shadow: -4px 0 24px rgba(0,0,0,0.1); overflow-y: auto;">
+            <div>
+                <div class="modal-header" style="border: none; justify-content: flex-start; gap: 16px; padding: 1;">
+                    <button type="button" class="btn-close" onclick="document.getElementById('evaluation-booking-panel').style.display='none'"
+                        style="color: white; margin: 0; padding: 0; font-size: 20px; position: static;"
+                        aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                    <h2 style="color: white; margin: 0; font-size: 22px;">Booking detail</h2>
+                </div>
+
+                <div class="booking-panel-row"
+                    style="background-color: rgba(73, 80, 254, 0.95);display:grid;grid-template-columns:1fr 1fr;gap:12px;color:white;">
+                    <div style="border-radius:12px;padding:12px 16px;">
+                        <div style="display:flex; flex-direction:row;align-items:center; gap: 12px;">
+                            <i class="fa-regular fa-clock" style="font-size: 14px;"></i>
+                            <div style="display:flex; flex-direction:column;">
+                                <div>Thu, 12th Mar</div>
+                                <div>19:00 - 19:45</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="border-radius:12px;padding:12px 16px;">
+                        <div style="display:flex; flex-direction:row;align-items:center; gap: 12px;">
+                            <i class="fa-regular fa-clock" style="font-size: 14px;"></i>
+                            <div style="display:flex; flex-direction:column;">
+                                <div>Lesson</div>
+                                <div>Jobs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body" style="padding: 24px; border:none;">
+                <div class="detail-grid"
+                    style="display:grid;gap:16px;color:#94a3b8;font-size: 15px;margin-bottom:24px;">
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;"><span>Student
+                            name</span><span style="font-weight:600;color:#0f172a;text-align:right;">Nguyễn Ngọc Gia
+                            Huy</span></div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;"><span>Student
+                            code</span><span style="font-weight:600;color:#0f172a;text-align:right;">STU009867/ <span
+                                style="color: #fb923c;">KID</span></span></div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;">
+                        <span>Level</span><span style="font-weight:600;color:#0f172a;text-align:right;">Star 1B</span>
+                    </div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;">
+                        <span>Lesson</span><span style="font-weight:600;color:#0f172a;text-align:right;">Star 1B-Lesson
+                            7-Jobs</span>
+                    </div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;"><span>Booking
+                            ID</span><span style="font-weight:600;color:#0f172a;text-align:right;">26270753</span></div>
+                </div>
+                <div class="file-links"
+                    style="background:white;border-radius:6px;border: 1px solid #e2e8f0;padding:16px;margin-bottom:20px; position:relative; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <div class="file-pill"
+                        style="position: absolute; top: -7px; right: 24px; background: white; padding:0 8px;border:1px solid #c7d2fe;border-radius:999px;font-size:10px;font-weight:700;color:#3b82f6;">
+                        VIP 45MINS</div>
+                    <div style="display:grid;gap:16px;">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-weight: 500; font-size: 15px; color:#0f172a;">
+                            <div style="display:flex; gap:8px;"><i class="fa-solid fa-link" style="margin-top:3px; font-size: 14px;"></i><span>Star 1B-Lesson 7-Jobs</span></div>
+                            <a href="#" style="color:#fb923c;font-weight:500; font-size: 14px; white-space:nowrap; text-decoration: none;">View »</a>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-weight: 500; font-size: 15px; color:#0f172a;">
+                            <div style="display:flex; gap:8px;"><i class="fa-solid fa-link" style="margin-top:3px; font-size: 14px;"></i><span>Star 1B-Lesson 7-Jobs - Lesson plan</span></div>
+                            <a href="#" style="color:#fb923c;font-weight:500; font-size: 14px; white-space:nowrap; text-decoration: none;">View »</a>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-weight: 500; font-size: 15px; color:#0f172a;">
+                            <div style="display:flex; gap:8px;"><i class="fa-solid fa-link" style="margin-top:3px; font-size: 14px;"></i><span>Star 1B-Lesson 7-Jobs - Answer Key</span></div>
+                            <a href="#" style="color:#fb923c;font-weight:500; font-size: 14px; white-space:nowrap; text-decoration: none;">View »</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-top: 1px dashed #cbd5e1; margin-bottom: 20px;"></div>
+
+                <div class="status-row" style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px;color:#64748b; font-size: 15px; font-weight: 500;">
+                    <span>Booking Status</span>
+                    <span style="display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border:1px solid #c7d2fe;border-radius:999px;font-size:12px; font-weight: 600; color:#3b82f6;">Approved
+                        <span style="width:6px;height:6px;background:#3b82f6;border-radius:50%;display:inline-block;"></span></span>
+                </div>
+
+                <!-- Evaluation Form Addition -->
+                <div style="font-weight:700;font-size:19px;margin-bottom:12px;color:#111827;">Your evaluation</div>
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
+                    <div>
+                        <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Classroom Behavior</div>
+                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <div>
+                        <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Vocabulary</div>
+                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <div>
+                        <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Grammar</div>
+                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <div>
+                        <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Listening Skills</div>
+                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <div>
+                        <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Speaking Skills</div>
+                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <div>
+                        <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Reading Skills</div>
+                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <div>
+                        <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Writing Skills</div>
+                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <textarea style="width:100%; height:80px; border:1px solid #e2e8f0; border-radius:8px; padding:12px; margin-top:8px; outline:none; resize:none;"></textarea>
+                    
+                    <button class="btn btn-submit-eval" onclick="document.getElementById('evaluation-booking-panel').style.display='none'">Submit</button>
+                </div>
+
+                <div style="font-weight:700;font-size:16px;margin-bottom:8px;color:#111827;">Student evaluation</div>
+                <div style="color:#6b7280;font-size:12px;font-weight: 500;display:flex;gap:16px;margin-bottom:16px;">
+                    <span>Academic note</span><span style="color:#FF8D37; font-weight: 700;">Other Teacher</span>
+                </div>
+                
+                <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+                    <div style="font-size: 11px; font-weight: 600; color: #6b7280; margin-bottom: 4px;">Lesson: Star 1B-Lesson 7-Jobs</div>
+                    <div style="font-size: 11px; font-weight: 700; color: #111827; margin-bottom: 16px;">Lesson completed. Gia Huy studied well, did well on the assignments, remembered new vocabulary and grammar, and all skills were good. Keep up the good work!</div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Vocabulary</div>
+                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên có thể nhớ được các từ vựng cũ, áp dụng được vào các bài học mới.</div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Grammar</div>
+                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên nắm vững và vận dụng được các cấu trúc ngữ pháp đã học. Sử dụng chính xác trong các bài tập.</div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Listening Skills</div>
+                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên nghe hiểu được yêu cầu và câu hỏi của giáo viên. Học viên hiểu toàn bộ nội dung bài nghe và hoàn thành bài tập nghe chính xác.</div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Speaking Skills</div>
+                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên nói lưu loát, phát âm chuẩn, ngữ điệu tự nhiên. Học viên có thể trả lời giáo viên với câu đầy đủ cấu trúc ngữ pháp.</div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Reading Skills</div>
+                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên làm các bài tập tốt, vận dụng từ vựng và ngữ pháp vào các bài đọc, hoàn thành các bài tập chính xác.</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Writing Skills</div>
+                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên viết tốt, viết đúng ngữ pháp và cách dùng từ, học viên có thể hoàn thành bài tập viết chính xác.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2179,6 +2354,16 @@
             userName: 'Ngan Nguyen',
             userAvatar: '../assets/img/user_avatar.png',
             showIcon: false
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('new_eval') === 'true') {
+                document.getElementById('evaluations-count').innerText = '2';
+                document.getElementById('new-eval-row').style.display = 'flex';
+                // optionally open the modal automatically:
+                // document.getElementById('evaluation-modal').style.display='flex';
+            }
         });
     </script>
 </body>
