@@ -664,7 +664,7 @@ const courseValidation = {
             localStorage.removeItem('currentDraftInfo');
 
             alert('New Course created successfully (Draft mode)!');
-            window.location.href = 'courses_list.html';
+            window.location.href = 'courses_grid.html';
         }
     }
 };

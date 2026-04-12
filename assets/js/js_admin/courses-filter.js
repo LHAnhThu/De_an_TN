@@ -37,13 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('active');
     }
 
-    if(btnOpenModal) btnOpenModal.addEventListener('click', openModal);
-    if(btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
-    if(btnCancelModal) btnCancelModal.addEventListener('click', closeModal);
+    if (btnOpenModal) btnOpenModal.addEventListener('click', openModal);
+    if (btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
+    if (btnCancelModal) btnCancelModal.addEventListener('click', closeModal);
 
-    if(modal) {
+    if (modal) {
         modal.addEventListener('click', (e) => {
-            if(e.target === modal) closeModal();
+            if (e.target === modal) closeModal();
         });
     }
 
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle No Results
         let viewContainer = isGrid ? document.querySelector('.grid-view') : document.querySelector('.table-wrapper');
         let noResultsMsg = document.getElementById('no-results-msg');
-        
+
         if (!noResultsMsg && viewContainer) {
             noResultsMsg = document.createElement('div');
             noResultsMsg.id = 'no-results-msg';
@@ -125,10 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 textContainer.innerHTML = `Showing <strong>1-${showingCount}</strong> of <strong>${visibleCount > 6 ? visibleCount + 18 : visibleCount}</strong> courses`;
             }
-            
+
             // Visually dim page 2 if no overflow
             let pageBtns = document.querySelectorAll('.pagination .page-btn');
-            if(pageBtns.length >= 3) {
+            if (pageBtns.length >= 3) {
                 let p2 = pageBtns[2];
                 if (visibleCount > 6) {
                     p2.style.opacity = '1';
@@ -145,25 +145,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Modal Apply Button
-    if(btnApplyModal) {
+    if (btnApplyModal) {
         btnApplyModal.addEventListener('click', () => {
             // Save modal states
             advancedFilters.levels = Array.from(modalLevelCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
             advancedFilters.ages = Array.from(modalAgeCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
             advancedFilters.objective = modalObjectiveSelect.value;
-            
+
             closeModal();
             applyAllFilters();
         });
     }
 
     // Basic filters trigger immediately
-    if(searchInput) searchInput.addEventListener('input', applyAllFilters);
-    if(filterLanguage) filterLanguage.addEventListener('change', applyAllFilters);
-    if(filterStatus) filterStatus.addEventListener('change', applyAllFilters);
+    if (searchInput) searchInput.addEventListener('input', applyAllFilters);
+    if (filterLanguage) filterLanguage.addEventListener('change', applyAllFilters);
+    if (filterStatus) filterStatus.addEventListener('change', applyAllFilters);
 
     function renderActivePills() {
-        if(!filterPillsContainer) return;
+        if (!filterPillsContainer) return;
         filterPillsContainer.innerHTML = '';
         let hasFilters = false;
 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Render Objective
-        if(advancedFilters.objective) {
+        if (advancedFilters.objective) {
             hasFilters = true;
             createPill('Obj', advancedFilters.objective, () => {
                 advancedFilters.objective = '';
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        if(hasFilters) {
+        if (hasFilters) {
             activeFiltersBox.style.display = 'flex';
         } else {
             activeFiltersBox.style.display = 'none';
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Clear All
-    if(btnClearFilters) {
+    if (btnClearFilters) {
         btnClearFilters.addEventListener('click', () => {
             // reset advanced state
             advancedFilters.levels = [];
@@ -227,9 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
             modalObjectiveSelect.value = '';
 
             // basic inputs
-            if(searchInput) searchInput.value = '';
-            if(filterLanguage) filterLanguage.value = '';
-            if(filterStatus) filterStatus.value = '';
+            if (searchInput) searchInput.value = '';
+            if (filterLanguage) filterLanguage.value = '';
+            if (filterStatus) filterStatus.value = '';
 
             applyAllFilters();
         });

@@ -29,6 +29,28 @@ document.addEventListener('DOMContentLoaded', function () {
     detailLinks.forEach(function (link) {
         link.addEventListener('click', function (event) {
             event.preventDefault();
+            
+            const isUpcoming = link.closest('.panel-upcoming') !== null;
+            const waitingRow = document.getElementById('booking-status-waiting');
+            const approvedRow = document.getElementById('booking-status-approved');
+            const cancelledRow = document.getElementById('booking-status-cancelled');
+            const waitingActions = document.getElementById('booking-actions-waiting');
+            const acceptedActions = document.getElementById('booking-actions-accepted');
+
+            if (isUpcoming) {
+                if (waitingRow) waitingRow.style.display = 'none';
+                if (approvedRow) approvedRow.style.display = 'flex';
+                if (cancelledRow) cancelledRow.style.display = 'none';
+                if (waitingActions) waitingActions.style.display = 'none';
+                if (acceptedActions) acceptedActions.style.display = 'none';
+            } else {
+                if (waitingRow) waitingRow.style.display = 'flex';
+                if (approvedRow) approvedRow.style.display = 'none';
+                if (cancelledRow) cancelledRow.style.display = 'none';
+                if (waitingActions) waitingActions.style.display = 'flex';
+                if (acceptedActions) acceptedActions.style.display = 'none';
+            }
+            
             openOverlay(bookingPanel);
         });
     });
