@@ -3,8 +3,7 @@ const studentManagement = {
     currentPage: 1,
     itemsPerPage: 6,
     filteredStudents: [],
-
-    // Sample student data (chỉ 6 học viên như mock)
+    
     sampleStudents: [
         {
             id: 'STU001',
@@ -74,14 +73,14 @@ const studentManagement = {
         }
     ],
 
-    init: function() {
+    init: function () {
         this.students = [...this.sampleStudents];
         this.filteredStudents = [...this.students];
         this.bindEvents();
         this.renderStudents();
     },
 
-    bindEvents: function() {
+    bindEvents: function () {
         // Add student modal
         const btnAdd = document.getElementById('btn-add-student');
         const btnClose = document.getElementById('close-add-modal');
@@ -114,16 +113,21 @@ const studentManagement = {
         }
     },
 
-    showAddStudentModal: function() {
-        document.getElementById('add-student-modal').style.display = 'flex';
-        document.getElementById('add-student-form').reset();
+    showAddStudentModal: function () {
+        const modal = document.getElementById('add-student-modal');
+        if (modal) {
+            modal.classList.add('active');
+            document.getElementById('add-student-form').reset();
+        }
     },
 
-    hideAddStudentModal: function() {
-        document.getElementById('add-student-modal').style.display = 'none';
+    hideAddStudentModal: function () {
+        const modal = document.getElementById('add-student-modal');
+        if (modal) {
+            modal.classList.remove('active');
+        }
     },
-
-    saveStudent: function() {
+    saveStudent: function () {
         const form = document.getElementById('add-student-form');
         if (!form.checkValidity()) {
             form.reportValidity();
@@ -154,7 +158,7 @@ const studentManagement = {
         alert('Student added successfully!');
     },
 
-    filterStudents: function() {
+    filterStudents: function () {
         const searchInput = document.getElementById('search-students');
         const statusSelect = document.getElementById('filter-status');
 
@@ -173,7 +177,7 @@ const studentManagement = {
             const matchesStatus = statusFilter === 'all' || student.status === statusFilter;
 
             const matchesCourse = courseFilter === 'all' ||
-                                (student.course && student.course.toLowerCase().includes(courseFilter));
+                (student.course && student.course.toLowerCase().includes(courseFilter));
 
             return matchesSearch && matchesStatus && matchesCourse;
         });
@@ -181,7 +185,7 @@ const studentManagement = {
         this.renderStudents();
     },
 
-    renderStudents: function() {
+    renderStudents: function () {
         const tbody = document.getElementById('students-table-body');
         tbody.innerHTML = '';
 
@@ -229,21 +233,21 @@ const studentManagement = {
         }
     },
 
-    viewStudent: function(studentId) {
+    viewStudent: function (studentId) {
         const student = this.students.find(s => s.id === studentId);
         if (student) {
             alert(`Viewing student: ${student.name}\nEmail: ${student.email}\nCourse: ${student.course}`);
         }
     },
 
-    editStudent: function(studentId) {
+    editStudent: function (studentId) {
         const student = this.students.find(s => s.id === studentId);
         if (student) {
             alert(`Editing student: ${student.name}\n(This would open an edit modal in a real application)`);
         }
     },
 
-    deleteStudent: function(studentId) {
+    deleteStudent: function (studentId) {
         if (confirm('Are you sure you want to delete this student?')) {
             this.students = this.students.filter(s => s.id !== studentId);
             this.filteredStudents = [...this.students];
@@ -252,7 +256,7 @@ const studentManagement = {
         }
     },
 
-    getStatusLabel: function(status) {
+    getStatusLabel: function (status) {
         const map = {
             active: 'Active',
             locked: 'Locked',
@@ -262,7 +266,7 @@ const studentManagement = {
         return map[status] || status || '-';
     },
 
-    getStudentInitials: function(name) {
+    getStudentInitials: function (name) {
         const safe = (name || '').trim();
         if (!safe) return '';
 
@@ -274,7 +278,7 @@ const studentManagement = {
         return (first + last).toUpperCase();
     },
 
-    stripDiacritics: function(str) {
+    stripDiacritics: function (str) {
         // Chuẩn hóa Unicode để bỏ dấu tiếng Việt
         try {
             return String(str).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -283,7 +287,7 @@ const studentManagement = {
         }
     },
 
-    formatDate: function(dateString, formatType = 'long') {
+    formatDate: function (dateString, formatType = 'long') {
         if (!dateString) return '-';
         const date = new Date(dateString);
         if (Number.isNaN(date.valueOf())) return dateString;

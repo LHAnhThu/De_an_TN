@@ -71,5 +71,14 @@
 
         <a href="virtual_classroom.html" class="btn-join">Join class</a>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.querySelector('.menu-toggle');
+            toggle.addEventListener('click', function() {
+                document.body.classList.toggle('sidebar-collapsed');
+            });
+        });
+    </script>
 </body>
 </html>
+

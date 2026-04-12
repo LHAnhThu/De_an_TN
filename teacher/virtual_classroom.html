@@ -33,14 +33,20 @@
                 <div class="wb-menu-item"><i class="fa-solid fa-user-slash"></i> Clear all status icons</div>
             </div>
 
+            <div id="sidebarActivePollQuestion" style="display: none; padding: 0 16px 12px; font-size: 13px; font-weight: 600; color: #111827; line-height: 1.4;"></div>
+
             <div class="users-list">
                 <div class="user-row">
-                    <div class="user-avatar av-teacher">Ng</div>
-                    <div class="user-name">Nguyễn Thị Hoàng Ngân</div>
+                    <div class="user-avatar av-teacher" style="margin-top: 2px;">Ng</div>
+                    <div style="display: flex; flex-direction: column; flex: 1;">
+                        <div class="user-name">Nguyễn Thị Hoàng Ngân</div>
+                    </div>
                 </div>
                 <div class="user-row">
-                    <div class="user-avatar av-student">Ng</div>
-                    <div class="user-name">Nguyễn Ngọc Gia Huy</div>
+                    <div class="user-avatar av-student" style="margin-top: 2px;">Ng</div>
+                    <div style="display: flex; flex-direction: column; flex: 1;">
+                        <div class="user-name">Nguyễn Ngọc Gia Huy</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,16 +73,18 @@
     <!-- Poll View (hidden by default) -->
     <aside class="vc-poll-view" id="pollView" style="display: none;">
         <div class="chat-header">
-            <i class="fa-solid fa-angle-left" onclick="document.getElementById('pollView').style.display='none'"></i>
+            <i class="fa-solid fa-angle-left" onclick="closePollView()"></i>
             <span>Polling</span>
         </div>
         <div class="poll-content">
-            <textarea placeholder="Write your question (optional)..."></textarea>
+            <textarea id="pollQuestion" placeholder="Write your question (optional)..." oninput="updatePollQuestion()"></textarea>
             <div class="poll-types-title">Response Types</div>
-            <button class="poll-type-btn">True / False</button>
-            <button class="poll-type-btn">A / B / C / D</button>
-            <button class="poll-type-btn">Yes / No / Abstention</button>
-            <button class="poll-type-btn">Typed Response</button>
+            <button class="poll-type-btn" onclick="selectPollType('truefalse')">True / False</button>
+            <button class="poll-type-btn" onclick="selectPollType('abcd')">A / B / C / D</button>
+            <button class="poll-type-btn" onclick="selectPollType('yesno')">Yes / No / Abstention</button>
+            <button class="poll-type-btn" onclick="selectPollType('typed')">Typed Response</button>
+            <div id="pollChoicesArea" style="margin-top: 16px;"></div>
+            <div id="pollActionArea" style="margin-top: 22px; display: flex; justify-content: center;"></div>
         </div>
     </aside>
 
@@ -126,6 +134,21 @@
             </div>
         </header>
 
+        <!-- Notification Popup Area -->
+        <div class="raised-hand-popup" id="raisedHandPopup" style="display: none;">
+            <div class="rh-header">
+                <div class="rh-icon-circle"><i class="fa-solid fa-hand"></i></div>
+                <div class="rh-text">
+                    <div class="rh-title">Rised Hands</div>
+                    <div class="rh-desc">Nguyễn Ngọc Gia Huy raised hand</div>
+                </div>
+                <div class="rh-av">Ng</div>
+            </div>
+            <div class="rh-footer" onclick="document.getElementById('raisedHandPopup').style.display='none'">
+                Lower Hands
+            </div>
+        </div>
+
         <!-- Stage Area -->
         <section class="vc-stage" id="vcStage">
             <!-- Left Video Column -->
@@ -151,20 +174,6 @@
 
             <!-- Right Whiteboard Column -->
             <div class="whiteboard-col">
-                <!-- Raised Hand Popup (hidden by default) -->
-                <div class="raised-hand-popup" id="raisedHandPopup" style="display: none;">
-                    <div class="rh-header">
-                        <div class="rh-icon-circle"><i class="fa-solid fa-hand"></i></div>
-                        <div class="rh-text">
-                            <div class="rh-title">Rised Hands</div>
-                            <div class="rh-desc">Nguyễn Ngọc Gia Huy raised hand</div>
-                        </div>
-                        <div class="rh-av">Ng</div>
-                    </div>
-                    <div class="rh-footer" onclick="document.getElementById('raisedHandPopup').style.display='none'">
-                        Lower Hands
-                    </div>
-                </div>
                 <!-- Video Mock (Covers everything when active) -->
                 <div id="wbVideoMock" style="display: none; background: #cce7c6; width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 50; flex-direction: column;">
                     <img src="../assets/img/video_external.png" style="width: 100%; height: 100%; object-fit: contain;">
@@ -281,7 +290,7 @@
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         <span>Upload/ Manage presentations</span>
                     </div>
-                    <div class="plus-menu-item" onclick="document.getElementById('pollView').style.display='flex'; document.getElementById('plusPopupMenu').style.display='none'; document.getElementById('chatView').style.display='none';">
+                    <div class="plus-menu-item" onclick="openPollView()">
                         <i class="fa-solid fa-bars-staggered"></i>
                         <span>Start a poll</span>
                     </div>
@@ -289,7 +298,7 @@
                         <i class="fa-solid fa-clapperboard"></i>
                         <span>Share an external video</span>
                     </div>
-                    <div class="plus-menu-item">
+                    <div class="plus-menu-item" onclick="document.getElementById('layoutSettingsModal').style.display='flex'; document.getElementById('plusPopupMenu').style.display='none';">
                         <i class="fa-regular fa-paper-plane"></i>
                         <span>Layout Settings Modal</span>
                     </div>
@@ -303,10 +312,21 @@
             <div class="bc-right">
                 <button class="control-btn solid-green"><i class="fa-solid fa-display"></i></button>
                 <button class="control-btn" onclick="document.getElementById('raisedHandPopup').style.display='block';"><i class="fa-regular fa-hand"></i></button>
-                <button class="control-btn solid-orange"><i class="fa-solid fa-bell"></i></button>
+                <button class="control-btn solid-orange" onclick="document.getElementById('supportModal').style.display='flex';"><i class="fa-solid fa-bell"></i></button>
             </div>
         </div>
     </main>
+
+    <!-- Support Request Modal -->
+    <div class="vc-modal-overlay" id="supportModal" style="display: none;">
+        <div class="vc-modal-content" style="max-width: 400px; border-radius: 10px; padding: 32px; text-align: center;">
+            <div class="modal-close" onclick="document.getElementById('supportModal').style.display='none'" style="right: 20px; top: 20px;"><i class="fa-solid fa-xmark"></i></div>
+            <i class="fa-solid fa-circle-exclamation" style="color: #f59e0b; font-size: 36px; margin-bottom: 16px;"></i>
+            
+            <p style="color: rgba(0, 0, 0, 0.6); margin-bottom: 18px;">Do you need support for an ongoing class?</p>
+            <button class="btn-primary" style="background: #fb923c; border: none; color: white; padding: 10px 38px; border-radius: 12px; cursor: pointer;">Send request for help</button>
+        </div>
+    </div>
 
     <!-- Share Video Modal -->
     <div class="vc-modal-overlay" id="externalVideoModal" style="display: none;">
@@ -337,6 +357,87 @@
         </div>
     </div>
 
+    <!-- Layout Settings Modal -->
+    <div class="vc-modal-overlay" id="layoutSettingsModal" style="display: none;">
+        <div class="vc-modal-content layout-modal-content">
+            <div class="modal-close" onclick="document.getElementById('layoutSettingsModal').style.display='none'"><i class="fa-solid fa-xmark"></i></div>
+            <h2>Layouts</h2>
+            
+            <div class="layout-grid">
+                <!-- Custom -->
+                <div class="layout-option" onclick="document.querySelectorAll('.layout-option').forEach(el=>el.classList.remove('active')); this.classList.add('active');">
+                    <span class="layout-name">Custom</span>
+                    <div class="layout-diagram">
+                        <div class="ld-inner">
+                            <div class="ld-sidebar"></div>
+                            <div class="ld-main">
+                                <div class="ld-top-users">
+                                    <div class="ld-user-mini"><i class="fa-solid fa-user"></i></div>
+                                    <div class="ld-user-mini"><i class="fa-solid fa-user"></i></div>
+                                    <div class="ld-user-mini"><i class="fa-solid fa-user"></i></div>
+                                </div>
+                                <div class="ld-white-board"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart layout -->
+                <div class="layout-option active" onclick="document.querySelectorAll('.layout-option').forEach(el=>el.classList.remove('active')); this.classList.add('active');">
+                    <span class="layout-name">Smart layout</span>
+                    <div class="layout-diagram">
+                        <div class="ld-inner">
+                            <div class="ld-sidebar"></div>
+                            <div class="ld-main">
+                                <div class="ld-top-users">
+                                    <div class="ld-user-mini"><i class="fa-solid fa-user"></i></div>
+                                    <div class="ld-user-mini"><i class="fa-solid fa-user"></i></div>
+                                    <div class="ld-user-mini"><i class="fa-solid fa-user"></i></div>
+                                </div>
+                                <div class="ld-white-board"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Focus on presentation -->
+                <div class="layout-option" onclick="document.querySelectorAll('.layout-option').forEach(el=>el.classList.remove('active')); this.classList.add('active');">
+                    <span class="layout-name">Focus on presentation</span>
+                    <div class="layout-diagram">
+                        <div class="ld-inner">
+                            <div class="ld-sidebar">
+                                <div class="ld-user-sidebar"><i class="fa-solid fa-user"></i></div>
+                            </div>
+                            <div class="ld-main">
+                                <div class="ld-white-board mt-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Focus on video -->
+                <div class="layout-option" onclick="document.querySelectorAll('.layout-option').forEach(el=>el.classList.remove('active')); this.classList.add('active');">
+                    <span class="layout-name">Focus on video</span>
+                    <div class="layout-diagram">
+                        <div class="ld-inner">
+                            <div class="ld-sidebar">
+                                <div class="ld-white-sidebar"></div>
+                            </div>
+                            <div class="ld-main">
+                                <div class="ld-blue-hero"><i class="fa-solid fa-user"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layout-actions">
+                <button class="btn-confirm-layout" onclick="document.getElementById('layoutSettingsModal').style.display='none'">Confirm</button>
+                <button class="btn-cancel-layout" onclick="document.getElementById('layoutSettingsModal').style.display='none'">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Post Meeting Evaluation Overlay -->
     <div class="evaluation-overlay" id="evaluationScreen" style="display: none;">
         <div class="eval-header">
@@ -344,20 +445,21 @@
                 <div class="eval-back-btn" onclick="document.getElementById('evaluationScreen').style.display='none'"><i class="fa-solid fa-arrow-left"></i></div>
                 <div class="eval-title">Hi, Nguyễn Thị Hoàng Ngân</div>
             </div>
-            <button class="eval-skip-btn" onclick="window.location.href='home.html?new_eval=true'">Skip</button>
         </div>
         <div class="eval-card">
+            <button class="eval-skip-btn" onclick="window.location.href='home.html?new_eval=true'">Skip</button>
             <div class="eval-card-title">Jobs</div>
             <div class="eval-info-row">
                 <div class="eval-info-pill">
-                    <div class="eval-info-icon" style="background:#4f46e5;"><i class="fa-regular fa-clock"></i></div>
-                    <span>Fri, 13, Mar <strong>20:00 - 20:45</strong></span>
+                    <div class="eval-info-icon"><i class="fa-regular fa-clock"></i></div>
+                    Fri, 13, Mar <b>20:00 - 20:45</b>
                 </div>
                 <div class="eval-info-pill">
-                    <div class="eval-info-icon" style="background:#4f46e5;"><i class="fa-regular fa-file-lines"></i></div>
-                    <span>Lesson: <strong>KE45-LC89-N2</strong></span>
+                    <div class="eval-info-icon"><i class="fa-regular fa-file-lines"></i></div>
+                    Lesson: <b>KE45-LC89-N2</b>
                 </div>
             </div>
+
             <div class="eval-form-grid">
                 <!-- Column 1 -->
                 <div>
@@ -435,6 +537,6 @@
             <button class="btn-submit-eval" onclick="window.location.href='home.html?new_eval=true'">Submit</button>
         </div>
     </div>
+    <script src="../assets/js/js_teacher/virtual_classroom.js"></script>
 </body>
-
 </html>

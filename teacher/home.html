@@ -439,19 +439,18 @@
                 <div style="border-top: 1px dashed #cbd5e1; margin-bottom: 24px;"></div>
 
                 <div style="font-weight:600;font-size:18px;margin-bottom:8px;color:#0f172a;">Student evaluation</div>
-                <div style="color:#94a3b8;font-size:14px;font-weight: 500;display:flex;gap:24px;margin-bottom:32px;">
-                    <span>Academic note</span><span>Other
-                        Teacher</span>
+                <div style="color:#94a3b8;font-size:14px;font-weight: 500;display:flex;gap:24px;padding-bottom: 20px;">
+                    <span>Academic note</span><span>Other Teacher</span>
                 </div>
 
-                <div id="booking-actions-waiting" style="display:flex; gap:16px;">
+                <div id="booking-actions-waiting" style="display:flex; gap:16px; padding-bottom: 20px;">
                     <button class="btn btn-panel-deny"
                         style="border:1px solid #fb923c; color:#fb923c; background:white; font-weight:600; font-size:16px; border-radius:12px; padding:12px; justify-content: center; width: 50%;">Deny</button>
                     <button class="btn btn-panel-accept"
                         style="background:#22c55e; color:white; font-weight:600; font-size:16px; border-radius:12px; padding:12px; border:none; justify-content: center; width: 50%;">Accept</button>
                 </div>
 
-                <div id="booking-actions-accepted" style="display:none; gap:16px;">
+                <div id="booking-actions-accepted" style="display:none; gap:16px; padding-bottom: 20px;">
                     <button class="btn" id="btn-panel-cancel-class"
                         style="flex:1; border:1px solid #ef4444; color:#ef4444; background:white; font-weight:600; font-size:16px; border-radius:12px; padding:12px; justify-content: center; width: 50%;">Cancel</button>
                     <button class="btn" onclick="window.location.href='class_lobby.html'"
@@ -547,33 +546,54 @@
                 <!-- Evaluation Form Addition -->
                 <div style="font-weight:700;font-size:19px;margin-bottom:12px;color:#111827;">Your evaluation</div>
                 <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
-                    <div>
+                    <div class="eval-category" data-category="Behavior">
                         <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Classroom Behavior</div>
-                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="star-rating" style="color:#cbd5e1; font-size:16px; letter-spacing: 4px; cursor: pointer;">
+                            <i class="fa-solid fa-star eval-star" data-rating="1"></i><i class="fa-solid fa-star eval-star" data-rating="2"></i><i class="fa-solid fa-star eval-star" data-rating="3"></i><i class="fa-solid fa-star eval-star" data-rating="4"></i><i class="fa-solid fa-star eval-star" data-rating="5"></i>
+                        </div>
+                        <div class="eval-desc" style="font-size: 13px; color: #000; margin-top: 8px; display: none; line-height: 1.4;"></div>
                     </div>
-                    <div>
+                    <div class="eval-category" data-category="Vocabulary">
                         <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Vocabulary</div>
-                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="star-rating" style="color:#cbd5e1; font-size:16px; letter-spacing: 4px; cursor: pointer;">
+                            <i class="fa-solid fa-star eval-star" data-rating="1"></i><i class="fa-solid fa-star eval-star" data-rating="2"></i><i class="fa-solid fa-star eval-star" data-rating="3"></i><i class="fa-solid fa-star eval-star" data-rating="4"></i><i class="fa-solid fa-star eval-star" data-rating="5"></i>
+                        </div>
+                        <div class="eval-desc" style="font-size: 13px; color: #000; margin-top: 8px; display: none; line-height: 1.4;"></div>
                     </div>
-                    <div>
+                    <div class="eval-category" data-category="Grammar">
                         <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Grammar</div>
-                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="star-rating" style="color:#cbd5e1; font-size:16px; letter-spacing: 4px; cursor: pointer;">
+                            <i class="fa-solid fa-star eval-star" data-rating="1"></i><i class="fa-solid fa-star eval-star" data-rating="2"></i><i class="fa-solid fa-star eval-star" data-rating="3"></i><i class="fa-solid fa-star eval-star" data-rating="4"></i><i class="fa-solid fa-star eval-star" data-rating="5"></i>
+                        </div>
+                        <div class="eval-desc" style="font-size: 13px; color: #000; margin-top: 8px; display: none; line-height: 1.4;"></div>
                     </div>
-                    <div>
+                    <div class="eval-category" data-category="Listening Skills">
                         <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Listening Skills</div>
-                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="star-rating" style="color:#cbd5e1; font-size:16px; letter-spacing: 4px; cursor: pointer;">
+                            <i class="fa-solid fa-star eval-star" data-rating="1"></i><i class="fa-solid fa-star eval-star" data-rating="2"></i><i class="fa-solid fa-star eval-star" data-rating="3"></i><i class="fa-solid fa-star eval-star" data-rating="4"></i><i class="fa-solid fa-star eval-star" data-rating="5"></i>
+                        </div>
+                        <div class="eval-desc" style="font-size: 13px; color: #000; margin-top: 8px; display: none; line-height: 1.4;"></div>
                     </div>
-                    <div>
+                    <div class="eval-category" data-category="Speaking Skills">
                         <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Speaking Skills</div>
-                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="star-rating" style="color:#cbd5e1; font-size:16px; letter-spacing: 4px; cursor: pointer;">
+                            <i class="fa-solid fa-star eval-star" data-rating="1"></i><i class="fa-solid fa-star eval-star" data-rating="2"></i><i class="fa-solid fa-star eval-star" data-rating="3"></i><i class="fa-solid fa-star eval-star" data-rating="4"></i><i class="fa-solid fa-star eval-star" data-rating="5"></i>
+                        </div>
+                        <div class="eval-desc" style="font-size: 13px; color: #000; margin-top: 8px; display: none; line-height: 1.4;"></div>
                     </div>
-                    <div>
+                    <div class="eval-category" data-category="Reading Skills">
                         <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Reading Skills</div>
-                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="star-rating" style="color:#cbd5e1; font-size:16px; letter-spacing: 4px; cursor: pointer;">
+                            <i class="fa-solid fa-star eval-star" data-rating="1"></i><i class="fa-solid fa-star eval-star" data-rating="2"></i><i class="fa-solid fa-star eval-star" data-rating="3"></i><i class="fa-solid fa-star eval-star" data-rating="4"></i><i class="fa-solid fa-star eval-star" data-rating="5"></i>
+                        </div>
+                        <div class="eval-desc" style="font-size: 13px; color: #000; margin-top: 8px; display: none; line-height: 1.4;"></div>
                     </div>
-                    <div>
+                    <div class="eval-category" data-category="Writing Skills">
                         <div style="font-size:12px; font-weight:700; color:#111827; margin-bottom:6px;">Writing Skills</div>
-                        <div style="color:#cbd5e1; font-size:16px; letter-spacing: 4px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <div class="star-rating" style="color:#cbd5e1; font-size:16px; letter-spacing: 4px; cursor: pointer;">
+                            <i class="fa-solid fa-star eval-star" data-rating="1"></i><i class="fa-solid fa-star eval-star" data-rating="2"></i><i class="fa-solid fa-star eval-star" data-rating="3"></i><i class="fa-solid fa-star eval-star" data-rating="4"></i><i class="fa-solid fa-star eval-star" data-rating="5"></i>
+                        </div>
+                        <div class="eval-desc" style="font-size: 13px; color: #000; margin-top: 8px; display: none; line-height: 1.4;"></div>
                     </div>
                     <textarea style="width:100%; height:80px; border:1px solid #e2e8f0; border-radius:8px; padding:12px; margin-top:8px; outline:none; resize:none;"></textarea>
                     
@@ -584,33 +604,34 @@
                 <div style="color:#6b7280;font-size:12px;font-weight: 500;display:flex;gap:16px;margin-bottom:16px;">
                     <span>Academic note</span><span style="color:#FF8D37; font-weight: 700;">Other Teacher</span>
                 </div>
-                
-                <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
-                    <div style="font-size: 11px; font-weight: 600; color: #6b7280; margin-bottom: 4px;">Lesson: Star 1B-Lesson 7-Jobs</div>
-                    <div style="font-size: 11px; font-weight: 700; color: #111827; margin-bottom: 16px;">Lesson completed. Gia Huy studied well, did well on the assignments, remembered new vocabulary and grammar, and all skills were good. Keep up the good work!</div>
-                    <div style="margin-bottom: 12px;">
-                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Vocabulary</div>
-                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên có thể nhớ được các từ vựng cũ, áp dụng được vào các bài học mới.</div>
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Grammar</div>
-                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên nắm vững và vận dụng được các cấu trúc ngữ pháp đã học. Sử dụng chính xác trong các bài tập.</div>
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Listening Skills</div>
-                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên nghe hiểu được yêu cầu và câu hỏi của giáo viên. Học viên hiểu toàn bộ nội dung bài nghe và hoàn thành bài tập nghe chính xác.</div>
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Speaking Skills</div>
-                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên nói lưu loát, phát âm chuẩn, ngữ điệu tự nhiên. Học viên có thể trả lời giáo viên với câu đầy đủ cấu trúc ngữ pháp.</div>
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Reading Skills</div>
-                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên làm các bài tập tốt, vận dụng từ vựng và ngữ pháp vào các bài đọc, hoàn thành các bài tập chính xác.</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 11px; font-weight: 700; color: #111827;">Writing Skills</div>
-                        <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên viết tốt, viết đúng ngữ pháp và cách dùng từ, học viên có thể hoàn thành bài tập viết chính xác.</div>
+                <div style="padding-bottom: 20px;">
+                    <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+                        <div style="font-size: 11px; font-weight: 600; color: #6b7280; margin-bottom: 4px;">Lesson: Star 1B-Lesson 7-Jobs</div>
+                        <div style="font-size: 11px; font-weight: 700; color: #111827; margin-bottom: 16px;">Lesson completed. Gia Huy studied well, did well on the assignments, remembered new vocabulary and grammar, and all skills were good. Keep up the good work!</div>
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-size: 11px; font-weight: 700; color: #111827;">Vocabulary</div>
+                            <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên có thể nhớ được các từ vựng cũ, áp dụng được vào các bài học mới.</div>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-size: 11px; font-weight: 700; color: #111827;">Grammar</div>
+                            <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên nắm vững và vận dụng được các cấu trúc ngữ pháp đã học. Sử dụng chính xác trong các bài tập.</div>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-size: 11px; font-weight: 700; color: #111827;">Listening Skills</div>
+                            <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên nghe hiểu được yêu cầu và câu hỏi của giáo viên. Học viên hiểu toàn bộ nội dung bài nghe và hoàn thành bài tập nghe chính xác.</div>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-size: 11px; font-weight: 700; color: #111827;">Speaking Skills</div>
+                            <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên nói lưu loát, phát âm chuẩn, ngữ điệu tự nhiên. Học viên có thể trả lời giáo viên với câu đầy đủ cấu trúc ngữ pháp.</div>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-size: 11px; font-weight: 700; color: #111827;">Reading Skills</div>
+                            <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên làm các bài tập tốt, vận dụng từ vựng và ngữ pháp vào các bài đọc, hoàn thành các bài tập chính xác.</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 11px; font-weight: 700; color: #111827;">Writing Skills</div>
+                            <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Học viên viết tốt, viết đúng ngữ pháp và cách dùng từ, học viên có thể hoàn thành bài tập viết chính xác.</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2328,7 +2349,7 @@
     <!-- Cancel Class Modal -->
     <div id="cancel-class-modal" class="modal-overlay">
         <div class="modal-content"
-            style="width: 480px; text-align: center; padding: 20px; border-radius: 12px; border: none; align-self: center;">
+            style="height: 260px; width: 480px; text-align: center; padding: 20px; border-radius: 12px; border: none; align-self: center;">
             <h2 style="color: #fb923c; font-size: 26px; margin-bottom: 8px; font-weight: 700;">Cancel Class</h2>
             <p style="color: #0f172a; font-size: 16px; margin-bottom: 15px; line-height: 1.5;">If you cancel this class,
                 you will be fined for this cancellation as mentioned in the Policies section.<br>Do you still want to
@@ -2361,8 +2382,6 @@
             if (urlParams.get('new_eval') === 'true') {
                 document.getElementById('evaluations-count').innerText = '2';
                 document.getElementById('new-eval-row').style.display = 'flex';
-                // optionally open the modal automatically:
-                // document.getElementById('evaluation-modal').style.display='flex';
             }
         });
     </script>

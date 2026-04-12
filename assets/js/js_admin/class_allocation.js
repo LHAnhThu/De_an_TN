@@ -9,7 +9,7 @@ const classAllocationLogic = {
             date: 'Mon, 02/03/2026',
             time: '19:00 - 19:25',
             suggestedCount: 11,
-            suggestState: 'All Rejected', // red text
+            suggestState: 'All Rejected',
             status: 'Pending',
             teacher: '---'
         },
@@ -22,7 +22,7 @@ const classAllocationLogic = {
             date: 'Mon, 02/03/2026',
             time: '19:00 - 19:25',
             suggestedCount: 0,
-            suggestState: 'No Suitable Teacher', // gray text
+            suggestState: 'No Suitable Teacher', 
             status: 'Pending',
             teacher: '---'
         },

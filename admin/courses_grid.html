@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar Container (Injected by JS) -->
+        <!-- Sidebar Container -->
         <aside id="sidebar-container" class="sidebar"></aside>
 
         <!-- Main Content -->
@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- Active Filters -->
-                <div class="active-filters" id="activeFiltersBox" style="display: none;">
+                <div class="active-filters" id="activeFiltersBox">
                     <span style="color: grey; font-size: 14px;">Filtering by:</span>
                     <div id="filterPillsContainer" style="display: flex; gap: 8px;"></div>
                     <a href="javascript:void(0)" class="clear-filters" id="btnClearFilters">Clear All Filters</a>
@@ -66,9 +66,9 @@
                 <!-- Hardcoded Grid View Content -->
                 <div class="grid-view">
                     <!-- Course 1 -->
-                    <div class="course-card">
+                    <div class="course-card" data-title="toeic l&r: conquer 900+" data-lang="english" data-status="draft" data-level="advanced" data-age="18+" data-objective="certificate exam preparation">
                         <img src="../assets/img/courses_img/course_1.png" alt="TOEIC L&R: Conquer 900+" class="card-img">
-                        <div class="card-status draft" style="background: rgb(237, 237, 237, 0.7); color: #8C8C8C;">Draft</div>
+                        <div class="card-status draft">Draft</div>
                         
                         <div class="card-body">
                             <div class="card-tags"><span class="tag blue">ENGLISH</span><span class="tag lightorange">Advanced</span></div>
@@ -94,7 +94,7 @@
                     </div>
 
                     <!-- Course 2 -->
-                    <div class="course-card">
+                    <div class="course-card" data-title="ielts grammar & vocabulary" data-lang="english" data-status="active" data-level="beginner" data-age="12-17 years old" data-objective="certificate exam preparation">
                         <img src="../assets/img/courses_img/course_2.png" alt="IELTS Grammar & Vocabulary" class="card-img">
                         <div class="card-status active">Active</div>
                         
@@ -122,7 +122,7 @@
                     </div>
 
                     <!-- Course 3 -->
-                    <div class="course-card">
+                    <div class="course-card" data-title="ielts pronunciation & speaking samples" data-lang="english" data-status="active" data-level="advanced" data-age="18+" data-objective="certificate exam preparation">
                         <img src="../assets/img/courses_img/course_3.png" alt="IELTS Pronunciation & Speaking Samples" class="card-img">
                         <div class="card-status active">Active</div>
                         
@@ -150,7 +150,7 @@
                     </div>
 
                     <!-- Course 4 -->
-                    <div class="course-card">
+                    <div class="course-card" data-title="practical: pronunciation & communication" data-lang="english" data-status="active" data-level="intermediate" data-age="5 - 11 years old" data-objective="communication">
                         <img src="../assets/img/courses_img/course_4.png" alt="Practical: Pronunciation & Communication" class="card-img">
                         <div class="card-status active">Active</div>
                         
@@ -178,7 +178,7 @@
                     </div>
 
                     <!-- Course 5 -->
-                    <div class="course-card">
+                    <div class="course-card" data-title="hsk 1+2 - basic chinese" data-lang="chinese" data-status="active" data-level="beginner" data-age="12-17 years old" data-objective="certificate exam preparation">
                         <img src="../assets/img/courses_img/course_5.png" alt="HSK 1+2 - Basic Chinese" class="card-img">
                         <div class="card-status active">Active</div>
                         
@@ -206,7 +206,7 @@
                     </div>
 
                     <!-- Course 6 -->
-                    <div class="course-card">
+                    <div class="course-card" data-title="conquer hsk 3" data-lang="chinese" data-status="active" data-level="beginner" data-age="12-17 years old" data-objective="certificate exam preparation">
                         <img src="../assets/img/courses_img/course_6.png" alt="Conquer HSK 3" class="card-img">
                         <div class="card-status active">Active</div>
                         
@@ -319,8 +319,11 @@
                     <div class="modal-select-wrapper">
                         <select class="modal-select" id="modal-objective">
                             <option value="">All</option>
-                            <option value="Certificate Exam Preparation">Certificate Exam Preparation</option>
                             <option value="Communication">Communication</option>
+                            <option value="Certificate Exam Preparation">Certificate Exam Preparation</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Immigration">Immigration</option>
+                            <option value="Work">Work</option>
                         </select>
                     </div>
                 </div>
@@ -345,43 +348,6 @@
             showIcon: true
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.querySelector('.grid-view');
-            if(grid) {
-                const mockCourses = JSON.parse(sessionStorage.getItem('mockCourses') || '[]');
-                mockCourses.forEach(c => {
-                    let tagColor = c.lang === 'English' ? 'blue' : (c.lang === 'Chinese' ? 'orange' : 'gray');
-                    let html = `
-                    <div class="course-card">
-                        <img src="${c.img}" alt="${c.name}" class="card-img">
-                        <div class="card-status draft" style="background: rgb(237, 237, 237, 0.7); color: #8C8C8C;">${c.status}</div>
-                        
-                        <div class="card-body">
-                            <div class="card-tags"><span class="tag ${tagColor}">${c.lang.toUpperCase()}</span><span class="tag lightblue">Beginner</span></div>
-                            <h3 class="card-title">${c.name}</h3>
-                            
-                            <div class="card-meta">
-                                <p>Age: <strong>18+</strong></p>
-                                <p>Objective: <strong>Certificate Exam Preparation</strong></p>
-                            </div>
-
-                            <div class="card-stats">
-                                <div class="stat-item"><i class="fa-solid fa-table-list"></i> <span style="color: #4950FE; "><strong>0</strong></span> Levels</div>
-                                <div class="divider"></div> 
-                                <div class="stat-item"><i class="fa-solid fa-book-open"></i> <span style="color: #4950FE; "><strong>0</strong></span> Lessons</div>
-                            </div>
-
-                            <div class="card-footer">
-                                <span class="price">0 VND</span>
-                            </div>
-                        </div>
-                    </div>`;
-                    grid.insertAdjacentHTML('afterbegin', html);
-                });
-            }
-        });
-    </script>
-    <script src="../assets/js/courses-filter.js"></script>
+    <script src="../assets/js/js_admin/courses-filter.js"></script>
 </body>
 </html>

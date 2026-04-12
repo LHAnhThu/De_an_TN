@@ -89,7 +89,9 @@ const courseLogic = {
                 img: courseValidation.isImageUploaded
             };
             localStorage.setItem('currentDraftInfo', JSON.stringify(formInfo));
-            
+            localStorage.setItem('lessonDetailSource', 'add_course.html?tab=classes');
+            localStorage.setItem('currentCourseName', formInfo.title || 'New course');
+            localStorage.setItem('currentCourseCode', formInfo.code || 'NEW-COURSE-01');
             window.location.href = `lesson_detail.html?lessonId=${id}`;
         } else {
             this.renderOverviewTable();
@@ -116,75 +118,53 @@ const courseLogic = {
         });
     },
 
+    applyTemplate: function(id, data = {}) {
+        let tmpl = document.getElementById(id);
+        if(!tmpl) return '';
+        let html = tmpl.innerHTML;
+        for (let k in data) html = html.split(`{{${k}}}`).join(data[k]);
+        return html;
+    },
+
     renderTree: function() {
         const container = document.getElementById('structure-tree-container');
         if(!container) return;
         container.innerHTML = '';
         
         if (this.data.length === 0) {
-            container.innerHTML = '<div style="color:#94a3b8; font-size:12px; font-style:italic; padding: 16px; text-align:center;">No levels added yet.</div>';
+            container.innerHTML = this.applyTemplate('tpl-tree-empty');
             return;
         }
 
+        let out = '';
         this.data.forEach(level => {
-            let levelHtml = `<div class="tree-node">`;
+            out += `<div class="tree-node">`;
             if (this.editingLevelId === level.id) {
-                levelHtml += `
-                    <div class="tree-row editing-row">
-                        <i class="fa-solid fa-layer-group" style="color:#475569;"></i>
-                        <input type="text" class="tree-edit-input" id="edit-level-input-${level.id}" value="" placeholder="Enter level name..." style="width: 170px; margin-left: 4px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 6px; padding: 4px 10px; outline: none; background: #f8fafc; color: #0f172a; font-weight: 500;" autofocus onkeydown="courseLogic.handleEditLevelKey(event, '${level.id}')" onblur="courseLogic.handleEditLevelBlur('${level.id}')" />
-                        <button class="tree-btn-add" onclick="courseLogic.addNode('${level.id}', 'chapter'); event.stopPropagation();"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                `;
+                out += this.applyTemplate('tpl-tree-level-editing', {id: level.id});
             } else {
-                levelHtml += `
-                    <div class="tree-row ${this.activeNodeId === level.id ? 'selected' : ''}" onclick="courseLogic.selectNode('${level.id}', 'level', event)">
-                        <i class="fa-solid fa-layer-group" style="color:#475569;"></i> ${level.name}
-                        <button class="tree-btn-add" onclick="courseLogic.addNode('${level.id}', 'chapter'); event.stopPropagation();"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                `;
+                out += this.applyTemplate('tpl-tree-level', {id: level.id, name: level.name, activeClass: this.activeNodeId === level.id ? 'selected' : ''});
             }
-            levelHtml += `<div class="tree-children">`;
+            out += `<div class="tree-children">`;
             level.chapters.forEach(chapter => {
-                levelHtml += `<div class="tree-node">`;
+                out += `<div class="tree-node">`;
                 if (this.editingChapterId === chapter.id) {
-                    levelHtml += `
-                        <div class="tree-row editing-row">
-                            <i class="fa-regular fa-folder" style="color:#94a3b8;"></i>
-                            <input type="text" class="tree-edit-input" id="edit-chapter-input-${chapter.id}" value="" placeholder="Enter chapter name..." style="width: 140px; margin-left: 4px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 6px; padding: 4px 10px; outline: none; background: #f8fafc; color: #0f172a; font-weight: 500;" autofocus onkeydown="courseLogic.handleEditChapterKey(event, '${level.id}', '${chapter.id}')" onblur="courseLogic.handleEditChapterBlur('${level.id}', '${chapter.id}')" />
-                            <button class="tree-btn-add" onclick="courseLogic.addNode('${chapter.id}', 'lesson'); event.stopPropagation();"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    `;
+                    out += this.applyTemplate('tpl-tree-chapter-editing', {id: chapter.id, levelId: level.id});
                 } else {
-                    levelHtml += `
-                        <div class="tree-row ${this.activeNodeId === chapter.id ? 'selected' : ''}" onclick="courseLogic.selectNode('${chapter.id}', 'chapter', event)">
-                            <i class="fa-regular fa-folder" style="color:#94a3b8;"></i> ${chapter.name}
-                            <button class="tree-btn-add" onclick="courseLogic.addNode('${chapter.id}', 'lesson'); event.stopPropagation();"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    `;
+                    out += this.applyTemplate('tpl-tree-chapter', {id: chapter.id, name: chapter.name, activeClass: this.activeNodeId === chapter.id ? 'selected' : ''});
                 }
-                levelHtml += `<div class="tree-children">`;
+                out += `<div class="tree-children">`;
                 chapter.lessons.forEach(lesson => {
                     if (this.editingLessonId === lesson.id) {
-                        levelHtml += `
-                            <div class="tree-row editing-row">
-                                <i class="fa-regular fa-file-lines" style="color:#cbd5e1;"></i>
-                                <input type="text" class="tree-edit-input" id="edit-lesson-input-${lesson.id}" value="" placeholder="Enter lesson name..." style="width: 140px; margin-left: 4px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 6px; padding: 4px 10px; outline: none; background: #f8fafc; color: #0f172a; font-weight: 500;" autofocus onkeydown="courseLogic.handleEditLessonKey(event, '${chapter.id}', '${lesson.id}')" onblur="courseLogic.handleEditLessonBlur('${chapter.id}', '${lesson.id}')" />
-                            </div>
-                        `;
+                        out += this.applyTemplate('tpl-tree-lesson-editing', {id: lesson.id, chapterId: chapter.id});
                     } else {
-                        levelHtml += `
-                            <div class="tree-row is-lesson ${this.activeNodeId === lesson.id ? 'selected' : ''}" onclick="courseLogic.selectNode('${lesson.id}', 'lesson', event)">
-                                <i class="fa-regular fa-file-lines" style="color:#cbd5e1;"></i> ${lesson.name}
-                            </div>
-                        `;
+                        out += this.applyTemplate('tpl-tree-lesson', {id: lesson.id, name: lesson.name, activeClass: this.activeNodeId === lesson.id ? 'selected' : ''});
                     }
                 });
-                levelHtml += `</div></div>`;
+                out += `</div></div>`;
             });
-            levelHtml += `</div></div>`;
-            container.innerHTML += levelHtml;
+            out += `</div></div>`;
         });
+        container.innerHTML = out;
         // ...existing code...
     },
 
@@ -241,101 +221,89 @@ const courseLogic = {
 
         let isJunior = activeTab.includes('Junior');
 
-        let html = `
-            <table class="overview-table" style="table-layout: fixed; width: 100%;">
-                <thead style="position: sticky; top: 0; background: white; z-index: 1;">
-                    <tr>
-                        <th style="width: 40%;">LESSON</th>
-                        <th style="width: 20%;">SLIDES</th>
-                        <th style="width: 20%;">LESSON PLAN</th>
-                        <th style="width: 20%;">ANSWER KEY</th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
+        let html = '';
 
         function capitalizeWords(str) {
             return str.replace(/\b\w/g, c => c.toUpperCase());
         }
         if (isEmpty) {
-            html += `<tr><td colspan="4" style="text-align:center; padding:60px; color:#94a3b8;"><i class="fa-solid fa-folder-open dropzone-icon"></i><div>No Course Structure Added. Click + on the left panel.</div></td></tr>`;
+            html += this.applyTemplate('tpl-overview-empty');
         } else {
-            this.data.forEach(level => {
-                html += `<tr class="overview-group-row"><td colspan="4" style="text-align: left; cursor: pointer;" onclick="courseLogic.toggleExpand('${level.id}')"><i class="fa-solid fa-caret-${level.isExpanded ? 'down' : 'right'}" style="color:#4e60ff;"></i> ${level.name.toUpperCase()}</td></tr>`;
+            this.data.forEach((level, lIndex) => {
+                let lStr = "L" + (lIndex + 1);
+                html += this.applyTemplate('tpl-overview-level', {
+                    id: level.id, 
+                    caret: level.isExpanded ? 'down' : 'right', 
+                    name: level.name.toUpperCase()
+                });
                 
                 if (level.isExpanded) {
-                    level.chapters.forEach(chap => {
-                        html += `<tr style="background:white;">
-                                    <td colspan="4" style="padding-left:40px; font-weight:700; font-size:12px; color:#0f172a; border-bottom:1px solid #e2e8f0; text-align: left; position: relative;${chap.lessons.length > 0 ? ' cursor: pointer;' : ''}" ${chap.lessons.length > 0 ? `onclick=\"courseLogic.toggleChapterExpand('${chap.id}')\"` : ''}>
-                                       <i class="fa-regular fa-folder" style="color:#94a3b8; font-size:14px; margin-right:4px;"></i> ${capitalizeWords(chap.name)}
-                                       ${chap.lessons.length > 0 ? `<i class=\"fa-solid fa-caret-${chap.isExpanded ? 'down' : 'right'}\" style=\"position: absolute; right: 10px; color:#4e60ff;\"></i>` : ''}
-                                    </td>
-                                 </tr>`;
+                    level.chapters.forEach((chap, cIndex) => {
+                        let cStr = "C" + (cIndex + 1);
+                        html += this.applyTemplate('tpl-overview-chapter', {
+                            id: chap.id,
+                            name: capitalizeWords(chap.name),
+                            cursorStyleAttr: chap.lessons.length > 0 ? 'style="cursor: pointer;"' : "",
+                            toggleAction: chap.lessons.length > 0 ? `courseLogic.toggleChapterExpand('${chap.id}')` : "",
+                            caretHtml: chap.lessons.length > 0 ? `<i class="fa-solid fa-caret-${chap.isExpanded ? 'down' : 'right'}" style="position: absolute; right: 10px; color:#0f172a;"></i>` : ''
+                        });
                         
                         if (chap.isExpanded) {
-                            chap.lessons.filter(les => matchesFilter(les, activeTab)).forEach(les => {
-                            let m = les.materials[activeTab];
+                            chap.lessons.forEach((les, lesIndex) => {
+                                if (!matchesFilter(les, activeTab)) return;
 
-                            if (isJunior) {
-                                // Render Lesson Header Row
-                                html += `
-                                <tr style="background:#f8fafc; border-bottom:1px solid #e2e8f0;">
-                                    <td colspan="4" style="padding-left: 60px; cursor:pointer; text-align: left;" onclick="courseLogic.selectNode('${les.id}', 'lesson', event)">
-                                        <div style="font-weight:600; font-size:12px;"><i class="fa-regular fa-file-lines" style="color:#94a3b8; margin-right:4px;"></i> ${capitalizeWords(les.name)}</div>
-                                    </td>
-                                </tr>`;
-                                
-                                // Render Sessions
-                                if(m.sessions && m.sessions.length > 0) {
-                                    m.sessions.forEach((s, sidx) => {
-                                        let iconS = s.slides ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
-                                        let iconP = s.plan ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
-                                        let iconK = s.key ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
-                                        
-                                        html += `
-                                        <tr style="background:white; border-bottom:1px solid #e2e8f0;">
-                                            <td style="padding-left: 80px; cursor:pointer; text-align: left;" onclick="courseLogic.selectNode('${les.id}', 'lesson', event)">
-                                                <div style="font-weight:600; font-size:12px; margin-bottom: 2px;">${s.name}</div>
-                                                <div style="color:#94a3b8; font-size:10px; font-weight: normal;">ID: TOEIC-LR900-L1-C1-${les.id.substring(0,2)}-${s.id.substring(0,2)} (${sidx+1})</div>
-                                            </td>
-                                            <td>${iconS}</td>
-                                            <td>${iconP}</td>
-                                            <td>${iconK}</td>
-                                        </tr>`;
+                                let lesStr = (lesIndex + 1).toString().padStart(2, '0');
+                                let lessonDisplayId = `TOEIC-LR900-${lStr}-${cStr}-${lesStr}`;
+
+                                let m = les.materials[activeTab];
+
+                                if (isJunior) {
+                                    html += this.applyTemplate('tpl-overview-lesson-junior-head', {
+                                        id: les.id,
+                                        name: capitalizeWords(les.name)
                                     });
+                                    
+                                    if(m.sessions && m.sessions.length > 0) {
+                                        m.sessions.forEach((s, sidx) => {
+                                            let iconS = s.slides ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
+                                            let iconP = s.plan ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
+                                            let iconK = s.key ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
+                                            
+                                            let sessionDisplayId = `${lessonDisplayId} (${sidx + 1})`;
+                                            html += this.applyTemplate('tpl-overview-lesson-junior-session', {
+                                                id: les.id,
+                                                sName: s.name,
+                                                displayId: sessionDisplayId,
+                                                iconS: iconS, iconP: iconP, iconK: iconK
+                                            });
+                                        });
+                                    } else {
+                                        html += this.applyTemplate('tpl-overview-lesson-junior-empty');
+                                    }
+
                                 } else {
-                                    html += `<tr><td colspan="4" style="text-align:center; color:#94a3b8; font-size:11px; padding:12px;">No Sessions Added</td></tr>`;
+                                    let iconS = m.slides ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
+                                    let iconP = m.plan ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
+                                    let iconK = m.key ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
+                                    
+                                    html += this.applyTemplate('tpl-overview-lesson-standard', {
+                                        id: les.id,
+                                        name: capitalizeWords(les.name),
+                                        displayId: lessonDisplayId,
+                                        iconS: iconS, iconP: iconP, iconK: iconK
+                                    });
                                 }
-
-                            } else {
-                                let isSR = m.slides;
-                                let isPR = m.plan;
-                                let isKR = m.key;
-
-                                let iconS = isSR ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
-                                let iconP = isPR ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
-                                let iconK = isKR ? `<i class="fa-solid fa-check-circle icon-check"></i>` : `<i class="fa-regular fa-circle-xmark icon-cross"></i>`;
-                                
-                                html += `
-                                <tr style="background:white; border-bottom:1px solid #e2e8f0;">
-                                    <td style="padding-left: 60px; cursor:pointer; text-align: left;" onclick="courseLogic.selectNode('${les.id}', 'lesson', event)">
-                                        <div style="font-weight:600; font-size:12px; margin-bottom: 2px;"><i class="fa-regular fa-file-lines" style="color:#94a3b8; margin-right:4px;"></i> ${capitalizeWords(les.name)}</div>
-                                        <div style="color:#94a3b8; font-size:10px; font-weight: normal;">ID: TOEIC-LR900-${les.id.substring(0,4)}</div>
-                                    </td>
-                                    <td>${iconS}</td>
-                                    <td>${iconP}</td>
-                                    <td>${iconK}</td>
-                                </tr>`;
-                            }
-                        });
+                            });
                         }
                     });
                 }
             });
         }
 
-        html += `</tbody></table>`;
-        tableContainer.innerHTML = html;
+        if(tableContainer) {
+            let tbody = tableContainer.querySelector('#overview-table-body');
+            if(tbody) tbody.innerHTML = html;
+        }
     },
 
     validatePublish: function() {

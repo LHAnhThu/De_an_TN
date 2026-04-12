@@ -1,5 +1,4 @@
 const studentDetailLogic = {
-    // Mock student data mirroring students-list.js for static demonstration
     mockStudents: [
         {
             id: 'STU001',
@@ -46,18 +45,15 @@ const studentDetailLogic = {
         const studentId = urlParams.get('id');
         
         let found = this.mockStudents.find(s => s.id === studentId);
-        
-        // If no ID passed or not found, default to a locked student for demo purposes
+    
         if (!found) {
             found = this.mockStudents.find(s => s.status === 'locked');
         }
 
-        // Format dates if needed to match input type requirements
         let formattedDob = found.dob;
         if (formattedDob && formattedDob.indexOf('-') !== -1) {
             const parts = formattedDob.split('-');
             if (parts[0].length === 4) {
-                // yyyy-mm-dd to dd/mm/yyyy
                 formattedDob = `${parts[2]}/${parts[1]}/${parts[0]}`;
             }
         }
@@ -328,7 +324,7 @@ const studentDetailLogic = {
             // Split schedule for display
             let schedHTML = course.schedule;
             if (schedHTML.includes('(')) {
-                schedHTML = schedHTML.replace('(', '<br><span style="color:#94a3b8; font-size:13px;">').replace(')', '</span>');
+                schedHTML = schedHTML.replace('(', '<br><span style="color:#94a3b8; font-size:13px; font-weight:400;">(').replace(')', ')</span>');
             }
 
             // Split type for display
@@ -392,7 +388,13 @@ const studentDetailLogic = {
         
         document.getElementById('modal-class-type').textContent = course.type.replace('Juinior ', 'Juinior '); // reset br
         document.getElementById('modal-reg-date').textContent = course.regDate;
-        document.getElementById('modal-schedule').textContent = course.schedule;
+        
+        // Format schedule for modal to keep time part normal weight
+        let modalSchedHTML = course.schedule;
+        if (modalSchedHTML.includes('(')) {
+            modalSchedHTML = modalSchedHTML.replace('(', '<span style="font-weight: 400;">(').replace(')', ')</span>');
+        }
+        document.getElementById('modal-schedule').innerHTML = modalSchedHTML;
         
         const statusEl = document.getElementById('modal-status');
         statusEl.textContent = course.status;
@@ -421,11 +423,17 @@ const studentDetailLogic = {
 
         this.renderModalClasses();
         
-        document.getElementById('course-detail-modal').style.display = 'flex';
+        const modal = document.getElementById('course-detail-modal');
+        if (modal) {
+            modal.classList.add('active');
+        }
     },
 
     closeCourseModal: function() {
-        document.getElementById('course-detail-modal').style.display = 'none';
+        const modal = document.getElementById('course-detail-modal');
+        if (modal) {
+            modal.classList.remove('active');
+        }
     },
 
     renderModalClasses: function() {
@@ -528,15 +536,15 @@ const studentDetailLogic = {
                     </div>
                     
                     <!-- Row 3 -->
-                    <div class="info-cell no-border">
+                    <div class="info-cell course-price">
                         <div class="course-price-label">
                             <i class="fa-solid fa-circle-info"></i>
                             <span>Course Price:</span>
                         </div>
                         <span class="course-price-val">485.000đ</span>
                     </div>
-                    <div class="info-cell no-border"></div>
-                    <div class="info-cell no-border"></div>
+                    <div class="info-cell course-price"></div>
+                    <div class="info-cell course-price"></div>
                 </div>
             `;
             

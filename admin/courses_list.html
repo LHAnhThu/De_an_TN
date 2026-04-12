@@ -63,7 +63,7 @@
                     <a href="javascript:void(0)" class="clear-filters" id="btnClearFilters">Clear All Filters</a>
                 </div>
 
-                <!-- Hardcoded List View Content -->
+                <!-- List View Content -->
                 <div class="list-view">
                     <div class="table-wrapper">
                         <table class="custom-table">
@@ -81,7 +81,7 @@
                             </thead>
                             <tbody>
                                 <!-- Course 1 -->
-                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=1'">
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=1'" data-title="toeic l&r: conquer 900+" data-lang="english" data-status="draft" data-level="advanced" data-age="18+" data-objective="certificate exam preparation">
                                     <td class="td-image">
                                         <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_1.png" alt="TOEIC L&R: Conquer 900+">
@@ -104,7 +104,7 @@
                                 </tr>
 
                                 <!-- Course 2 -->
-                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=2'">
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=2'" data-title="ielts grammar & vocabulary" data-lang="english" data-status="active" data-level="beginner" data-age="12-17 years old" data-objective="certificate exam preparation">
                                     <td class="td-image">
                                         <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_2.png" alt="IELTS Grammar & Vocabulary">
@@ -127,7 +127,7 @@
                                 </tr>
 
                                 <!-- Course 3 -->
-                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=3'">
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=3'" data-title="ielts pronunciation & speaking samples" data-lang="english" data-status="active" data-level="advanced" data-age="18+" data-objective="certificate exam preparation">
                                     <td class="td-image">
                                         <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_3.png" alt="IELTS Pronunciation & Speaking Samples">
@@ -150,7 +150,7 @@
                                 </tr>
 
                                 <!-- Course 4 -->
-                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=4'">
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=4'" data-title="practical: pronunciation & communication" data-lang="english" data-status="active" data-level="intermediate" data-age="5 - 11 years old" data-objective="communication">
                                     <td class="td-image">
                                         <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_4.png" alt="Practical: Pronunciation & Communication">
@@ -173,7 +173,7 @@
                                 </tr>
 
                                 <!-- Course 5 -->
-                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=5'">
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=5'" data-title="hsk 1+2 - basic chinese" data-lang="chinese" data-status="active" data-level="beginner" data-age="12-17 years old" data-objective="certificate exam preparation">
                                     <td class="td-image">
                                         <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_5.png" alt="HSK 1+2 - Basic Chinese">
@@ -196,7 +196,7 @@
                                 </tr>
 
                                 <!-- Course 6 -->
-                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=6'">
+                                <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=6'" data-title="conquer hsk 3" data-lang="chinese" data-status="active" data-level="beginner" data-age="12-17 years old" data-objective="certificate exam preparation">
                                     <td class="td-image">
                                         <div class="discount-badge">-12%</div>
                                         <img src="../assets/img/courses_img/course_6.png" alt="Conquer HSK 3">
@@ -307,8 +307,11 @@
                     <div class="modal-select-wrapper">
                         <select class="modal-select" id="modal-objective">
                             <option value="">All</option>
-                            <option value="Certificate Exam Preparation">Certificate Exam Preparation</option>
                             <option value="Communication">Communication</option>
+                            <option value="Certificate Exam Preparation">Certificate Exam Preparation</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Immigration">Immigration</option>
+                            <option value="Work">Work</option>
                         </select>
                     </div>
                 </div>
@@ -334,39 +337,6 @@
             showIcon: true
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tbody = document.querySelector('.custom-table tbody');
-            if(tbody) {
-                const mockCourses = JSON.parse(sessionStorage.getItem('mockCourses') || '[]');
-                mockCourses.forEach((c, index) => {
-                    let tagColor = c.lang === 'English' ? 'blue' : (c.lang === 'Chinese' ? 'orange' : 'gray');
-                    let html = `
-                    <!-- Injected New Course -->
-                    <tr style="cursor: pointer;" onclick="window.location.href='course_detail.html?id=${index}'">
-                        <td class="td-image">
-                            <img src="${c.img}" alt="${c.name}">
-                        </td>
-                        <td>
-                            <div class="td-course">${c.name}</div>
-                            <div class="td-course-tags"><span class="tag ${tagColor}">${c.lang.toUpperCase()}</span><span class="tag lightblue">Beginner</span></div>
-                        </td>
-                        <td class="td-levels">0</td>
-                        <td class="td-lessons">0</td>
-                        <td class="td-age">18+</td>
-                        <td class="td-objectives">Certificate Exam Preparation</td>
-                        <td class="price-container">
-                            <span class="price">0</span>
-                        </td>
-                        <td class="td-status">
-                            <span class="status-pill draft" style="background: #f1f5f9; color: #94a3b8;">${c.status}</span>
-                        </td>
-                    </tr>`;
-                    tbody.insertAdjacentHTML('afterbegin', html);
-                });
-            }
-        });
-    </script>
-    <script src="../assets/js/courses-filter.js"></script>
+    <script src="../assets/js/js_admin/courses-filter.js"></script>
 </body>
 </html>

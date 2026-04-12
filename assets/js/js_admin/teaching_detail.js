@@ -35,9 +35,9 @@ const teachingDetailLogic = {
     },
 
     renderClassInfo: function(status) {
-        document.getElementById('det-title').innerText = this.classData.title;
+        document.getElementById('det-title').innerText = this.classData.title;  
         document.getElementById('det-id').innerText = 'ID: ' + this.classData.id;
-        
+
         // Setup Badge
         const badgeEl = document.getElementById('det-badge');
         badgeEl.style.fontSize = '12px';
@@ -59,7 +59,7 @@ const teachingDetailLogic = {
             badgeEl.innerText = 'In progress';
             badgeEl.className = 'tm-badge inprogress';
         }
-        
+
         // Join Button
         const joinBtn = document.getElementById('det-join-btn');
         if (status === 'Completed' || status === 'Canceled') {
@@ -70,19 +70,19 @@ const teachingDetailLogic = {
 
         // Info Block
         document.getElementById('c-courseName').innerText = this.classData.courseName;
-        document.getElementById('c-level').innerText = this.classData.level;
+        document.getElementById('c-level').innerText = this.classData.level;    
         document.getElementById('c-chapter').innerText = this.classData.chapter;
-        document.getElementById('c-lesson').innerText = this.classData.lesson;
-        
-        document.getElementById('c-date').innerText = this.classData.date;
-        document.getElementById('c-time').innerText = this.classData.time;
+        document.getElementById('c-lesson').innerText = this.classData.lesson;  
+
+        document.getElementById('c-date').innerText = this.classData.date;      
+        document.getElementById('c-time').innerText = this.classData.time;      
     },
 
     renderMaterials: function() {
         const matBox = document.getElementById('materials-list');
         if(!matBox) return;
         matBox.innerHTML = '';
-        
+
         this.classData.materials.forEach(m => {
             matBox.innerHTML += `
                 <div class="material-item">
@@ -91,7 +91,7 @@ const teachingDetailLogic = {
                         <div class="material-name">${m.name}</div>
                         <div class="material-sub">${m.size} &bull; ${m.updated}</div>
                     </div>
-                    <i class="fa-solid fa-download material-download"></i>
+                    <i class="fa-solid fa-download material-download"></i>      
                 </div>
             `;
         });

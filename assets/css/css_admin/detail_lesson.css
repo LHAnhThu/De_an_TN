@@ -33,7 +33,7 @@
 .lesson-id {
     font-size: 13px;
     color: #64748b;
-    margin-bottom: 24px;
+    margin-bottom: 10px;
 }
 
 /* Outline button red */
@@ -47,13 +47,13 @@
     display: flex;
     gap: 8px;
     align-items: center;
+    border: 1px solid #FFD1D1;
 }
 
 /* Class Type Tabs inline */
 .class-tabs {
     display: flex;
     border-bottom: 1px solid #e2e8f0;
-    margin-bottom: 24px;
 }
 
 .ctab-btn {
@@ -65,8 +65,6 @@
     color: #64748b;
     border-bottom: 2px solid transparent;
     cursor: pointer;
-    transition: 0.2s;
-    font-family: inherit;
 }
 
 .ctab-btn.active {
@@ -75,7 +73,6 @@
     font-weight: 600;
 }
 
-/* Upload Modules for Lesson (Standard) */
 .upload-module {
     border: 1px solid #e2e8f0;
     border-radius: 8px;
@@ -86,11 +83,11 @@
 }
 
 .upload-header {
-    padding: 12px 20px;
+    padding: 12px 20px 0px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #ededed;
+    background: #F5F5F5;
 }
 
 .upload-header-left {
@@ -118,7 +115,7 @@
 
 .upload-body {
     padding: 20px;
-    background: #ededed;
+    background: #F5F5F5;
 }
 
 .upload-dropzone {
@@ -196,7 +193,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 16px;
-    background: #ededed;
+    background: #F5F5F5;
     font-weight: 600;
     font-size: 14px;
     color: #0f172a;
@@ -211,7 +208,7 @@
 }
 
 .session-cell {
-    background: #ededed;
+    background: #F5F5F5;
     border: 1px solid #D9D9D9;
     border-radius: 10px;
     overflow: hidden;
@@ -231,7 +228,6 @@
     cursor: pointer;
     font-size: 13px;
     font-weight: 600;
-    transition: 0.2s;
 }
 
 .session-btn-upload:hover {
@@ -250,7 +246,6 @@
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
-    transition: 0.2s;
 }
 
 .btn-add-session:hover {
@@ -269,4 +264,42 @@
     justify-content: flex-end;
     gap: 16px;
     z-index: 10;
+}
+.upload-header-left i.fa-desktop {
+    color: #E3EFFF;
+    background-color: #4950FE;
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-header-left i.fa-book-open {
+    color: #1BAB48;
+    background-color: rgba(27, 171, 72, 0.2);
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-header-left i.fa-key {
+    color: #FF8D37;
+    background-color: rgba(255, 141, 55, 0.2);
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }

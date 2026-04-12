@@ -61,47 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
         let visibleCount = 0;
 
         cards.forEach(card => {
-            // Extract text per card
-            let title = '', langTag = '', statusText = '', levelTag = '', ageText = '', objText = '';
-
-            if (isGrid) {
-                title = card.querySelector('.card-title')?.innerText.toLowerCase() || '';
-                langTag = card.querySelector('.tag.blue, .tag.orange:not(.lightorange)')?.innerText || '';
-                statusText = card.querySelector('.card-status')?.innerText.toLowerCase() || '';
-                levelTag = card.querySelector('.tag.lightorange, .tag.lightblue, .tag.green')?.innerText || '';
-                
-                const metaTexts = Array.from(card.querySelectorAll('.card-meta p'));
-                metaTexts.forEach(p => {
-                    const t = p.innerText;
-                    if(t.includes('Age:')) ageText = t.replace('Age:', '').trim();
-                    if(t.includes('Objective:')) objText = t.replace('Objective:', '').trim();
-                });
-            } else {
-                title = card.querySelector('.td-course')?.innerText.toLowerCase() || '';
-                
-                // For list, language tags can be blue or orange (but not lightorange)
-                let lNode = card.querySelector('.td-course-tags .tag.blue') || 
-                            Array.from(card.querySelectorAll('.td-course-tags .tag.orange')).find(n => !n.classList.contains('lightorange'));
-                langTag = lNode ? lNode.innerText : '';
-
-                statusText = card.querySelector('.td-status .status-pill')?.innerText.toLowerCase() || '';
-                
-                let lvNode = card.querySelector('.td-course-tags .tag.lightorange, .td-course-tags .tag.lightblue, .td-course-tags .tag.green');
-                levelTag = lvNode ? lvNode.innerText : '';
-
-                ageText = card.querySelector('.td-age')?.innerText.trim() || '';
-                objText = card.querySelector('.td-objectives')?.innerText.trim() || '';
-            }
+            // Extract data directly from HTML dataset
+            let title = card.dataset.title ? card.dataset.title.toLowerCase() : '';
+            let langTag = card.dataset.lang ? card.dataset.lang.toLowerCase() : '';
+            let statusText = card.dataset.status ? card.dataset.status.toLowerCase() : '';
+            let levelTag = card.dataset.level ? card.dataset.level.toLowerCase() : '';
+            let ageText = card.dataset.age ? card.dataset.age.toLowerCase() : '';
+            let objText = card.dataset.objective ? card.dataset.objective.toLowerCase() : '';
 
             // Check Basic safely ignoring case
             let matchSearch = title.includes(searchTerm);
-            let matchLang = langVal === '' || langTag.trim().toLowerCase() === langVal.trim().toLowerCase();
-            let matchStatus = statusVal === '' || statusText.trim().toLowerCase() === statusVal.trim().toLowerCase();
+            let matchLang = langVal === '' || langTag === langVal.trim().toLowerCase();
+            let matchStatus = statusVal === '' || statusText === statusVal.trim().toLowerCase();
 
             // Check Advanced safely ignoring case
-            let matchLevel = advancedFilters.levels.length === 0 || advancedFilters.levels.some(v => v.trim().toLowerCase() === levelTag.trim().toLowerCase());
-            let matchAge = advancedFilters.ages.length === 0 || advancedFilters.ages.some(v => v.trim().toLowerCase() === ageText.trim().toLowerCase());
-            let matchObj = advancedFilters.objective === '' || objText.trim().toLowerCase() === advancedFilters.objective.trim().toLowerCase();
+            let matchLevel = advancedFilters.levels.length === 0 || advancedFilters.levels.some(v => v.trim().toLowerCase() === levelTag);
+            let matchAge = advancedFilters.ages.length === 0 || advancedFilters.ages.some(v => v.trim().toLowerCase() === ageText);
+            let matchObj = advancedFilters.objective === '' || objText === advancedFilters.objective.trim().toLowerCase();
 
             if (matchSearch && matchLang && matchStatus && matchLevel && matchAge && matchObj) {
                 if (visibleCount < 6) {

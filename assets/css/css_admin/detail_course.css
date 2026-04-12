@@ -1,3 +1,478 @@
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-outline-primary {
+    border: 1px solid var(--primary-light);
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.btn-outline {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    color: white;
+    text-decoration: none;
+}
+
+.content-body-split {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    align-items: flex-start;
+}
+
+/* Course Structure */
+.structure-pane {
+    flex: 0 260px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.structure-header {
+    padding: 16px 16px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.structure-body {
+    padding: 16px;
+}
+
+/* Tree Styles */
+.tree-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    color: #0f172a;
+    gap: 8px;
+    text-transform: uppercase;
+}
+
+.tree-row:hover {
+    background: #f1f5f9;
+}
+
+.tree-row.selected {
+    background: #ffedd5;    
+}
+
+/* Orange bg for selection */
+.tree-row.is-lesson {
+    font-weight: 500;
+    font-size: 12px;
+    color: #475569;
+    text-transform: none;
+}
+
+.tree-btn-add {
+    background: none;
+    border: none;
+    color: #4e60ff;
+    cursor: pointer;
+    margin-left: auto;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.tree-btn-add:hover {
+    background: #e0e7ff;
+}
+
+.tree-children {
+    border-left: 1px solid #e2e8f0;
+    margin-left: 17px;
+    margin-top: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+/* Course Detail */
+.details-pane {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.page-title-bar h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.tabs-container {
+    display: flex;
+}
+
+.tab-btn {
+    background: #D9D9D9;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #8C8C8C;
+    cursor: pointer;
+    border-radius: 50px 5px 0 0;
+    font-family: inherit;
+    position: relative;
+}
+
+.tab-btn.active {
+    background: #1B30AB;
+    color: white;
+}
+
+.badge-error {
+    background: #ef4444;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-weight: 700;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Information Form */
+.form-section {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.form-section-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    font-weight: 700;
+    font-size: 16px;
+    color: #0f172a;
+}
+
+.form-section-body {
+    padding: 24px;
+}
+
+.form-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: #ef4444;
+    margin-left: 6px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #93c5fd;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #1e293b;
+    outline: none;
+    background: #fbfeff;
+}
+
+.form-control:focus {
+    border-color: #4e60ff;
+}
+
+.form-control.disabled {
+    background: #dbeafe;
+    color: #64748b;
+    border-color: #93c5fd;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.dropzone {
+    border: 1px dashed #4e60ff;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background: #f8fafc;
+}
+
+.dropzone:hover {
+    background: #f1f5f9;
+}
+
+.dropzone-icon {
+    font-size: 40px;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    display: flex;
+}
+
+.dropzone-text {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.dropzone-image {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.dropzone-image img {
+    width: auto;
+    height: 90px;
+    max-width: 200px;
+    object-fit: fill;
+    border-radius: 8px;
+}
+/*chi tiết*/
+.dropzone-remove { 
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
+    background: #817E7E;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.delete-image-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    background: #817E7E;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-image-btn:hover {
+    background: #ef4444;
+}
+
+/* Price Table */
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-table th {
+    background: #f1f5f9;
+    text-align: left;
+    padding: 12px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.price-table td {
+    padding: 12px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 14px;
+    color: #1e293b;
+}
+
+.price-table .total-val {
+    font-weight: 700;
+    color: #ef4444;
+}
+
+.section-footer {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* Classes Tab */
+.details-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.details-card-header {
+    position: relative;
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.details-title h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* Class Type Tabs inline */
+.class-tabs {
+    display: flex;
+    padding: 0 24px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.ctab-btn {
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: inherit;
+}
+
+.ctab-btn.active {
+    color: #4e60ff;
+    border-bottom-color: #4e60ff;
+}
+
+/* Outline button red */
+.overview-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.overview-table th {
+    background: white;
+    text-align: center;
+    padding: 12px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    border-bottom: 1px solid #e2e8f0;
+    text-transform: uppercase;
+}
+
+.overview-table th:first-child {
+    text-align: left;
+    padding-left: 24px;
+}
+
+.overview-table td {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.overview-group-row {
+    background: #E3EFFF;
+}
+
+.overview-group-row td {
+    color: #4e60ff;
+    font-size: 12px;
+    font-weight: 700;
+    border-bottom: none;
+    cursor: pointer;
+}
+
+.icon-cross {
+    color: #ef4444;
+    font-size: 16px;
+}
+
+.icon-check {
+    color: #10b981;
+    font-size: 16px;
+}
+
 .btn_save {
     background-color: transparent;
     color: #4950FE;
@@ -13,9 +488,3 @@
     font-size: 16px;
     padding: 5px;
 }
-
- .btn-outline-danger {
-     color: #FF0000;
-     background-color: #FFD1D1;
-     font-weight: 600;
- }

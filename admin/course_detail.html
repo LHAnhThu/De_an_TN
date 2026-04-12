@@ -1,30 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Details</title>
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/css_admin/course_management.css">
-    <link rel="stylesheet" href="../assets/css/css_admin/add_course.css">
     <link rel="stylesheet" href="../assets/css/css_admin/detail_course.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
     <div class="app-container">
         <!-- Sidebar Container (App Global) -->
-        <aside id="sidebar-container" class="sidebar"></aside>
+        <aside class="sidebar" id="sidebar-container">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../assets/img/XinkEdu_logo.png" alt="XINKEDU">
+                    <span>XINKEDU</span>
+                </div>
+                <i class="fa-solid fa-bars menu-toggle" style="font-size: 20px; color: #64748b;"></i>
+            </div>
+            <div class="user-profile-box">
+                <img src="../assets/img/user_avatar.png" alt="User">
+                <div class="user-info">
+                    <h4>Hi, Phuoc</h4>
+                    <p>ADMIN</p>
+                </div>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="courses_grid.html" class="menu-item"><i class="fa-solid fa-book"></i><span>Course
+                        Management</span></a>
+                <a href="students_list.html" class="menu-item"><i class="fa-solid fa-user-graduate"></i><span>Student
+                        Management</span></a>
+                <a href="class_allocation.html" class="menu-item"><i class="fa-solid fa-users-rectangle"></i><span>Class
+                        Allocation</span></a>
+                <a href="teaching_management.html" class="menu-item"><i
+                        class="fa-solid fa-person-chalkboard"></i><span>Teaching Management</span></a>
+            </nav>
+            <a href="../login.html" class="logout-btn"><i
+                    class="fa-solid fa-right-from-bracket"></i><span>LOGOUT</span></a>
+        </aside>
 
         <!-- Main Content (App Global) -->
         <main class="main-content">
-            <header id="header-container" class="top-header"></header>
+            <header class="top-header" id="header-container">
+                <div class="header-titles">
+                    <h1><span style="font-size:14px; color:#8C8C8C; font-weight:400;"><a href="courses_list.html"
+                                style="color:#8C8C8C; text-decoration:none; font-weight:400;">Course Management</a>
+                            &gt;</span> <span style="color:#8C8C8C; font-size:14px; font-weight:700;"
+                            id="header-course-name">Course Detail</span></h1>
+                    <p></p>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <button class="icon-btn"><i class="fa-regular fa-message"></i></button>
+                    <div class="user-dropdown">
+                        <img src="../assets/img/user_avatar.png" alt="Tran Dinh Phuoc">
+                        <span style="font-weight: 500; font-size: 14px;">Tran Dinh Phuoc</span>
+                        <i class="fa-solid fa-caret-down" style="padding-left: 5px;"></i>
+                    </div>
+                </div>
+            </header>
 
             <div class="content-body-split">
                 <!-- ================= LEFT PANE: COURSE STRUCTURE ================= -->
                 <div class="structure-pane">
                     <div class="structure-header">
                         Course Structure
-                        <button class="btn btn-primary" id="btn-add-level-detail" style="padding: 0; width: 24px; height: 24px; display:flex; align-items:center; justify-content:center; border-radius:4px; cursor: not-allowed; opacity: 0.5;" disabled><i class="fa-solid fa-plus"></i></button>
+                        <button class="btn btn-primary" id="btn-add-level-detail"
+                            style="padding: 0; width: 24px; height: 24px; display:flex; align-items:center; justify-content:center; border-radius:4px; cursor: not-allowed; opacity: 0.5;"
+                            disabled><i class="fa-solid fa-plus"></i></button>
                     </div>
                     <div class="structure-body" id="structure-tree-container">
                         <!-- Tree will be rendered here -->
@@ -33,13 +80,15 @@
 
                 <!-- ================= RIGHT PANE: DYNAMIC VIEW ================= -->
                 <div class="details-pane" id="right-pane-wrapper">
-                    
+
                     <!-- VIEW A: ROOT COURSE SELECTED (Information & Classes Tabs) -->
                     <div id="view-course-root" style="display: block;">
                         <div class="page-title-bar">
                             <h2 id="course-title-display">Course Detail</h2>
                             <div class="action-buttons">
-                                <button class="btn btn-primary disabled" id="btn-action-main" disabled style="opacity: 0.6; cursor: not-allowed;"><i class="fa-solid fa-arrow-up-from-bracket"></i> Publish</button>
+                                <button class="btn btn-primary disabled" id="btn-action-main" disabled
+                                    style="opacity: 0.6; cursor: not-allowed;"><i
+                                        class="fa-solid fa-arrow-up-from-bracket"></i> Publish</button>
                             </div>
                         </div>
 
@@ -53,16 +102,21 @@
                         <!-- TAB: INFORMATION -->
                         <div id="tab-info" class="tab-pane active">
                             <div class="form-section">
-                                <div class="form-section-header" style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="form-section-header"
+                                    style="display: flex; justify-content: space-between; align-items: center;">
                                     <div>Course Information</div>
                                     <div style="display: flex; gap: 8px;">
-                                        <button class="btn" id="btn-edit-info" onclick="courseDetailLogic.toggleEditInfo(true)" style="background-color: #eff6ff; color: #3b82f6; border: none; padding: 6px 16px; font-size: 13px; border-radius: 4px; display: flex; align-items: center; gap: 6px; font-weight: 500; cursor: pointer;">
+                                        <button class="btn" id="btn-edit-info"
+                                            onclick="courseDetailLogic.toggleEditInfo(true)"
+                                            style="background-color: #eff6ff; color: #3b82f6; border: none; padding: 6px 16px; font-size: 13px; border-radius: 4px; display: flex; align-items: center; gap: 6px; font-weight: 500; cursor: pointer;">
                                             <i class="fa-solid fa-pen-to-square"></i> Edit
                                         </button>
-                                        <button class="btn_cancel" id="btn-cancel-info" style="display: none;" onclick="courseDetailLogic.toggleEditInfo(false)">
+                                        <button class="btn_cancel" id="btn-cancel-info" style="display: none;"
+                                            onclick="courseDetailLogic.toggleEditInfo(false)">
                                             <i class="fa-solid fa-xmark"></i>
                                         </button>
-                                        <button class="btn_save" id="btn-save-info" style="display: none; " onclick="courseDetailLogic.saveInfo()">
+                                        <button class="btn_save" id="btn-save-info" style="display: none; "
+                                            onclick="courseDetailLogic.saveInfo()">
                                             <i class="fa-solid fa-floppy-disk"></i>
                                         </button>
                                     </div>
@@ -81,7 +135,7 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Language <span class="required">*</span></label>
-                                            <div class="select-wrapper" style="width: 100%;">
+                                            <div class="select-wrapper">
                                                 <select class="form-control disabled" id="course-language" disabled>
                                                     <option value="All">All Languages</option>
                                                     <option value="English">English</option>
@@ -119,9 +173,9 @@
                                                     <option>All</option>
                                                     <option>Communication</option>
                                                     <option>Certificate Exam Preparation</option>
-                                                    <option>Travel</option>           
-                                                    <option>Immigration</option> 
-                                                    <option>Work</option>                
+                                                    <option>Travel</option>
+                                                    <option>Immigration</option>
+                                                    <option>Work</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -129,35 +183,43 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Base Price (VND)</label>
-                                            <input type="text" class="form-control disabled" id="base-price" readonly>
+                                            <input type="text" class="form-control disabled" id="base-price" readonly
+                                                style="color: #ef4444; font-weight: 600;">
                                         </div>
                                         <div class="form-group">
                                             <label>Discount (%)</label>
-                                            <input type="number" class="form-control disabled" id="discount" readonly>
+                                            <input type="number" class="form-control disabled" id="discount" readonly
+                                                style="font-weight: bold;">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Status</label>
-                                            <input type="text" class="form-control disabled" id="course-status" readonly>
+                                            <input type="text" class="form-control disabled" id="course-status"
+                                                readonly>
                                         </div>
                                         <div class="form-group">
                                             <label>Last Updated</label>
-                                            <input type="text" class="form-control disabled" id="course-updated" readonly>
+                                            <input type="text" class="form-control disabled" id="course-updated"
+                                                readonly>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Description <span class="required">*</span></label>
-                                            <textarea class="form-control disabled" id="course-description" readonly></textarea>
+                                            <textarea class="form-control disabled" id="course-description"
+                                                readonly></textarea>
                                         </div>
                                     </div>
                                     <div class="form-row" style="margin-bottom:0;">
                                         <div class="form-group">
                                             <label>Image <span class="required">*</span></label>
-                                            <div class="dropzone" id="course-image-zone" style="cursor: default; position: relative;">
-                                                <img id="course-image-display" src="" alt="Course Image" style="width: 100%;max-width: 200px; height: 90px; border-radius: 8px; display: block; margin: 0 auto;">
-                                                <i class="fa-solid fa-xmark" id="remove-image-icon" style="position: absolute; top: 8px; right: 260px; width: 24px; height: 24px; background: #817E7E; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer;" onclick="courseDetailLogic.removeImage()"></i>
+                                            <div class="dropzone" id="course-image-zone">
+                                                <img id="course-image-display" src="" alt="Course Image"
+                                                    style="width: 100%;max-width: 200px; height: 90px; border-radius: 8px; display: block; margin: 0 auto;">
+                                                <i class="fa-solid fa-xmark" id="remove-image-icon"
+                                                    style="position: absolute; top: 8px; right: 260px; width: 24px; height: 24px; background: #817E7E; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer;"
+                                                    onclick="courseDetailLogic.removeImage()"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -165,16 +227,21 @@
                             </div>
 
                             <div class="form-section">
-                                <div class="form-section-header" style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="form-section-header"
+                                    style="display: flex; justify-content: space-between; align-items: center;">
                                     <div>Set Course Price</div>
                                     <div style="display: flex; gap: 8px;">
-                                        <button class="btn" id="btn-edit-price" onclick="courseDetailLogic.toggleEditPrice(true)" style="background-color: #eff6ff; color: #3b82f6; border: none; padding: 6px 16px; font-size: 13px; border-radius: 4px; display: flex; align-items: center; gap: 6px; font-weight: 500; cursor: pointer;">
+                                        <button class="btn" id="btn-edit-price"
+                                            onclick="courseDetailLogic.toggleEditPrice(true)"
+                                            style="background-color: #eff6ff; color: #3b82f6; border: none; padding: 6px 16px; font-size: 13px; border-radius: 4px; display: flex; align-items: center; gap: 6px; font-weight: 500; cursor: pointer;">
                                             <i class="fa-solid fa-pen-to-square"></i> Edit
                                         </button>
-                                        <button class="btn_cancel" id="btn-cancel-price" style="display: none;" onclick="courseDetailLogic.toggleEditPrice(false)">
+                                        <button class="btn_cancel" id="btn-cancel-price" style="display: none;"
+                                            onclick="courseDetailLogic.toggleEditPrice(false)">
                                             <i class="fa-solid fa-xmark"></i>
                                         </button>
-                                        <button class="btn_save" id="btn-save-price" style="display: none;" onclick="courseDetailLogic.savePrice()">
+                                        <button class="btn_save" id="btn-save-price" style="display: none;"
+                                            onclick="courseDetailLogic.savePrice()">
                                             <i class="fa-solid fa-floppy-disk"></i>
                                         </button>
                                     </div>
@@ -190,22 +257,26 @@
                                     <tbody>
                                         <tr>
                                             <td>25 minutes</td>
-                                            <td><input type="text" class="form-control disabled" id="fee-25min" readonly style="width: 100px;"></td>
+                                            <td><input type="text" class="form-control disabled" id="fee-25min" readonly
+                                                    style="width: 100px;"></td>
                                             <td class="total-val" id="total-25min">0</td>
                                         </tr>
                                         <tr>
                                             <td>45 minutes</td>
-                                            <td><input type="text" class="form-control disabled" id="fee-45min" readonly style="width: 100px;"></td>
+                                            <td><input type="text" class="form-control disabled" id="fee-45min" readonly
+                                                    style="width: 100px;"></td>
                                             <td class="total-val" id="total-45min">0</td>
                                         </tr>
                                         <tr>
                                             <td>Junior 25 minutes</td>
-                                            <td><input type="text" class="form-control disabled" id="fee-junior-25min" readonly style="width: 100px;"></td>
+                                            <td><input type="text" class="form-control disabled" id="fee-junior-25min"
+                                                    readonly style="width: 100px;"></td>
                                             <td class="total-val" id="total-junior-25min">0</td>
                                         </tr>
                                         <tr>
                                             <td>Junior 45 minutes</td>
-                                            <td><input type="text" class="form-control disabled" id="fee-junior-45min" readonly style="width: 100px;"></td>
+                                            <td><input type="text" class="form-control disabled" id="fee-junior-45min"
+                                                    readonly style="width: 100px;"></td>
                                             <td class="total-val" id="total-junior-45min">0</td>
                                         </tr>
                                     </tbody>
@@ -217,16 +288,20 @@
                         <div id="tab-classes" class="tab-pane">
                             <div class="details-card">
                                 <div class="details-header">
-                                    <div class="details-title"><h3>Classes</h3></div>
+                                    <div class="details-title">
+                                        <h3>Classes</h3>
+                                    </div>
                                     <div style="display:flex; align-items:center; gap:8px;">
-                                        <i class="fa-solid fa-sliders" style="color:#64748b;"></i> Status Filter: 
+                                        <i class="fa-solid fa-sliders" style="color:#64748b;"></i> Status Filter:
                                         <div style="position:relative; display:inline-block;">
-                                            <select id="overview-status-filter" class="status-filter" style="border:1px solid #e2e8f0; border-radius:4px; padding:4px 24px 4px 8px; outline:none; font-family:inherit; color:#475569; font-size:13px; appearance:none;">
+                                            <select id="overview-status-filter" class="status-filter"
+                                                style="border:1px solid #e2e8f0; border-radius:4px; padding:4px 24px 4px 8px; outline:none; font-family:inherit; color:#475569; font-size:13px; appearance:none;">
                                                 <option>All</option>
                                                 <option>Incomplete</option>
                                                 <option>Complete</option>
                                             </select>
-                                            <i class="fa-solid fa-chevron-down" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); color:#8C8C8C; font-size:12px; pointer-events:none;"></i>
+                                            <i class="fa-solid fa-chevron-down"
+                                                style="position:absolute; right:8px; top:50%; transform:translateY(-50%); color:#8C8C8C; font-size:12px; pointer-events:none;"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -234,42 +309,175 @@
                                     <!-- Overview Tabs injected via JS -->
                                 </div>
                                 <div id="overview-table-container">
-                                    <!-- Overview Table injected via JS -->
+                                    <table class="overview-table" style="table-layout: fixed; width: 100%;">
+                                        <thead style="position: sticky; top: 0; background: white; z-index: 1;">
+                                            <tr>
+                                                <th style="width: 40%;">LESSON</th>
+                                                <th style="width: 20%;">SLIDES</th>
+                                                <th style="width: 20%;">LESSON PLAN</th>
+                                                <th style="width: 20%;">ANSWER KEY</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="overview-table-body">
+                                            <!-- Overview Table injected via JS -->
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                        
-                    </div>
                     </div>
                 </div>
-
             </div>
         </main>
     </div>
 
+    <!-- ================= TEMPLATES ================= -->
+    <template id="tpl-tree-empty">
+        <div style="color:#94a3b8; font-size:12px; font-style:italic; padding: 16px; text-align:center;">No course
+            structure found.</div>
+    </template>
+
+    <template id="tpl-tree-level-editing">
+        <div class="tree-row editing-row" style="background-color: #F3FBFF;">
+            <i class="fa-solid fa-layer-group" style="color:#475569;"></i>
+            <input type="text" class="tree-edit-input" id="edit-level-input-{{id}}" value=""
+                placeholder="Enter level name..."
+                style="width: 140px; margin-left: 4px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 6px; padding: 4px 10px; outline: none; background: #f8fafc; color: #0f172a; font-weight: 500;"
+                autofocus onkeydown="courseDetailLogic.handleEditLevelKey(event, '{{id}}')"
+                onblur="courseDetailLogic.handleEditLevelBlur('{{id}}')" />
+            <button class="tree-btn-add"
+                onclick="courseDetailLogic.addNode('{{id}}', 'chapter'); event.stopPropagation();"><i
+                    class="fa-solid fa-plus"></i></button>
+        </div>
+    </template>
+
+    <template id="tpl-tree-level">
+        <div style="background-color: #F3FBFF;" class="tree-row {{activeClass}}"
+            onclick="courseDetailLogic.selectNode('{{id}}', 'level', event)">
+            <i class="fa-solid fa-layer-group" style="color:#475569;"></i> {{name}}
+            {{addBtnHtml}}
+        </div>
+    </template>
+
+    <template id="tpl-tree-chapter-editing">
+        <div class="tree-row editing-row">
+            <i class="fa-regular fa-folder" style="color:#94a3b8;"></i>
+            <input type="text" class="tree-edit-input" id="edit-chapter-input-{{id}}" value=""
+                placeholder="Enter chapter name..."
+                style="width: 140px; margin-left: 4px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 6px; padding: 4px 10px; outline: none; background: #f8fafc; color: #0f172a; font-weight: 500;"
+                autofocus onkeydown="courseDetailLogic.handleEditChapterKey(event, '{{levelId}}', '{{id}}')"
+                onblur="courseDetailLogic.handleEditChapterBlur('{{levelId}}', '{{id}}')" />
+            <button class="tree-btn-add"
+                onclick="courseDetailLogic.addNode('{{id}}', 'lesson'); event.stopPropagation();"><i
+                    class="fa-solid fa-plus"></i></button>
+        </div>
+    </template>
+
+    <template id="tpl-tree-chapter">
+        <div class="tree-row {{activeClass}}" onclick="courseDetailLogic.selectNode('{{id}}', 'chapter', event)">
+            <i class="fa-regular fa-folder" style="color:#94a3b8;"></i> {{name}}
+            {{addBtnHtml}}
+        </div>
+    </template>
+
+    <template id="tpl-tree-lesson-editing">
+        <div class="tree-row editing-row">
+            <i class="fa-regular fa-file-lines" style="color:#cbd5e1;"></i>
+            <input type="text" class="tree-edit-input" id="edit-lesson-input-{{id}}" value=""
+                placeholder="Enter lesson name..."
+                style="width: 140px; margin-left: 4px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 6px; padding: 4px 10px; outline: none; background: #f8fafc; color: #0f172a; font-weight: 500;"
+                autofocus onkeydown="courseDetailLogic.handleEditLessonKey(event, '{{chapterId}}', '{{id}}')"
+                onblur="courseDetailLogic.handleEditLessonBlur('{{chapterId}}', '{{id}}')" />
+        </div>
+    </template>
+
+    <template id="tpl-tree-lesson">
+        <div class="tree-row is-lesson {{activeClass}}" onclick="courseDetailLogic.navigateToLesson('{{id}}')">
+            <i class="fa-regular fa-file-lines" style="color:#cbd5e1;"></i> {{name}}
+        </div>
+    </template>
+
+    <template id="tpl-overview-empty">
+        <tr>
+            <td colspan="4" style="text-align:center; padding:60px; color:#94a3b8;"><i
+                    class="fa-solid fa-folder-open dropzone-icon"></i>
+                <div>No Course Structure.</div>
+            </td>
+        </tr>
+    </template>
+
+    <template id="tpl-overview-level">
+        <tr class="overview-group-row">
+            <td colspan="4" style="text-align: left; cursor: pointer;"
+                onclick="courseDetailLogic.toggleExpand('{{id}}')"><i class="fa-solid fa-caret-{{caret}}"
+                    style="color:#4e60ff;"></i> {{name}}</td>
+        </tr>
+    </template>
+
+    <template id="tpl-overview-chapter">
+        <tr style="background:#F2EFEF;">
+            <td colspan="4"
+                style="padding-left:40px; font-weight:700; font-size:12px; color:#0f172a; border-bottom:1px solid #e2e8f0; text-align: left; position: relative;"
+                {{cursorStyleAttr}} onclick="{{toggleAction}}">
+                <i class="fa-regular fa-folder" style="color:#94a3b8; font-size:14px; margin-right:4px;"></i> {{name}}
+                {{caretHtml}}
+            </td>
+        </tr>
+    </template>
+
+    <template id="tpl-overview-lesson-junior-head">
+        <tr style="background:#f8fafc; border-bottom:1px solid #e2e8f0;">
+            <td colspan="4" style="padding-left: 60px; text-align: left;">
+                <div style="font-weight:600; font-size:12px;"><i class="fa-regular fa-file-lines"
+                        style="color:#94a3b8; margin-right:4px;"></i> {{name}}</div>
+            </td>
+        </tr>
+    </template>
+
+    <template id="tpl-overview-lesson-junior-session">
+        <tr style="background:white; border-bottom:1px solid #e2e8f0; cursor:pointer;" onclick="courseDetailLogic.selectNode('{{id}}', 'lesson', event)">
+            <td style="padding-left: 80px; text-align: left;">
+                <div style="font-weight:600; font-size:12px; margin-bottom: 2px;">{{sName}}</div>
+                <div style="color:#94a3b8; font-size:10px; font-weight: normal;">ID: {{displayId}}</div>
+            </td>
+            <td>{{iconS}}</td>
+            <td>{{iconP}}</td>
+            <td>{{iconK}}</td>
+        </tr>
+    </template>
+
+    <template id="tpl-overview-lesson-junior-empty">
+        <tr>
+            <td colspan="4" style="text-align:center; color:#94a3b8; font-size:11px; padding:12px;">No Sessions Added
+            </td>
+        </tr>
+    </template>
+
+    <template id="tpl-overview-lesson-standard">
+        <tr style="background:white; border-bottom:1px solid #e2e8f0; cursor:pointer;" onclick="courseDetailLogic.selectNode('{{id}}', 'lesson', event)">
+            <td style="padding-left: 60px; text-align: left;">
+                <div style="font-weight:600; font-size:12px; margin-bottom: 2px; color: #334155;">{{name}}</div>
+                <div style="color:#94a3b8; font-size:10px; font-weight: normal;">ID: {{displayId}}</div>
+            </td>
+            <td>{{iconS}}</td>
+            <td>{{iconP}}</td>
+            <td>{{iconK}}</td>
+        </tr>
+    </template>
+
     <!-- Scripts -->
-    <script src="../assets/js/components/sidebar.js"></script>
-    <script src="../assets/js/components/header.js"></script>
     <script src="../assets/js/js_admin/add-course.js"></script>
     <script src="../assets/js/js_admin/course-detail.js"></script>
     <script>
-        loadSidebar('admin', 'courses');
-        loadHeader({
-            title: '<span style="font-size:14px; color:#8C8C8C; font-weight:400;"><a href="courses_list.html" style="color:#8C8C8C; text-decoration:none; font-weight:400;">Course Management</a> &gt;</span> <span style="color:#8C8C8C; font-size:14px; font-weight:700;" id="header-course-name">Course Detail</span>',
-            subtitle: '',
-            userName: 'Tran Dinh Phuoc',
-            userAvatar: '../assets/img/user_avatar.png',
-            showIcon: true
-        });
 
         // Tab Switcher logic for View A
-        document.getElementById('tab-btn-info').addEventListener('click', function() {
+        document.getElementById('tab-btn-info').addEventListener('click', function () {
             this.classList.add('active');
             document.getElementById('tab-btn-classes').classList.remove('active');
             document.getElementById('tab-info').classList.add('active');
             document.getElementById('tab-classes').classList.remove('active');
         });
-        document.getElementById('tab-btn-classes').addEventListener('click', function() {
+        document.getElementById('tab-btn-classes').addEventListener('click', function () {
             this.classList.add('active');
             document.getElementById('tab-btn-info').classList.remove('active');
             document.getElementById('tab-classes').classList.add('active');
@@ -293,25 +501,44 @@
     </script>
 
     <!-- Custom Alert Modal -->
-    <div id="custom-alert-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.1); z-index:9999; align-items:center; justify-content:center;">
-        <div style="background:white; border-radius:8px; padding:32px 48px; min-width:300px; max-width: 400px; text-align:center; position:relative; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
-            <i class="fa-solid fa-xmark" style="position:absolute; top:16px; right:16px; color:#ef4444; font-size:16px; cursor:pointer;" onclick="document.getElementById('custom-alert-modal').style.display='none'"></i>
+    <div id="custom-alert-modal"
+        style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.1); z-index:9999; align-items:center; justify-content:center;">
+        <div
+            style="background:white; border-radius:8px; padding:32px 48px; min-width:300px; max-width: 400px; text-align:center; position:relative; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+            <i class="fa-solid fa-xmark"
+                style="position:absolute; top:16px; right:16px; color:#ef4444; font-size:16px; cursor:pointer;"
+                onclick="document.getElementById('custom-alert-modal').style.display='none'"></i>
             <h3 style="margin-top:0; margin-bottom:16px; font-size:18px; color:#0f172a; font-weight:600;">Alert</h3>
-            <p id="custom-alert-text" style="color:#64748b; font-size:14px; font-style:italic; margin:0 auto; max-width: 250px;">Please complete uploading the lesson materials before publishing</p>
+            <p id="custom-alert-text"
+                style="color:#64748b; font-size:14px; font-style:italic; margin:0 auto; max-width: 250px;">Please
+                complete uploading the lesson materials before publishing</p>
         </div>
     </div>
 
     <!-- Custom Confirm Modal -->
-    <div id="custom-confirm-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.1); z-index:9999; align-items:center; justify-content:center;">
-        <div style="background:white; border-radius:8px; padding:24px 32px; min-width:300px; max-width: 400px; text-align:center; position:relative; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
-            <i class="fa-solid fa-xmark" style="position:absolute; top:16px; right:16px; color:#ef4444; font-size:16px; cursor:pointer;" onclick="courseDetailLogic.handleConfirmResult(false)"></i>
-            <h3 style="margin-top:0; margin-bottom:24px; font-size:18px; color:#0f172a; font-weight:600; text-align: left;">Confirm</h3>
-            <p id="custom-confirm-text" style="color:#64748b; font-size:14px; margin-bottom:24px; font-style:italic;">Are you sure you want to <strong style="color:#64748b; font-style:italic; font-weight:700;">discard changes</strong> to this course?</p>
+    <div id="custom-confirm-modal"
+        style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.1); z-index:9999; align-items:center; justify-content:center;">
+        <div
+            style="background:white; border-radius:8px; padding:24px 32px; min-width:300px; max-width: 400px; text-align:center; position:relative; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+            <i class="fa-solid fa-xmark"
+                style="position:absolute; top:16px; right:16px; color:#ef4444; font-size:16px; cursor:pointer;"
+                onclick="courseDetailLogic.handleConfirmResult(false)"></i>
+            <h3
+                style="margin-top:0; margin-bottom:24px; font-size:18px; color:#0f172a; font-weight:600; text-align: left;">
+                Confirm</h3>
+            <p id="custom-confirm-text" style="color:#64748b; font-size:14px; margin-bottom:24px; font-style:italic;">
+                Are you sure you want to <strong
+                    style="color:#64748b; font-style:italic; font-weight:700;">publish</strong> this course?</p>
             <div style="display:flex; justify-content:center; gap:12px;">
-                <button style="background:#d1d5db; color:white; border:none; padding:8px 24px; border-radius:6px; font-weight:600; cursor:pointer; font-size:14px;" onclick="courseDetailLogic.handleConfirmResult(false)">Cancel</button>
-                <button style="background:#4e60ff; color:white; border:none; padding:8px 24px; border-radius:6px; font-weight:600; cursor:pointer; font-size:14px;" onclick="courseDetailLogic.handleConfirmResult(true)">OK</button>
+                <button
+                    style="background:#d1d5db; color:#374151; border:none; padding:8px 24px; border-radius:6px; font-weight:600; cursor:pointer; font-size:14px;"
+                    onclick="courseDetailLogic.handleConfirmResult(false)">Cancel</button>
+                <button
+                    style="background:#4e60ff; color:white; border:none; padding:8px 24px; border-radius:6px; font-weight:600; cursor:pointer; font-size:14px;"
+                    onclick="courseDetailLogic.handleConfirmResult(true)">OK</button>
             </div>
         </div>
     </div>
 </body>
+
 </html>

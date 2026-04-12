@@ -1,57 +1,56 @@
-/* Student management styles */
-
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #e2e8f0;
+.search-bar {
+    width: 420px;
 }
 
-.page-header h1 {
-    margin: 0;
-    color: #1e293b;
-    font-size: 28px;
-    font-weight: 700;
-}
-
-.page-actions {
-    display: flex;
-    gap: 12px;
-}
-
-.filters-section {
+.controls-area {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
-.search-box {
-    position: relative;
-    flex: 1 1 320px;
-    max-width: 520px;
-}
-
-.search-box input {
-    width: 100%;
-    padding: 10px 12px 10px 40px;
-    border: 1px solid #d1d5db;
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
     border-radius: 6px;
+    width: 320px;
+}
+
+.search-bar i {
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
     font-size: 14px;
+    color: var(--text-dark);
 }
 
-.search-box i {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #64748b;
+.search-bar input::placeholder {
+    font-style: italic;
+    color: #94a3b8;
 }
 
-.btn.btn-outline {
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-outline {
     background: #ffffff;
     border: 1px solid #cbd5e1;
     color: #334155;
@@ -60,30 +59,58 @@
     font-size: 14px;
 }
 
-.status-filter {
-    min-width: 160px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    padding: 8px 10px;
-    background: #ffffff;
-    color: #334155;
+.btn-primary {
+    background: #4e60ff;
+    border: 1px solid #4e60ff;
+    color: white;
+    text-decoration: none;
 }
 
-#btn-add-student {
-    white-space: nowrap;
+.spacer {
+    flex-grow: 1;
+}
+
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    padding: 10px 36px 10px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    background: var(--bg-white);
+    color: var(--text-dark);
+    appearance: none;
+    outline: none;
+}
+
+.select-wrapper::after {
+    content: '\f107'; /*Icon dropdown*/
+    font-family: 'Font Awesome 6 Free'; 
+    font-weight: 900;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-muted);
+}
+
+.select-wrapper select:focus {
+    border-color: #4E60FF;
 }
 
 .table-container {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
     overflow: hidden;
-    margin-bottom: 24px;
 }
 
 .data-table {
-    width: 100%;
     border-collapse: collapse;
+    width: 100%;
 }
 
 .data-table th {
@@ -100,24 +127,13 @@
     padding: 14px 16px;
     border-bottom: 1px solid #f1f5f9;
     font-size: 14px;
-    vertical-align: middle;
-}
-
-.data-table tbody tr {
-    background: #ffffff;
-}
-
-.data-table tbody tr:hover {
-    background: #f8fafc;
 }
 
 .avatar-circle {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    background: #c7d2fe;
-    color: #1d4ed8;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
@@ -132,7 +148,7 @@
 .student-name-cell .student-meta {
     color: #6b7280;
     font-size: 13px;
-    margin-top: 2px;
+    margin-top: 5px;
 }
 
 .status-badge {
@@ -140,7 +156,6 @@
     border-radius: 999px;
     font-size: 12px;
     font-weight: 700;
-    text-transform: none;
 }
 
 .status-active {
@@ -158,52 +173,126 @@
     color: #64748b;
 }
 
-.status-pending {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.btn-icon:hover {
-    background: #f1f5f9;
-    color: #334155;
-}
-
-.btn-danger:hover {
-    color: #dc2626;
-}
-
-.students-page .pagination {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 8px;
-    margin-top: 0;
-}
-
-.students-page .page-number-buttons {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.dots {
-    color: #94a3b8;
-    font-weight: 700;
-    padding: 0 2px;
-}
-
-.students-page .search-bar {
-    width: 420px;
-}
-
-.students-page .pagination-footer {
-    border-top: none;
-    padding-top: 16px;
-    margin-top: 0;
+.pagination-footer {
     display: flex;
     justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
     align-items: center;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+}
+
+.page-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: white;
+    cursor: pointer;
+}
+
+.page-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/*Modal Add Student*/
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-header {
+    padding: 20px 24px 16px;
+    position: relative;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.modal-header p {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.btn-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #ef4444;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 8px 24px;
+}
+
+.modal-content {
+    background: white;
+    width: 550px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.form-row {
+    display: flex;
     gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    flex: 1;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #374151;
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #FBFEFF;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #3b82f6;
 }
 
 .modal-footer {
@@ -215,22 +304,27 @@
     background: #f8fafc;
 }
 
-#add-student-modal .modal-content {
-    width: 550px;
-    max-width: calc(100vw - 48px);
+.btn-cancel {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background: white;
+    font-size: 14px;
+    cursor: pointer;
+    color: #000;
 }
 
-.form-row {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
+.btn-apply {
+    padding: 8px 24px;
+    border-radius: 6px;
+    border: none;
+    background: #4e60ff;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
 }
 
-.form-group {
-    flex: 1;
-}
-
-.form-group.full-width {
-    flex: none;
-    width: 100%;
+.required {
+    color: #dc2626;
 }
