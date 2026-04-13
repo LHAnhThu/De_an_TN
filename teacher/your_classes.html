@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="../assets/css/css_teacher/your_classes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
     <div class="app-container">
         <!-- Sidebar Container -->
@@ -212,7 +214,7 @@
                                 <span class="vip-pill">VIP 45MINS</span>
                                 <div class="pill-group">
                                     <span class="status-completed">Completed</span>
-                                    <a href="#" class="detail-link">View detail</a>
+                                    <a style="pointer-events: none;" class="detail-link">View detail</a>
                                 </div>
                             </div>
                         </article>
@@ -273,7 +275,8 @@
                                 </div>
                                 <div class="booking-actions">
                                     <button class="bell-orange"><i class="fa-solid fa-bell"></i></button>
-                                    <span class="pill-teaching" onclick="window.location.href='class_lobby.html'" style="cursor: pointer;">Teaching</span>
+                                    <span class="pill-teaching" onclick="window.location.href='class_lobby.html'"
+                                        style="cursor: pointer;">Teaching</span>
                                 </div>
                             </div>
                             <div class="booking-time-range">20:00 - 20:45</div>
@@ -286,7 +289,7 @@
                                 </div>
                             </div>
                         </article>
-                        
+
                         <article class="booking-detail-card border-card" data-status="Rejected">
                             <div class="booking-meta">
                                 <div class="meta-row">
@@ -315,7 +318,7 @@
                                 <span class="vip-pill">VIP 45MINS</span>
                                 <div class="pill-group">
                                     <span class="status-rejected">Rejected</span>
-                                    <a href="#" class="detail-link">View detail</a>
+                                    <a style="pointer-events: none;" class="detail-link">View detail</a>
                                 </div>
                             </div>
                         </article>
@@ -330,97 +333,135 @@
         </main>
     </div>
 
-    <!-- Script to toggle between views for demonstration -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const gridView = document.getElementById('classes-grid-view');
-            const emptyView = document.getElementById('empty-state-view');
-            const dateDisplay = document.getElementById('current-date-display');
-            const dayBoxes = document.querySelectorAll('.week-day-box');
+    <!-- Booking Detail Panel -->
+    <div id="booking-detail-panel" class="modal-overlay" style="display: none;">
+        <div class="modal-content booking-panel"
+            style="position: absolute; right: 0; height: 100vh; border-radius: 0; width: 380px; border: none; box-shadow: -4px 0 24px rgba(0,0,0,0.1);">
+            <div>
+                <div class="modal-header" style="border: none; justify-content: flex-start; gap: 16px; padding: 1;">
+                    <button type="button" class="btn-close"
+                        style="color: white; margin: 0; padding: 0; font-size: 20px; position: static;"
+                        aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                    <h2 style="color: white; margin: 0; font-size: 22px;">Booking detail</h2>
+                </div>
 
-            function showClassesView(dayName, dayNum) {
-                gridView.style.display = 'grid';
-                emptyView.style.display = 'none';
-                // Adjust year dynamically based on requirements, assuming 2026 for now
-                let fullDayName = 'Thursday';
-                if (dayName === 'T') { fullDayName = (dayNum == '10' || dayNum == '17') ? 'Tuesday' : 'Thursday'; }
-                else if (dayName === 'W') fullDayName = 'Wednesday';
-                else if (dayName === 'F') fullDayName = 'Friday';
-                else if (dayName === 'S') fullDayName = (dayNum == '14' || dayNum == '21') ? 'Saturday' : 'Sunday';
-                else if (dayName === 'M') fullDayName = 'Monday';
+                <div class="booking-panel-row"
+                    style="background-color: rgba(73, 80, 254, 0.95);display:grid;grid-template-columns:1fr 1fr;gap:12px;color:white;">
+                    <div style="border-radius:12px;padding:12px 16px;">
+                        <div style="display:flex; flex-direction:row;align-items:center; gap: 12px;">
+                            <i class="fa-regular fa-clock" style="font-size: 14px;"></i>
+                            <div style="display:flex; flex-direction:column;">
+                                <div>Thu, 12th Mar</div>
+                                <div>19:00 - 19:45</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="border-radius:12px;padding:12px 16px;">
+                        <div style="display:flex; flex-direction:row;align-items:center; gap: 12px;">
+                            <i class="fa-regular fa-clock" style="font-size: 14px;"></i>
+                            <div style="display:flex; flex-direction:column;">
+                                <div>Lesson</div>
+                                <div>Jobs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                dateDisplay.textContent = `${fullDayName}, ${dayNum}/03/2026`;
-            }
+            <div class="modal-body" style="padding: 24px; border:none;">
+                <div class="detail-grid"
+                    style="display:grid;gap:16px;color:#94a3b8;font-size: 15px;margin-bottom:24px;">
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;"><span>Student
+                            name</span><span style="font-weight:600;color:#0f172a;text-align:right;">Tường Vy</span>
+                    </div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;"><span>Student
+                            code</span><span style="font-weight:600;color:#0f172a;text-align:right;">KEO114445/ <span
+                                style="color: #fb923c;">KID</span></span></div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;">
+                        <span>Level</span><span style="font-weight:600;color:#0f172a;text-align:right;">KE45</span>
+                    </div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;">
+                        <span>Lesson</span><span style="font-weight:600;color:#0f172a;text-align:right;">KE45-Lesson
+                            7-Habits</span>
+                    </div>
+                    <div class="detail-row" style="display:grid;grid-template-columns:110px 1fr;gap:12px;"><span>Booking
+                            ID</span><span style="font-weight:600;color:#0f172a;text-align:right;">26270883</span></div>
+                </div>
+                <div class="file-links"
+                    style="background:white;border-radius:6px;border: 1px solid #e2e8f0;padding:16px;margin-bottom:20px; position:relative; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <div class="file-pill"
+                        style="position: absolute; top: -7px; right: 24px; background: white; padding:0 8px;border:1px solid #c7d2fe;border-radius:999px;font-size:10px;font-weight:700;color:#3b82f6;">
+                        VIP 45MINS</div>
+                    <div style="display:grid;gap:16px;">
+                        <div
+                            style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-weight: 500; font-size: 15px; color:#0f172a;">
+                            <div style="display:flex; gap:8px;"><i class="fa-solid fa-link"
+                                    style="margin-top:3px; font-size: 14px;"></i><span>KE45-Lesson 7-Habits</span>
+                            </div>
+                            <a href="#"
+                                style="color:#fb923c;font-weight:500; font-size: 14px; white-space:nowrap; text-decoration: none;">View
+                                »</a>
+                        </div>
+                        <div
+                            style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-weight: 500; font-size: 15px; color:#0f172a;">
+                            <div style="display:flex; gap:8px;"><i class="fa-solid fa-link"
+                                    style="margin-top:3px; font-size: 14px;"></i><span>KE45-Lesson 7-Habits - Lesson
+                                    plan</span></div>
+                            <a href="#"
+                                style="color:#fb923c;font-weight:500; font-size: 14px; white-space:nowrap; text-decoration: none;">View
+                                »</a>
+                        </div>
+                        <div
+                            style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-weight: 500; font-size: 15px; color:#0f172a;">
+                            <div style="display:flex; gap:8px;"><i class="fa-solid fa-link"
+                                    style="margin-top:3px; font-size: 14px;"></i><span>KE45-Lesson 7-Habits - Answer
+                                    Key</span></div>
+                            <a href="#"
+                                style="color:#fb923c;font-weight:500; font-size: 14px; white-space:nowrap; text-decoration: none;">View
+                                »</a>
+                        </div>
+                    </div>
+                </div>
 
-            function showEmptyView(dayName, dayNum) {
-                gridView.style.display = 'none';
-                emptyView.style.display = 'flex';
-                let fullDayName = 'Saturday';
-                if (dayName === 'S' && (dayNum == '14' || dayNum == '21')) fullDayName = 'Saturday';
-                else if (dayName === 'S' && dayNum == '15') fullDayName = 'Sunday';
-                dateDisplay.textContent = `${fullDayName}, ${dayNum}/03/2026`;
-            }
+                <div style="border-top: 1px dashed #cbd5e1; margin-bottom: 15px;"></div>
 
-            dayBoxes.forEach(box => {
-                box.addEventListener('click', () => {
-                    // Update active styling
-                    dayBoxes.forEach(b => b.classList.remove('active'));
-                    box.classList.add('active');
+                <div class="status-row" id="booking-status-approved"
+                    style="display:none;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px;color:#64748b; font-size: 15px; font-weight: 500;">
+                    <span>Booking Status</span>
+                    <span
+                        style="display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border:1px solid #c7d2fe;border-radius:999px;font-size:12px; font-weight: 600; color:#3b82f6;">Approved
+                        <span
+                            style="width:6px;height:6px;background:#3b82f6;border-radius:50%;display:inline-block;"></span></span>
+                </div>
+                <div class="status-row" id="booking-status-cancelled"
+                    style="display:none;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:15px;color:#64748b; font-size: 15px; font-weight: 500; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <span>Booking Status</span>
+                        <span
+                            style="display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border:1px solid #fecdd3;border-radius:999px;font-size:12px; font-weight: 600; color:#e11d48;">Cancelled
+                            <span
+                                style="width:6px;height:6px;background:#e11d48;border-radius:50%;display:inline-block;"></span></span>
+                    </div>
+                    <div
+                        style="font-size: 11px; text-align: right; color: #94a3b8; font-weight: 500; line-height: 1.4;">
+                        By Teacher<br>on 21:00, 11/03/2026
+                    </div>
+                </div>
 
-                    // Check if it has classes (has class-indicator span)
-                    const hasClasses = box.querySelector('.class-indicator');
-                    const dayNum = box.dataset.day;
-                    const dayName = box.querySelector('.week-day-name').textContent.charAt(0);
 
-                    if (hasClasses) {
-                        showClassesView(dayName, dayNum);
-                    } else {
-                        showEmptyView(dayName, dayNum);
-                    }
-                });
-            });
+                <div style="border-top: 1px dashed #cbd5e1; margin-bottom: 24px;"></div>
 
-            // Filter logic
-            const filterBtn = document.getElementById('filter-select-btn');
-            const filterDropdown = document.getElementById('filter-dropdown');
-            const filterText = document.getElementById('filter-selected-text');
-            const dropdownItems = document.querySelectorAll('.dropdown-item');
-            const classCards = document.querySelectorAll('.booking-detail-card');
+                <div style="font-weight:600;font-size:18px;margin-bottom:8px;color:#0f172a;">Student evaluation</div>
+                <div style="color:#94a3b8;font-size:14px;font-weight: 500;display:flex;gap:24px;padding-bottom: 20px;">
+                    <span>Academic note</span><span>Other Teacher</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            filterBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                filterDropdown.style.display = filterDropdown.style.display === 'none' ? 'block' : 'none';
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!filterBtn.contains(e.target) && !filterDropdown.contains(e.target)) {
-                    filterDropdown.style.display = 'none';
-                }
-            });
-
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const value = item.dataset.value;
-                    filterText.textContent = value;
-                    filterDropdown.style.display = 'none';
-                    
-                    classCards.forEach(card => {
-                        if (value === 'All') {
-                            card.style.display = '';
-                        } else {
-                            if (card.dataset.status === value) {
-                                card.style.display = '';
-                            } else {
-                                card.style.display = 'none';
-                            }
-                        }
-                    });
-                });
-            });
-        });
-    </script>
     <script src="../assets/js/components/sidebar.js"></script>
     <script src="../assets/js/components/header.js"></script>
+    <script src="../assets/js/js_teacher/your_classes.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             loadSidebar('teacher', 'your_classes');
@@ -434,4 +475,5 @@
         });
     </script>
 </body>
+
 </html>

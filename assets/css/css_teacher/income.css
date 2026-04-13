@@ -411,9 +411,9 @@
 
 .appeal-info-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    padding: 32px;
+    padding: 20px 80px;
     margin-bottom: 0px;
     border-bottom: 1px solid #cbd5e1;
     background: white;
@@ -434,22 +434,27 @@
 
 .appeal-form-section {
     background: #f8fafc;
-    padding: 8px 32px;
+    padding: 15px 32px;
 }
 
 .appeal-form-group {
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .appeal-form-group label {
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 8px;
-    display: block;
+    display: flex;
+    text-align: left;
+    width: 80%;
 }
 
 .appeal-form-group textarea {
-    width: 100%;
+    width: 80%;
     height: 90px;
     border: 2px solid #e2e8f0;
     border-radius: 8px;
@@ -459,14 +464,16 @@
     font-size: 15px;
     background: white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    margin: 0 auto;
 }
 
 .upload-area-container {
     background: #d9d9d9;
     border-radius: 12px;
     height: 160px;
-    width: 100%;
+    width: 80%;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .upload-area-dashed {

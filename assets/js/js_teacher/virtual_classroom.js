@@ -416,6 +416,7 @@ function publishPoll() {
     }
 
     modal.innerHTML = `
+        <i class="fa-solid fa-xmark" style="position: absolute; top: 16px; right: 16px; cursor: pointer; color: #6b7280;" onclick="this.parentElement.remove()"></i>
         <div style="font-weight: 600; text-align: center; margin-bottom: 12px; font-size: 14px; color: #111827;">Polling Question</div>
         <div style="font-size: 14px; font-weight: 600; color: #000; margin-bottom: 24px; line-height: 1.5;">
             ${pollState.question}
@@ -427,6 +428,23 @@ function publishPoll() {
     `;
 
     document.querySelector('.whiteboard-col').appendChild(modal);
+
+    setTimeout(() => {
+        const outsideClickListener = (event) => {
+            if (document.getElementById('pollResultsWhiteboardModal') && !modal.contains(event.target)) {
+                modal.remove();
+                document.removeEventListener('click', outsideClickListener);
+            }
+        };
+        document.addEventListener('click', outsideClickListener);
+        
+        const closeBtn = modal.querySelector('.fa-xmark');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                document.removeEventListener('click', outsideClickListener);
+            });
+        }
+    }, 0);
 
     resetPoll();
 }

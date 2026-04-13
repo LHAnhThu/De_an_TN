@@ -426,6 +426,11 @@ body {
 }
 
 .wb-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
     height: 40px;
     background: white;
     display: flex;
@@ -435,6 +440,7 @@ body {
     font-size: 12px;
     color: #475569;
     border-top: 1px solid #e2e8f0;
+    border-radius: 0 0 12px 12px;
 }
 
 .wb-pager {
