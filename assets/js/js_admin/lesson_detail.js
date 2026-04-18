@@ -309,8 +309,24 @@ const lessonDetail = {
                 cellsHtml += this.renderSessionCell(sess.id, 'Lesson Plan', 'PDF, Word (Max 50MB)', 'plan', 'fa-book-open', 'green', sess.plan);
                 cellsHtml += this.renderSessionCell(sess.id, 'Answer Key', 'PDF, Word (Max 100MB)', 'key', 'fa-key', 'orange', sess.key);
 
+                let match = sess.name.match(/^(Session \d+:\s*)(.*)$/);
+                let prefix = match ? match[1] : '';
+                let title = match ? match[2] : sess.name;
+
+                let isDefault = title.trim() === '';
+                let borderStyle = isDefault ? '1.5px solid #0f172a' : 'none';
+                
+                let nameHtml = `
+                    <span style="font-weight: 600; color: #0f172a; white-space: pre;">${prefix.replace(/"/g, '&quot;')}</span>
+                    <input type="text" value="${title.replace(/"/g, '&quot;')}"
+                        onchange="lessonDetail.updateSessionName('${sess.id}', this.value)"
+                        title="${title.replace(/"/g, '&quot;')}"
+                        style="border: none; border-bottom: ${borderStyle}; outline: none; font-size: 16px; width: 250px; color: #0f172a; background: transparent; padding-bottom: 2px; font-family: inherit; font-weight: 600;"
+                    >
+                `;
+
                 contentHtml += this.applyTemplate('tpl-session-block', {
-                    name: sess.name,
+                    nameHtml: nameHtml,
                     sessionActions: sessionActions,
                     cellsHtml: cellsHtml
                 });
@@ -427,12 +443,11 @@ const lessonDetail = {
 
     addSession: function () {
         let sessionObj = this.node.materials[this.activeTab];
-        let name = prompt(`Enter Session name:`, `Session ${sessionObj.sessions.length + 1}`);
-        if (!name) return;
+        let defaultName = `Session ${sessionObj.sessions.length + 1}: `;
 
         let newId = this.uuid();
         sessionObj.sessions.push({
-            id: newId, name: name, slides: false, plan: false, key: false
+            id: newId, name: defaultName, slides: false, plan: false, key: false
         });
 
         if (!this.dirtySessions) this.dirtySessions = {};
@@ -440,6 +455,17 @@ const lessonDetail = {
         // Do not create an entry in sessionBackups so cancel removes it
 
         this.renderView();
+    },
+
+    updateSessionName: function (sessionId, val) {
+        let sessionObj = this.node.materials[this.activeTab];
+        let sess = sessionObj.sessions.find(x => x.id === sessionId);
+        if (sess) {
+            let match = sess.name.match(/^(Session \d+:\s*)(.*)$/);
+            let prefix = match ? match[1] : '';
+            sess.name = prefix + val;
+            this.renderView();
+        }
     },
 
     deleteSession: function (sessionId) {
