@@ -145,7 +145,7 @@ const studentManagement = {
             dob: dobEl ? dobEl.value : '',
             gender: genderEl ? genderEl.value : 'Male',
             totalCourses: 0,
-            status: 'active',
+            status: 'inactive',
             dateCreated: new Date().toISOString().split('T')[0],
             address: document.getElementById('student-address').value
         };
